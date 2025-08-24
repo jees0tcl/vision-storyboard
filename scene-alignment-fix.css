@@ -1,0 +1,38 @@
+/* ==========================================
+   Scene 4, 6, 8, 9 우측 영역 위치 수정
+   ========================================== */
+
+/* Scene 4 - 일상이 된 대화 */
+#scene-4 .scene-info {
+    justify-content: flex-start !important;
+    padding-top: 60px !important;
+}
+
+/* Scene 6 - 3D 세계로의 첫 발걸음 */
+#scene-6 .scene-info {
+    justify-content: flex-start !important;
+    padding-top: 60px !important;
+}
+
+/* Scene 8 - 함께하는 첫 이벤트 */
+#scene-8 .scene-info {
+    justify-content: flex-start !important;
+    padding-top: 60px !important;
+}
+
+/* Scene 9 - 팬 활동이 일상이 되다 */
+#scene-9 .scene-info {
+    justify-content: flex-start !important;
+    padding-top: 60px !important;
+}
+
+/* 모바일에서는 원래대로 */
+@media screen and (max-width: 768px) {
+    #scene-4 .scene-info,
+    #scene-6 .scene-info,
+    #scene-8 .scene-info,
+    #scene-9 .scene-info {
+        justify-content: flex-start !important;
+        padding-top: 20px !important;
+    }
+}
