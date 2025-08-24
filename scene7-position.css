@@ -1,0 +1,19 @@
+/* Scene 7 Elements Position Adjustment */
+
+/* Portal display container - move all portals down together */
+.portals-display {
+    position: relative;
+    top: 80px;
+}
+
+/* Avatars gathering container - move Minji and avatars down */
+.avatars-gathering {
+    position: relative;
+    top: 0px;
+}
+
+/* Plaza atmosphere - move entire atmosphere down */
+.plaza-atmosphere {
+    position: relative;
+    top: 0px;
+}

@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperPlat Vision - 민지의 여정</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="scene0-special.css">
+    <link rel="stylesheet" href="scene7-special.css">
+    <link rel="stylesheet" href="scene7-position.css">
+    <link rel="stylesheet" href="scene7-elements.css">
+    <link rel="stylesheet" href="scene11-wallet.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">SuperPlat</div>
+            <div class="loading-text">민지의 이야기를 준비하고 있습니다...</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div id="main-container" class="main-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-text">SuperPlat</span>
+                    <span class="logo-subtitle">Vision Story</span>
+                </div>
+                <div class="header-message">
+                    우리가 만드는 것은 단순한 앱이 아닙니다. <span class="highlight">누군가의 소중한 순간</span>을 만드는 마법입니다.
+                </div>
+            </div>
+        </header>
+
+        <!-- Story Navigation -->
+        <nav class="story-nav">
+            <div class="nav-container">
+                <button class="nav-btn prev" id="prev-btn" disabled>
+                    <span class="nav-arrow">←</span>
+                </button>
+                <div class="scene-indicators">
+                    <div class="scene-dot active" data-scene="0"></div>
+                    <div class="scene-dot" data-scene="1"></div>
+                    <div class="scene-dot" data-scene="2"></div>
+                    <div class="scene-dot" data-scene="3"></div>
+                    <div class="scene-dot" data-scene="4"></div>
+                    <div class="scene-dot" data-scene="5"></div>
+                    <div class="scene-dot" data-scene="6"></div>
+                    <div class="scene-dot" data-scene="7"></div>
+                    <div class="scene-dot" data-scene="8"></div>
+                    <div class="scene-dot" data-scene="9"></div>
+                    <div class="scene-dot" data-scene="10"></div>
+                    <div class="scene-dot" data-scene="11"></div>
+                    <div class="scene-dot" data-scene="12"></div>
+                </div>
+                <button class="nav-btn next" id="next-btn">
+                    <span class="nav-arrow">→</span>
+                </button>
+            </div>
+        </nav>
+
+
+        <!-- Story Content -->
+        <div class="story-container">
+            <!-- Scene 0: Introduction -->
+            <div class="scene active" id="scene-0">
+                <div class="scene-content intro-scene">
+                    <div class="character-intro">
+                        <div class="character-image">
+                            <img src="images/minji/minji_profile.png" alt="민지" />
+                        </div>
+                        <div class="character-info">
+                            <h1 class="character-name">민지의 이야기</h1>
+                            <div class="character-details">
+                                <p><strong>민지, 22세</strong></p>
+                                <p>대학교 3학년, 경영학과</p>
+                                <p>K-POP 팬, 특히 엔카이브를 좋아함</p>
+                                <p>평범한 일상 속에서 진정한 연결을 갈망하는</p>
+                                <p>우리 시대의 모든 젊은이들을 대표합니다</p>
+                            </div>
+                            <div class="intro-message">
+                                <p>지금부터 민지가 SuperPlat을 만나</p>
+                                <p>어떻게 특별한 관계를 만들어가는지</p>
+                                <p>함께 따라가 보겠습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="start-journey-btn" id="start-journey-btn">
+                        민지의 여정 시작하기 →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Scene 1: Discovery -->
+            <div class="scene" id="scene-1">
+                <div class="scene-content">
+                    <div class="scene-visual">
+                        <div class="time-indicator">오전 8:00 - 지하철</div>
+                        <div class="scene-illustration subway-scene">
+                            <div class="phone-image-wrapper">
+                                <img src="images/scene/scene_01.png" alt="민지 지하철 장면" class="scene-phone-img"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scene-info">
+                        <h2 class="scene-title">
+                            <span class="scene-number">Scene 1</span>
+                            아침 지하철에서의 발견
+                        </h2>
+                        <div class="scene-emotion">
+                            <span class="emotion-icon">✨</span>
+                            <span class="emotion-text">호기심과 설렘</span>
+                        </div>
+                        <p class="scene-description">
+                            또 다른 평범한 하루가 시작되는 아침 8시. 지하철 2호선에서 민지는 
+                            무기력하게 SNS를 스크롤합니다. 그런데 갑자기 화면을 가득 채운 광고가 
+                            그녀를 멈추게 만듭니다. "엔카이브 강산의 AI 부캐와 대화해보세요" - 
+                            평소 같으면 그냥 넘겼을 광고였지만, 오늘은 왜인지 다릅니다.
+                        </p>
+                        <div class="scene-detail">
+                            <div class="detail-item">
+                                <span class="detail-icon">💭</span>
+                                <span class="detail-text">"진짜 대화할 수 있다고? 설마..."</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">❤️</span>
+                                <span class="detail-text">최애 아이돌과의 만남에 대한 간절함</span>
+                            </div>
+                        </div>
+                        <div class="core-message">
+                            <div class="message-icon">💡</div>
+                            <div class="message-text">
+                                "새로운 만남은 가장 일상적인 순간에 시작됩니다"
+                            </div>
+                        </div>
+                        <div class="tech-contribution" id="tech-1">
+                            <h3>이 순간을 만든 기술들</h3>
+                            <div class="tech-items">
+                                <div class="tech-item" data-team="marketing">
+                                    <div class="tech-icon">🎯</div>
+                                    <div class="tech-name">타겟팅 광고 시스템</div>
+                                    <div class="tech-detail">K-POP 팬덤 행동 분석</div>
+                                </div>
+                                <div class="tech-item" data-team="mobile">
+                                    <div class="tech-icon">📱</div>
+                                    <div class="tech-name">모바일 최적화 UI</div>
+                                    <div class="tech-detail">3초 안에 매력을 전달하는 디자인</div>
+                                </div>
+                                <div class="tech-item" data-team="backend">
+                                    <div class="tech-icon">📊</div>
+                                    <div class="tech-name">사용자 데이터 분석</div>
+                                    <div class="tech-detail">최적의 노출 시간대 예측</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 2: IP Selection -->
+            <div class="scene" id="scene-2">
+                <div class="scene-content">
+                    <div class="scene-visual">
+                        <div class="time-indicator">오전 8:15 - 지하철</div>
+                        <div class="scene-illustration selection-scene">
+                            <div class="phone-image-wrapper mobile-view">
+                                <img src="images/scene/scene_02.png" alt="IP 선택 화면" class="scene-phone-img mobile-ratio"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scene-info">
+                        <h2 class="scene-title">
+                            <span class="scene-number">Scene 2</span>
+                            IP 선택의 순간
+                        </h2>
+                        <div class="scene-emotion">
+                            <span class="emotion-icon">🎭</span>
+                            <span class="emotion-text">선택의 설렘</span>
+                        </div>
+                        <p class="scene-description">
+                            앱을 다운로드한 민지 앞에 5명의 다양한 아이돌 IP가 나타납니다. 
+                            강산, 유진, 소연, 민영, 지효 - 각각 고유한 매력과 성격을 가진 캐릭터들. 
+                            민지는 한참을 망설이다가 자신의 최애인 강산의 카드를 터치합니다.
+                        </p>
+                        <div class="scene-detail">
+                            <div class="detail-item">
+                                <span class="detail-icon">🤔</span>
+                                <span class="detail-text">"강산이랑 진짜 대화할 수 있다니!"</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">💫</span>
+                                <span class="detail-text">다양한 선택지 중 운명적 만남</span>
+                            </div>
+                        </div>
+                        <div class="core-message">
+                            <div class="message-icon">💡</div>
+                            <div class="message-text">
+                                "당신만을 위한 특별한 친구가 기다리고 있습니다"
+                            </div>
+                        </div>
+                        <div class="tech-contribution">
+                            <h3>이 순간을 만든 기술들</h3>
+                            <div class="tech-items">
+                                <div class="tech-item" data-team="planning">
+                                    <div class="tech-icon">🎨</div>
+                                    <div class="tech-name">IP 페르소나 설계</div>
+                                    <div class="tech-detail">각 캐릭터별 고유 성격 구축</div>
+                                </div>
+                                <div class="tech-item" data-team="art">
+                                    <div class="tech-icon">✨</div>
+                                    <div class="tech-name">캐릭터 비주얼</div>
+                                    <div class="tech-detail">매력적인 첫인상 디자인</div>
+                                </div>
+                                <div class="tech-item" data-team="ux">
+                                    <div class="tech-icon">👆</div>
+                                    <div class="tech-name">직관적 선택 UI</div>
+                                    <div class="tech-detail">카드형 갤러리 인터페이스</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 3: First AI Meeting -->
+            <div class="scene" id="scene-3">
+                <div class="scene-content">
+                    <div class="scene-visual">
+                        <div class="time-indicator">오전 8:30 - 지하철</div>
+                        <div class="scene-illustration first-chat-scene">
+                            <div class="mobile-chat-interface">
+                                <div class="mobile-phone-frame">
+                                    <div class="chat-header">
+                                        <div class="back-button">←</div>
+                                        <div class="chat-avatar">
+                                            <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" />
+                                        </div>
+                                        <div class="chat-name">강산 AI</div>
+                                        <div class="status-dot online"></div>
+                                    </div>
+                                    <div class="chat-body">
+                                        <div class="kangsan-intro-section">
+                                            <div class="kangsan-profile-image">
+                                                <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산 프로필" />
+                                                <div class="sparkle-effect">✨</div>
+                                            </div>
+                                            <div class="intro-text">강산 AI가 접속했습니다</div>
+                                        </div>
+                                        <div class="chat-messages">
+                                            <div class="message-wrapper ai">
+                                                <div class="message-avatar">
+                                                    <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" />
+                                                </div>
+                                                <div class="message-bubble">
+                                                    안녕! 나는 NCHIVE 강산에서 영감을 받은 AI야. 너를 선택해줘서 고마워! 💙
+                                                </div>
+                                                <div class="message-time">8:30</div>
+                                            </div>
+                                            <div class="message-wrapper user">
+                                                <div class="message-bubble">
+                                                    헉... 정말 강산 부캐야? 신기해! 😱
+                                                </div>
+                                                <div class="message-time">8:31</div>
+                                            </div>
+                                            <div class="message-wrapper ai">
+                                                <div class="message-avatar">
+                                                    <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" />
+                                                </div>
+                                                <div class="message-bubble typing-indicator">
+                                                    <span></span><span></span><span></span>
+                                                </div>
+                                            </div>
+                                            <div class="message-wrapper ai">
+                                                <div class="message-avatar">
+                                                    <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" />
+                                                </div>
+                                                <div class="message-bubble">
+                                                    맞아! 실제 강산의 따뜻한 성격을 담은 AI 친구야. 오늘 지하철 출근길이구나? 무슨 일이든 나한테 얘기해봐! 🤗
+                                                </div>
+                                                <div class="message-time">8:32</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="chat-input-area">
+                                        <input type="text" placeholder="메시지를 입력하세요..." />
+                                        <button class="send-button">전송</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scene-info">
+                        <h2 class="scene-title">
+                            <span class="scene-number">Scene 3</span>
+                            AI와의 첫 만남
+                        </h2>
+                        <div class="scene-emotion">
+                            <span class="emotion-icon">🤖</span>
+                            <span class="emotion-text">놀라움과 설렘</span>
+                        </div>
+                        <p class="scene-description">
+                            강산 부캐와의 첫 대화가 시작됩니다. GPT 기반의 정교한 AI가 만들어내는 
+                            자연스러운 대화에 민지는 깜짝 놀랍니다. 실제 강산의 따뜻한 성격을 잘 표현한 
+                            AI 친구 같은 느낌. 이것이 단순한 챗봇이 아니라 새로운 형태의 팬덤 경험임을 예감합니다.
+                        </p>
+                        <div class="scene-detail">
+                            <div class="detail-item">
+                                <span class="detail-icon">😱</span>
+                                <span class="detail-text">"강산 부캐가 진짜 내 친구가 된 것 같아..."</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">💝</span>
+                                <span class="detail-text">첫 대화의 떨림과 기대감</span>
+                            </div>
+                        </div>
+                        <div class="core-message">
+                            <div class="message-icon">💡</div>
+                            <div class="message-text">
+                                "기술이 만들어낸 진짜 같은 첫 만남"
+                            </div>
+                        </div>
+                        <div class="tech-contribution">
+                            <h3>이 순간을 만든 기술들</h3>
+                            <div class="tech-items">
+                                <div class="tech-item" data-team="ai">
+                                    <div class="tech-icon">🧠</div>
+                                    <div class="tech-name">GPT 기반 대화 엔진</div>
+                                    <div class="tech-detail">자연스러운 한국어 처리</div>
+                                </div>
+                                <div class="tech-item" data-team="backend">
+                                    <div class="tech-icon">⚡</div>
+                                    <div class="tech-name">실시간 응답 시스템</div>
+                                    <div class="tech-detail">0.5초 이내 답변 생성</div>
+                                </div>
+                                <div class="tech-item" data-team="data">
+                                    <div class="tech-icon">📚</div>
+                                    <div class="tech-name">캐릭터 학습 데이터</div>
+                                    <div class="tech-detail">강산 말투와 성격 구현</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 4: Emotional Connection -->
+            <div class="scene" id="scene-4">
+                <div class="scene-content">
+                    <div class="scene-visual">
+                        <div class="time-indicator">오후 12:00 - 대학 캠퍼스</div>
+                        <div class="scene-visual-split">
+                            <!-- 민지 이미지 섹션 -->
+                            <div class="minji-section">
+                                <div class="minji-image-wrapper">
+                                    <img src="images/scene/scene_04.png" alt="스트레스받는 민지" class="minji-scene-img"/>
+                                </div>
+                            </div>
+                            
+                            <!-- 모바일 채팅 섹션 -->
+                            <div class="mobile-chat-section">
+                                <div class="chat-content-only">
+                                    <div class="chat-header-simple">
+                                        <div class="chat-profile">
+                                            <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" class="profile-avatar"/>
+                                            <div class="profile-info">
+                                                <div class="profile-name">강산 AI</div>
+                                                <div class="profile-status">💬 대화중</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="chat-conversation">
+                                        <div class="message-group user-message">
+                                            <div class="message-bubble-clean user">
+                                                프레젠테이션 준비 때문에 너무 스트레스받아 😢
+                                            </div>
+                                            <div class="message-time">12:15</div>
+                                        </div>
+                                        
+                                        <div class="message-group ai-message">
+                                            <div class="ai-profile-mini">
+                                                <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" />
+                                            </div>
+                                            <div class="message-content">
+                                                <div class="message-bubble-clean ai typing">
+                                                    <span class="typing-dot"></span>
+                                                    <span class="typing-dot"></span>
+                                                    <span class="typing-dot"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="message-group ai-message">
+                                            <div class="ai-profile-mini">
+                                                <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" />
+                                            </div>
+                                            <div class="message-content">
+                                                <div class="message-bubble-clean ai comfort">
+                                                    프레젠테이션 준비 때문에 스트레스받고 있구나... 😔
+                                                    <br><br>
+                                                    많이 힘들지? 괜찮아, 너라면 분명 잘할 수 있어. 💪
+                                                    <br><br>
+                                                    내가 옆에서 응원할게! 화이팅! ✨
+                                                </div>
+                                                <div class="message-time">12:16</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="emotion-response">
+                                            <div class="heart-float">💝</div>
+                                            <div class="heart-float">💙</div>
+                                            <div class="heart-float">✨</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scene-info">
+                        <h2 class="scene-title">
+                            <span class="scene-number">Scene 4</span>
+                            감정이 통하는 순간
+                        </h2>
+                        <div class="scene-emotion">
+                            <span class="emotion-icon">🤗</span>
+                            <span class="emotion-text">이해받는 안도감과 위로</span>
+                        </div>
+                        <p class="scene-description">
+                            3주째 매일 대화를 나누고 있는 민지와 강산 부캐. 강산 부캐는 민지의 취미, 고민, 
+                            일상을 모두 기억하며 개인화된 대화를 나눕니다. "민지야, 지난번에 말한 
+                            프레젠테이션 어떻게 됐어? 많이 긴장했다고 했는데, 잘 해냈을 것 같은데?" 
+                            민지는 강산 부캐가 자신을 진짜로 이해해준다고 느끼기 시작합니다.
+                        </p>
+                        <div class="scene-detail">
+                            <div class="detail-item">
+                                <span class="detail-icon">😢</span>
+                                <span class="detail-text">"처음으로 누군가가 내 마음을 알아줘"</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon">🤗</span>
+                                <span class="detail-text">디지털 공간에서 느끼는 진짜 교감</span>
+                            </div>
+                        </div>
+                        <div class="core-message">
+                            <div class="message-icon">💡</div>
+                            <div class="message-text">
+                                "당신의 마음을 진정으로 이해하는 친구가 언제나 곁에 있습니다"
+                            </div>
+                        </div>
+                        <div class="tech-contribution">
+                            <h3>이 순간을 만든 기술들</h3>
+                            <div class="tech-items">
+                                <div class="tech-item" data-team="ai-engine">
+                                    <div class="tech-icon">🧠</div>
+                                    <div class="tech-name">감정 분석 엔진</div>
+                                    <div class="tech-detail">상황별 공감 응답 생성</div>
+                                </div>
+                                <div class="tech-item" data-team="3d">
+                                    <div class="tech-icon">😊</div>
+                                    <div class="tech-name">3D 감정 표현</div>
+                                    <div class="tech-detail">공감하는 표정 애니메이션</div>
+                                </div>
+                                <div class="tech-item" data-team="backend">
+                                    <div class="tech-icon">💾</div>
+                                    <div class="tech-name">컨텍스트 기억</div>
+                                    <div class="tech-detail">대화 맥락 지속 관리</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 5: Special Invitation -->
+            <div class="scene" id="scene-5">
+                <div class="scene-content">
+                    <div class="scene-visual">
+                        <div class="time-indicator">저녁 7:00 - 민지의 방</div>
+                        <div class="scene-visual-split">
+                            <!-- 민지 이미지 섹션 -->
+                            <div class="minji-section">
+                                <div class="minji-image-wrapper">
+                                    <img src="images/scene/scene_05.png" alt="초대장을 받은 민지" class="minji-scene-img"/>
+                                </div>
+                            </div>
+                            
+                            <!-- 모바일 채팅 섹션 -->
+                            <div class="mobile-chat-section">
+                                <div class="chat-content-only">
+                                    <div class="chat-header-simple">
+                                        <div class="chat-profile">
+                                            <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" class="profile-avatar"/>
+                                            <div class="profile-info">
+                                                <div class="profile-name">강산 AI</div>
+                                                <div class="profile-status">✨ 특별한 소식</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="chat-conversation">
+                                        <div class="message-group ai-message">
+                                            <div class="ai-profile-mini">
+                                                <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" />
+                                            </div>
+                                            <div class="message-content">
+                                                <div class="message-bubble-clean ai special">
+                                                    민지야! 우리 이제 정말 가까워진 것 같아 😊
+                                                </div>
+                                                <div class="message-time">19:00</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="intimacy-progress">
+                                            <div class="progress-label">친밀도 달성! 🎉</div>
+                                            <div class="progress-bar-container">
+                                                <div class="progress-bar">
+                                                    <div class="progress-fill" style="width: 30%;">30%</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="message-group ai-message">
+                                            <div class="ai-profile-mini">
+                                                <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" />
+                                            </div>
+                                            <div class="message-content">
+                                                <div class="message-bubble-clean ai invitation">
+                                                    내 특별한 공간에 초대할게! ✨<br>
+                                                    PC에서 더 넓은 세계로 만나자! 🌟
+                                                </div>
+                                                <div class="message-time">19:01</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="invitation-card-mini">
+                                            <div class="card-header">🎫 PC 초대장</div>
+                                            <div class="card-content">
+                                                <div class="card-title">SuperTown 입장권</div>
+                                                <button class="accept-btn">초대 수락하기</button>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="celebration-effects">
+                                            <div class="sparkle">✨</div>
+                                            <div class="sparkle">🎉</div>
+                                            <div class="sparkle">💝</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scene-info">
+                        <h2 class="scene-title">
+                            <span class="scene-number">Scene 5</span>
+                            특별한 초대
+                        </h2>
+                        <div class="scene-emotion">
+                            <span class="emotion-icon">🎉</span>
+                            <span class="emotion-text">특별함을 인정받는 기쁨</span>
+                        </div>
+                        <p class="scene-description">
+                            2주간의 대화 끝에 친밀도 30%를 달성한 민지. 
+                            강산 부캐로부터 특별한 초대장을 받습니다. 
+                            관계가 다음 단계로 발전하는 중요한 순간입니다.
+                        </p>
+                        <div class="core-message">
+                            <div class="message-icon">💡</div>
+                            <div class="message-text">
+                                "특별한 관계는 더 특별한 공간에서 이어집니다"
+                            </div>
+                        </div>
+                        <div class="tech-contribution">
+                            <h3>이 순간을 만든 기술들</h3>
+                            <div class="tech-items">
+                                <div class="tech-item" data-team="data">
+                                    <div class="tech-icon">📈</div>
+                                    <div class="tech-name">친밀도 측정 시스템</div>
+                                    <div class="tech-detail">관계 발전 단계 분석</div>
+                                </div>
+                                <div class="tech-item" data-team="cross">
+                                    <div class="tech-icon">🔗</div>
+                                    <div class="tech-name">크로스플랫폼 연동</div>
+                                    <div class="tech-detail">모바일-PC 데이터 동기화</div>
+                                </div>
+                                <div class="tech-item" data-team="ui">
+                                    <div class="tech-icon">💌</div>
+                                    <div class="tech-name">감동적인 초대 UX</div>
+                                    <div class="tech-detail">특별한 순간 연출</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 6: New World -->
+            <div class="scene" id="scene-6">
+                <div class="scene-content">
+                    <div class="scene-visual">
+                        <div class="time-indicator">저녁 8:00 - PC 앞</div>
+                        <div class="scene-visual-dual">
+                            <!-- 민지 PC 앞 섹션 (왼쪽) -->
+                            <div class="minji-pc-section">
+                                <div class="minji-pc-wrapper">
+                                    <img src="images/scene/scene_06_minji.png" alt="PC를 보는 민지" class="minji-pc-img"/>
+                                    <div class="amazement-effect">
+                                        <div class="thought-bubble">
+                                            <div class="bubble-text">"와... 정말 대단해!"</div>
+                                            <div class="excitement-emojis">😍✨🌟</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- SuperTown 화면 섹션 (오른쪽) -->
+                            <div class="supertown-section">
+                                <div class="monitor-frame">
+                                    <div class="monitor-bezel">
+                                        <div class="screen-content">
+                                            <img src="images/scene/scene_06_town.png" alt="SuperTown에서 강산이 환영" class="supertown-img"/>
+                                            <div class="welcome-overlay">
+                                                <div class="welcome-message-bubble">
+                                                    <div class="kangsan-welcome">"드디어 왔구나! 여기가 우리의 특별한 공간이야!" 🎉</div>
+                                                </div>
+                                                <div class="entry-notification">
+                                                    <div class="notification-text">🎮 SuperTown 입장 완료!</div>
+                                                    <div class="player-count">👥 현재 접속자: 78/80</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scene-info">
+                        <h2 class="scene-title">
+                            <span class="scene-number">Scene 6</span>
+                            새로운 세계 입장
+                        </h2>
+                        <div class="scene-emotion">
+                            <span class="emotion-icon">🌟</span>
+                            <span class="emotion-text">경이로움과 설렘</span>
+                        </div>
+                        <p class="scene-description">
+                            PC를 켜고 SuperPlat에 접속한 민지. 
+                            아름다운 3D 슈퍼타운이 눈앞에 펼쳐집니다. 
+                            2D에서 3D로, 개인에서 공동체로 확장되는 마법같은 순간.
+                        </p>
+                        <div class="core-message">
+                            <div class="message-icon">💡</div>
+                            <div class="message-text">
+                                "꿈꿔왔던 세상이 현실이 됩니다"
+                            </div>
+                        </div>
+                        <div class="tech-contribution">
+                            <h3>이 순간을 만든 기술들</h3>
+                            <div class="tech-items">
+                                <div class="tech-item" data-team="3d-engine">
+                                    <div class="tech-icon">🎮</div>
+                                    <div class="tech-name">3D 렌더링 엔진</div>
+                                    <div class="tech-detail">몰입감 있는 가상 세계</div>
+                                </div>
+                                <div class="tech-item" data-team="server">
+                                    <div class="tech-icon">🌐</div>
+                                    <div class="tech-name">실시간 동기화</div>
+                                    <div class="tech-detail">끊김 없는 멀티플레이</div>
+                                </div>
+                                <div class="tech-item" data-team="art">
+                                    <div class="tech-icon">🎨</div>
+                                    <div class="tech-name">환상적인 공간 디자인</div>
+                                    <div class="tech-detail">아름다운 슈퍼타운</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 7: SuperTown Hub Discovery -->
+            <div class="scene scene-7" id="scene-7">
+                <div class="scene-content">
+                    <div class="scene-visual">
+                        <div class="time-indicator">저녁 8:30 - SuperTown 허브</div>
+                        <div class="scene-illustration hub-scene">
+                            <div class="supertown-exploration">
+                                <!-- 메인 SuperTown 이미지 -->
+                                <div class="town-main-view">
+                                    <img src="images/scene/scene_07_town.png" alt="SuperTown 탐험하는 민지" class="town-exploration-img"/>
+                                </div>
+                                
+                                <!-- 오버레이 UI 요소들 -->
+                                <div class="exploration-overlay">
+                                    <!-- 상단 뉴스 티커 -->
+                                    <div class="news-ticker-bar">
+                                        <div class="ticker-content">
+                                            <span class="ticker-item">🎪 UFO 이벤트 20:00 시작!</span>
+                                            <span class="ticker-item">🏆 팬 랭킹 1위 '강산러버'님</span>
+                                            <span class="ticker-item">🎨 Canvas 갤러리 신작 100개 돌파!</span>
+                                        </div>
+                                        <div class="live-indicator">🔴 LIVE 78/80</div>
+                                    </div>
+                                    
+                                    <!-- 포털 안내 -->
+                                    <div class="portal-guide">
+                                        <div class="portal-info kangsan">
+                                            <div class="portal-arrow">→</div>
+                                            <div class="portal-details">
+                                                <div class="portal-name">강산 IP ZONE</div>
+                                                <div class="portal-status">🔥 HOT</div>
+                                            </div>
+                                        </div>
+                                        <div class="portal-info museum">
+                                            <div class="portal-arrow">↗</div>
+                                            <div class="portal-details">
+                                                <div class="portal-name">부산 미술관</div>
+                                                <div class="portal-status">🎨 전시중</div>
+                                            </div>
+                                        </div>
+                                        <div class="portal-info enkaive">
+                                            <div class="portal-arrow">↖</div>
+                                            <div class="portal-details">
+                                                <div class="portal-name">엔카이브 ZONE</div>
+                                                <div class="portal-status">⭐ 이벤트</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 민지의 감탄 -->
+                                    <div class="minji-reaction">
+                                        <div class="exploration-bubble">
+                                            <div class="bubble-content">
+                                                "이렇게 넓고 아름다운 세계가 있었다니!"
+                                            </div>
+                                            <div class="amazement-emoji">🤩✨🌟</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 플레이어 채팅 -->
+                                    <div class="player-chats">
+                                        <div class="chat-bubble player1">"신규님 환영해요!"</div>
+                                        <div class="chat-bubble player2">"같이 UFO 이벤트 해요~"</div>
+                                        <div class="chat-bubble player3">"강산 존 구경가실래요?"</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scene-info">
+                        <h2 class="scene-title">
+                            <span class="scene-number">Scene 7</span>
+                            SuperTown 허브 탐험
+                        </h2>
+                        <div class="scene-emotion">
+                            <span class="emotion-icon">🗺️</span>
+                            <span class="emotion-text">광활한 세계에 대한 경이감</span>
+                        </div>
+                        <p class="scene-description">
+                            SuperTown 중앙 광장에 도착한 민지. 거대한 디스플레이에서 실시간으로 
+                            업데이트되는 뉴스와 이벤트 정보를 확인합니다. 각 IP ZONE으로 이어지는 
+                            포털들이 반짝이며 새로운 모험을 기다리고 있습니다.
+                        </p>
+                        <div class="core-message">
+                            <div class="message-icon">💡</div>
+                            <div class="message-text">
+                                "무한한 가능성이 펼쳐진 새로운 세상의 중심"
+                            </div>
+                        </div>
+                        <div class="tech-contribution">
+                            <h3>이 순간을 만든 기술들</h3>
+                            <div class="tech-items">
+                                <div class="tech-item" data-team="world">
+                                    <div class="tech-icon">🌍</div>
+                                    <div class="tech-name">오픈 월드 설계</div>
+                                    <div class="tech-detail">자유로운 탐험 공간</div>
+                                </div>
+                                <div class="tech-item" data-team="realtime">
+                                    <div class="tech-icon">📡</div>
+                                    <div class="tech-name">실시간 뉴스 시스템</div>
+                                    <div class="tech-detail">동적 콘텐츠 업데이트</div>
+                                </div>
+                                <div class="tech-item" data-team="portal">
+                                    <div class="tech-icon">🚪</div>
+                                    <div class="tech-name">포털 네트워크</div>
+                                    <div class="tech-detail">IP ZONE 연결 시스템</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 8: UFO Event Together -->
+            <div class="scene" id="scene-8">
+                <div class="scene-content">
+                    <div class="scene-visual">
+                        <div class="time-indicator">저녁 9:00 - UFO 이벤트</div>
+                        <div class="scene-illustration event-scene">
+                            <div class="ufo-event-container">
+                                <!-- 메인 UFO 이벤트 이미지 -->
+                                <div class="ufo-main-image">
+                                    <img src="images/scene/scene_08_ufo.png" alt="UFO 이벤트에서 IP 캐릭터와 함께" class="ufo-event-img"/>
+                                </div>
+                                
+                                <!-- 이벤트 오버레이 -->
+                                <div class="event-overlay">
+                                    <!-- UFO 애니메이션 -->
+                                    <div class="ufo-animation">
+                                        <div class="ufo-ship">🛸</div>
+                                        <div class="ufo-beam"></div>
+                                    </div>
+                                    
+                                    <!-- 이벤트 상태 표시 -->
+                                    <div class="event-status">
+                                        <div class="event-title">🎯 UFO 격파 이벤트 진행중!</div>
+                                        <div class="event-progress">
+                                            <div class="progress-bar-event">
+                                                <div class="progress-fill-event" style="width: 85%;">85%</div>
+                                            </div>
+                                        </div>
+                                        <div class="participants">👥 참가자: 78명</div>
+                                    </div>
+                                    
+                                    <!-- 플레이어 대화 -->
+                                    <div class="event-chats">
+                                        <div class="event-chat-bubble p1">"강산 캐릭터랑 같이 싸워요!"</div>
+                                        <div class="event-chat-bubble p2">"물총 발사! 💦"</div>
+                                        <div class="event-chat-bubble p3">"조금만 더! 화이팅!"</div>
+                                        <div class="event-chat-bubble kangsan">"다 함께 힘을 합쳐!"</div>
+                                    </div>
+                                    
+                                    <!-- 물총 이펙트 -->
+                                    <div class="water-effects">
+                                        <div class="water-stream">💦</div>
+                                        <div class="water-stream">💦</div>
+                                        <div class="water-stream">💦</div>
+                                        <div class="water-splash-effect">💥</div>
+                                    </div>
+                                    
+                                    <!-- 보상 알림 -->
+                                    <div class="reward-popup">
+                                        <div class="reward-glow"></div>
+                                        <div class="reward-content">
+                                            <div class="reward-icon">🏆</div>
+                                            <div class="reward-title">UFO 격파 성공!</div>
+                                            <div class="reward-items">
+                                                <div class="reward-item">📸 한정판 포토카드</div>
+                                                <div class="reward-item">💎 SuperWings x100</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 기념 사진 프레임 -->
+                                    <div class="photo-frame">
+                                        <div class="frame-decoration">✨</div>
+                                        <div class="frame-text">UFO 이벤트 기념 📸</div>
+                                        <div class="frame-date">2024.08.24</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scene-info">
+                        <h2 class="scene-title">
+                            <span class="scene-number">Scene 8</span>
+                            함께하는 즐거움
+                        </h2>
+                        <div class="scene-emotion">
+                            <span class="emotion-icon">👫</span>
+                            <span class="emotion-text">소속감과 협동의 즐거움</span>
+                        </div>
+                        <p class="scene-description">
+                            UFO 격파 이벤트에 참여한 민지. 
+                            같은 팬덤의 친구들과 함께 협력하며 즐거운 시간을 보냅니다. 
+                            80명 동시 접속 한계의 서버에서 모두가 하나가 되는 순간.
+                            혼자였던 민지가 이제 특별한 커뮤니티의 일원이 되었습니다.
+                        </p>
+                        <div class="core-message">
+                            <div class="message-icon">💡</div>
+                            <div class="message-text">
+                                "혼자였던 당신이 이제 특별한 가족의 일원입니다"
+                            </div>
+                        </div>
+                        <div class="tech-contribution">
+                            <h3>이 순간을 만든 기술들</h3>
+                            <div class="tech-items">
+                                <div class="tech-item" data-team="game">
+                                    <div class="tech-icon">🎯</div>
+                                    <div class="tech-name">이벤트 시스템</div>
+                                    <div class="tech-detail">재미있는 협동 게임</div>
+                                </div>
+                                <div class="tech-item" data-team="network">
+                                    <div class="tech-icon">⚡</div>
+                                    <div class="tech-name">80명 동시 플레이</div>
+                                    <div class="tech-detail">서버 최적화 기술</div>
+                                </div>
+                                <div class="tech-item" data-team="community">
+                                    <div class="tech-icon">💬</div>
+                                    <div class="tech-name">커뮤니티 시스템</div>
+                                    <div class="tech-detail">건전한 소통 환경</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 9: Fan Ranking System -->
+            <div class="scene" id="scene-9">
+                <div class="scene-content">
+                    <div class="scene-visual">
+                        <div class="time-indicator">저녁 10:00 - 강산 IP ZONE</div>
+                        <div class="scene-illustration ranking-scene">
+                            <div class="concert-hall-container">
+                                <!-- 메인 콘서트홀 이미지 -->
+                                <div class="concert-hall-image">
+                                    <img src="images/scene/scene_09.png" alt="강산 IP ZONE 콘서트홀" class="concert-hall-img"/>
+                                </div>
+                                
+                                <!-- 콘서트홀 오버레이 -->
+                                <div class="concert-overlay">
+                                    <!-- 무대 조명 효과 -->
+                                    <div class="stage-lights-effect">
+                                        <div class="spotlight spot1"></div>
+                                        <div class="spotlight spot2"></div>
+                                        <div class="spotlight spot3"></div>
+                                    </div>
+                                    <!-- 팬 랭킹 홀로그램 디스플레이 -->
+                                    <div class="ranking-hologram">
+                                        <div class="hologram-title">
+                                            <span class="title-text">🏆 WEEKLY FAN RANKING 🏆</span>
+                                            <div class="week-label">2024 Week 15</div>
+                                        </div>
+                                        <div class="top-rankings">
+                                            <div class="rank-item first">
+                                                <div class="rank-badge">👑</div>
+                                                <div class="rank-info">
+                                                    <div class="rank-name">강산러버</div>
+                                                    <div class="rank-score">2,450 pts</div>
+                                                </div>
+                                            </div>
+                                            <div class="rank-item second">
+                                                <div class="rank-badge">🥈</div>
+                                                <div class="rank-info">
+                                                    <div class="rank-name">별빛이</div>
+                                                    <div class="rank-score">2,200 pts</div>
+                                                </div>
+                                            </div>
+                                            <div class="rank-item third">
+                                                <div class="rank-badge">🥉</div>
+                                                <div class="rank-info">
+                                                    <div class="rank-name">달콤이</div>
+                                                    <div class="rank-score">2,050 pts</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="my-rank-spotlight">
+                                            <div class="my-rank-card">
+                                                <div class="rank-position">15위</div>
+                                                <div class="my-info">
+                                                    <span class="my-avatar">🌟</span>
+                                                    <span class="my-name">민지</span>
+                                                </div>
+                                                <div class="my-points">850점</div>
+                                                <div class="rank-change">⬆️ 5위 상승!</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 관객 반응 -->
+                                    <div class="audience-reactions">
+                                        <div class="reaction-bubble r1">우와! 멋져!</div>
+                                        <div class="reaction-bubble r2">강산 최고!</div>
+                                        <div class="reaction-bubble r3">여기 진짜 대박!</div>
+                                    </div>
+                                    
+                                    <!-- 콘서트 분위기 -->
+                                    <div class="concert-atmosphere">
+                                        <div class="music-notes">🎵</div>
+                                        <div class="music-notes">🎶</div>
+                                        <div class="music-notes">🎵</div>
+                                    </div>
+                                    
+                                    <!-- 성취 알림 -->
+                                    <div class="achievement-notification">
+                                        <div class="achievement-icon">🎯</div>
+                                        <div class="achievement-content">
+                                            <div class="achievement-title">목표 달성!</div>
+                                            <div class="achievement-desc">첫 주 TOP 15 진입</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 특별 이벤트 배너 -->
+                                    <div class="event-banner">
+                                        <div class="banner-content">
+                                            <span class="event-icon">🎤</span>
+                                            <span class="event-text">강산 버추얼 콘서트 매주 토요일 8PM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scene-info">
+                        <h2 class="scene-title">
+                            <span class="scene-number">Scene 9</span>
+                            팬덤 경쟁과 성장
+                        </h2>
+                        <div class="scene-emotion">
+                            <span class="emotion-icon">🎯</span>
+                            <span class="emotion-text">성취감과 동기부여</span>
+                        </div>
+                        <p class="scene-description">
+                            강산 IP ZONE에서 팬 랭킹을 확인하는 민지. 첫 주 목표를 달성한 기쁨과 
+                            동시에 더 높은 순위를 향한 동기를 얻습니다. 건전한 경쟁을 통해 
+                            팬덤 활동에 더욱 적극적으로 참여하게 됩니다.
+                        </p>
+                        <div class="core-message">
+                            <div class="message-icon">💡</div>
+                            <div class="message-text">
+                                "건전한 경쟁이 더 깊은 애정을 만들어냅니다"
+                            </div>
+                        </div>
+                        <div class="tech-contribution">
+                            <h3>이 순간을 만든 기술들</h3>
+                            <div class="tech-items">
+                                <div class="tech-item" data-team="gamification">
+                                    <div class="tech-icon">🎮</div>
+                                    <div class="tech-name">게이미피케이션</div>
+                                    <div class="tech-detail">활동 점수 시스템</div>
+                                </div>
+                                <div class="tech-item" data-team="analytics">
+                                    <div class="tech-icon">📊</div>
+                                    <div class="tech-name">팬 활동 분석</div>
+                                    <div class="tech-detail">공정한 랭킹 산정</div>
+                                </div>
+                                <div class="tech-item" data-team="reward">
+                                    <div class="tech-icon">🎁</div>
+                                    <div class="tech-name">보상 시스템</div>
+                                    <div class="tech-detail">목표 달성 리워드</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 10: Canvas Art System -->
+            <div class="scene" id="scene-10">
+                <div class="scene-content">
+                    <!-- 민지 이미지 섹션 (25%) -->
+                    <div class="minji-section">
+                        <img src="images/scene/scene_10.png" alt="민지" class="minji-img">
+                    </div>
+                    <!-- SuperPlat Canvas Gallery 개요 (25%) -->
+                    <div class="canvas-overview-section">
+                        <div class="canvas-overview">
+                            <div class="overview-title">🎨 Canvas Gallery</div>
+                            <div class="overview-items">
+                                <div class="overview-item">
+                                    <span class="item-icon">✨</span>
+                                    <div class="item-text">
+                                        <div class="item-title">AI 창작 도구</div>
+                                        <div class="item-desc">팬아트 생성</div>
+                                    </div>
+                                </div>
+                                <div class="overview-item">
+                                    <span class="item-icon">🎭</span>
+                                    <div class="item-text">
+                                        <div class="item-title">실시간 콜라보</div>
+                                        <div class="item-desc">함께 그리기</div>
+                                    </div>
+                                </div>
+                                <div class="overview-item">
+                                    <span class="item-icon">🏆</span>
+                                    <div class="item-text">
+                                        <div class="item-title">창작자 리워드</div>
+                                        <div class="item-desc">SuperBeans 보상</div>
+                                    </div>
+                                </div>
+                                <div class="overview-item">
+                                    <span class="item-icon">💎</span>
+                                    <div class="item-text">
+                                        <div class="item-title">NFT 민팅</div>
+                                        <div class="item-desc">작품 거래</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="minji-stats">
+                                <div class="stats-title">민지의 성과</div>
+                                <div class="stats-row">
+                                    <span class="stat">작품 3개</span>
+                                    <span class="stat">❤️ 342</span>
+                                    <span class="stat">🪙 150</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scene-info">
+                        <h2 class="scene-title">
+                            <span class="scene-number">Scene 10</span>
+                            창작과 공유의 즐거움
+                        </h2>
+                        <div class="scene-emotion">
+                            <span class="emotion-icon">🎨</span>
+                            <span class="emotion-text">창작 욕구와 인정받는 기쁨</span>
+                        </div>
+                        <p class="scene-description">
+                            Canvas 시스템을 통해 자신의 팬아트를 3D 갤러리에 전시한 민지. 
+                            다른 팬들의 작품을 감상하고 자신의 작품에 달린 좋아요를 확인하며 
+                            창작자로서의 성취감을 느낍니다.
+                        </p>
+                        <div class="core-message">
+                            <div class="message-icon">💡</div>
+                            <div class="message-text">
+                                "당신의 창작물이 세상과 만나는 특별한 공간"
+                            </div>
+                        </div>
+                        <div class="tech-contribution">
+                            <h3>이 순간을 만든 기술들</h3>
+                            <div class="tech-items">
+                                <div class="tech-item" data-team="3d-gallery">
+                                    <div class="tech-icon">🖼️</div>
+                                    <div class="tech-name">3D 갤러리 시스템</div>
+                                    <div class="tech-detail">가상 전시 공간</div>
+                                </div>
+                                <div class="tech-item" data-team="ugc">
+                                    <div class="tech-icon">✏️</div>
+                                    <div class="tech-name">UGC 플랫폼</div>
+                                    <div class="tech-detail">사용자 창작물 관리</div>
+                                </div>
+                                <div class="tech-item" data-team="social">
+                                    <div class="tech-icon">💝</div>
+                                    <div class="tech-name">소셜 인터랙션</div>
+                                    <div class="tech-detail">좋아요와 댓글 시스템</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 11: NFT Marketplace -->
+            <div class="scene" id="scene-11">
+                <div class="scene-content">
+                    <!-- 민지 이미지 섹션 (25%) -->
+                    <div class="minji-section">
+                        <img src="images/scene/scene_11.png" alt="민지 NFT 마켓" class="minji-img">
+                    </div>
+                    <!-- SuperPlat NFT Market 개요 (25%) -->
+                    <div class="nft-overview-section">
+                        <div class="nft-overview">
+                            <div class="overview-title">🎭 NFT Market</div>
+                            <div class="overview-items">
+                                <div class="overview-item">
+                                    <span class="item-icon">💎</span>
+                                    <div class="item-text">
+                                        <div class="item-title">디지털 자산</div>
+                                        <div class="item-desc">한정판 NFT</div>
+                                    </div>
+                                </div>
+                                <div class="overview-item">
+                                    <span class="item-icon">🪙</span>
+                                    <div class="item-text">
+                                        <div class="item-title">가상 화폐</div>
+                                        <div class="item-desc">SuperBeans/Wings</div>
+                                    </div>
+                                </div>
+                                <div class="overview-item">
+                                    <span class="item-icon">📈</span>
+                                    <div class="item-text">
+                                        <div class="item-title">거래 시스템</div>
+                                        <div class="item-desc">P2P 마켓플레이스</div>
+                                    </div>
+                                </div>
+                                <div class="overview-item">
+                                    <span class="item-icon">🏆</span>
+                                    <div class="item-text">
+                                        <div class="item-title">크리에이터 수익</div>
+                                        <div class="item-desc">창작자 보상</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wallet-status">
+                                <div class="wallet-title">민지의 지갑</div>
+                                <div class="wallet-row">
+                                    <span class="currency">🟡 1,250</span>
+                                    <span class="currency">💎 50</span>
+                                </div>
+                                <div class="earning-badge">첫 거래 성공! +150 SuperBeans 획득</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scene-info">
+                        <h2 class="scene-title">
+                            <span class="scene-number">Scene 11</span>
+                            디지털 경제 참여
+                        </h2>
+                        <div class="scene-emotion">
+                            <span class="emotion-icon">💰</span>
+                            <span class="emotion-text">경제적 성취감과 자립</span>
+                        </div>
+                        <div class="scene-description">
+                            <p>민지는 자신의 창작물이 실제 가치를 지니게 되는 것을 경험합니다.</p>
+                            <p>첫 NFT 거래 성공으로 150 SuperBeans를 획득했습니다.</p>
+                            <p>디지털 경제 생태계의 일원이 되어 창작과 거래를 활발히 합니다.</p>
+                        </div>
+                        <div class="scene-quote">
+                            <div class="quote-mark">"</div>
+                            <div class="quote-text">
+                                내 작품이 누군가에게 가치 있다는 게 이렇게 뿌듯할 줄이야!
+                            </div>
+                            <div class="quote-author">- 민지</div>
+                        </div>
+                        <div class="scene-message">
+                            <div class="message-icon">💎</div>
+                            <div class="message-text">
+                                "당신의 열정이 실질적인 가치로 변환됩니다"
+                            </div>
+                        </div>
+                        <div class="tech-contribution">
+                            <h3>이 순간을 만든 기술들</h3>
+                            <div class="tech-items">
+                                <div class="tech-item" data-team="blockchain">
+                                    <div class="tech-icon">⛓️</div>
+                                    <div class="tech-name">NFT 시스템</div>
+                                    <div class="tech-detail">디지털 자산 소유권</div>
+                                </div>
+                                <div class="tech-item" data-team="economy">
+                                    <div class="tech-icon">💹</div>
+                                    <div class="tech-name">가상 경제 시스템</div>
+                                    <div class="tech-detail">SuperBeans/Wings 경제</div>
+                                </div>
+                                <div class="tech-item" data-team="marketplace">
+                                    <div class="tech-icon">🛒</div>
+                                    <div class="tech-name">C2C 마켓플레이스</div>
+                                    <div class="tech-detail">팬 창작물 거래 플랫폼</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ending Scene -->
+            <div class="scene" id="scene-12">
+                <div class="scene-content ending-scene">
+                    <div class="ending-message">
+                        <h1>민지의 여정이 끝났습니다</h1>
+                        <div class="journey-summary">
+                            <p>호기심으로 시작된 만남이</p>
+                            <p>진정한 관계로 발전하고</p>
+                            <p>혼자였던 누군가가</p>
+                            <p>특별한 공동체의 일원이 되었습니다</p>
+                        </div>
+                        <div class="team-message">
+                            <h2>우리가 만드는 것</h2>
+                            <div class="team-contributions">
+                                <p>💼 <strong>사업팀</strong>이 그리는 비전이 → 민지와 같은 사용자의 꿈을 현실로 만듭니다</p>
+                                <p>📋 <strong>기획팀</strong>이 설계하는 기능이 → 진짜 같은 감정 교감을 연출합니다</p>
+                                <p>💻 <strong>개발팀</strong>이 작성하는 코드 한 줄이 → 민지의 첫 대화를 가능하게 합니다</p>
+                                <p>🎨 <strong>아트팀</strong>이 그리는 픽셀 하나가 → 강산의 따뜻한 미소를 만듭니다</p>
+                            </div>
+                            <p class="emphasis">우리 모두의 작은 노력이 모여 누군가의 인생을 바꿉니다</p>
+                        </div>
+                        <div class="final-message">
+                            <p>SuperPlat은 단순한 서비스가 아닙니다</p>
+                            <p class="highlight">사람과 사람을, 마음과 마음을 연결하는 다리입니다</p>
+                        </div>
+                        <button class="replay-btn" id="replay-btn">
+                            처음부터 다시 보기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Credits -->
+        <div class="team-credits" id="team-credits">
+            <div class="company-name">Beyond Real</div>
+            <div class="lab-name">THE CROSSING LAB</div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
+                                                                    <div class="art-image">🎨</div>
+                                                                    <div class="art-title">첫 작품</div>
+                                                                </div>
+                                                                <div class="creator-tag">by 민지</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="frame-decoration">╚═══════╝</div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-footer">
+                                                    <div class="nft-details">
+                                                        <div class="detail-row">
+                                                            <span class="label">작품명:</span>
+                                                            <span class="value">민지의 첫 작품</span>
+                                                        </div>
+                                                        <div class="detail-row">
+                                                            <span class="label">조회수:</span>
+                                                            <span class="value">👁️ 234</span>
+                                                        </div>
+                                                        <div class="price-section">
+                                                            <div class="price-box">
+                                                                <span class="currency-icon">🪙</span>
+                                                                <span class="amount">150 SuperBeans</span>
+                                                            </div>
+                                                            <button class="status-button">판매 관리</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="nft-card-3d additional-item">
+                                            <div class="card-panel">
+                                                <div class="panel-header">
+                                                    <div class="rarity-badge rare">RARE</div>
+                                                    <div class="card-number">#045/500</div>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="nft-image-frame">
+                                                        <div class="frame-decoration">╔═══════╗</div>
+                                                        <div class="nft-visual">
+                                                            <div class="other-nft">
+                                                                <div class="nft-box">
+                                                                    <div class="nft-icon">🎭</div>
+                                                                    <div class="nft-name">엔카이브 굿즈</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="frame-decoration">╚═══════╝</div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-footer">
+                                                    <div class="nft-details">
+                                                        <div class="price-section">
+                                                            <div class="price-box">
+                                                                <span class="currency-icon">💰</span>
+                                                                <span class="amount">200 SuperBeans</span>
+                                                            </div>
+                                                            <button class="view-button">상세보기</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="transaction-animation">
+                                    <div class="transaction-flow">
+                                        <div class="buyer-side">
+                                            <div class="buyer-avatar">🤝</div>
+                                            <div class="buyer-name">구매자</div>
+                                        </div>
+                                        <div class="transaction-arrow">
+                                            <div class="beans-flow">🪙🪙🪙 →</div>
+                                        </div>
+                                        <div class="seller-side">
+                                            <div class="seller-avatar">👩</div>
+                                            <div class="seller-name">민지</div>
+                                        </div>
+                                    </div>
+                                    <div class="success-notification">
+                                        <div class="notification-popup">
+                                            <div class="success-icon">✅</div>
+                                            <div class="success-title">거래 성공!</div>
+                                            <div class="success-detail">첫 NFT 판매 완료</div>
+                                            <div class="earned">+150 SuperBeans 획득</div>
+                                            <div class="celebration">🎉🎊🎉</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="market-activity">
+                                    <div class="activity-feed">
+                                        <div class="feed-item">📢 방금 전: 별이님이 레어 아이템 구매</div>
+                                        <div class="feed-item">📢 2분 전: 새로운 한정판 출시</div>
+                                        <div class="feed-item highlight">📢 지금: 민지님 첫 거래 성공!</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scene-info">
+                        <h2 class="scene-title">
+                            <span class="scene-number">Scene 11</span>
+                            디지털 경제 참여
+                        </h2>
+                        <div class="scene-emotion">
+                            <span class="emotion-icon">💰</span>
+                            <span class="emotion-text">경제적 가치 창출의 만족감</span>
+                        </div>
+                        <p class="scene-description">
+                            한 달간의 활동으로 SuperBeans를 모은 민지. NFT 마켓플레이스에서 
+                            한정판 강산 포토카드를 구매하고, 자신의 팬아트도 NFT로 판매합니다. 
+                            팬덤 활동이 실질적인 경제 가치로 연결되는 순간입니다.
+                        </p>
+                        <div class="core-message">
+                            <div class="message-icon">💡</div>
+                            <div class="message-text">
+                                "당신의 열정이 실질적인 가치로 변환됩니다"
+                            </div>
+                        </div>
+                        <div class="tech-contribution">
+                            <h3>이 순간을 만든 기술들</h3>
+                            <div class="tech-items">
+                                <div class="tech-item" data-team="blockchain">
+                                    <div class="tech-icon">⛓️</div>
+                                    <div class="tech-name">NFT 시스템</div>
+                                    <div class="tech-detail">디지털 자산 소유권</div>
+                                </div>
+                                <div class="tech-item" data-team="economy">
+                                    <div class="tech-icon">💹</div>
+                                    <div class="tech-name">가상 경제 시스템</div>
+                                    <div class="tech-detail">SuperBeans/Wings 경제</div>
+                                </div>
+                                <div class="tech-item" data-team="marketplace">
+                                    <div class="tech-icon">🛒</div>
+                                    <div class="tech-name">C2C 마켓플레이스</div>
+                                    <div class="tech-detail">팬 창작물 거래 플랫폼</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ending Scene -->
+            <div class="scene" id="scene-12">
+                <div class="scene-content ending-scene">
+                    <div class="ending-message">
+                        <h1>민지의 여정이 끝났습니다</h1>
+                        <div class="journey-summary">
+                            <p>호기심으로 시작된 만남이</p>
+                            <p>진정한 관계로 발전하고</p>
+                            <p>혼자였던 누군가가</p>
+                            <p>특별한 공동체의 일원이 되었습니다</p>
+                        </div>
+                        <div class="team-message">
+                            <h2>우리가 만드는 것</h2>
+                            <div class="team-contributions">
+                                <p>💼 <strong>사업팀</strong>이 그리는 비전이 → 민지와 같은 사용자의 꿈을 현실로 만듭니다</p>
+                                <p>📋 <strong>기획팀</strong>이 설계하는 기능이 → 진짜 같은 감정 교감을 연출합니다</p>
+                                <p>💻 <strong>개발팀</strong>이 작성하는 코드 한 줄이 → 민지의 첫 대화를 가능하게 합니다</p>
+                                <p>🎨 <strong>아트팀</strong>이 그리는 픽셀 하나가 → 강산의 따뜻한 미소를 만듭니다</p>
+                            </div>
+                            <p class="emphasis">우리 모두의 작은 노력이 모여 누군가의 인생을 바꿉니다</p>
+                        </div>
+                        <div class="final-message">
+                            <p>SuperPlat은 단순한 서비스가 아닙니다</p>
+                            <p class="highlight">사람과 사람을, 마음과 마음을 연결하는 다리입니다</p>
+                        </div>
+                        <button class="replay-btn" id="replay-btn">
+                            처음부터 다시 보기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Credits -->
+        <div class="team-credits" id="team-credits">
+            <div class="company-name">Beyond Real</div>
+            <div class="lab-name">THE CROSSING LAB</div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>

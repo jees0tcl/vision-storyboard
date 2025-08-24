@@ -1,0 +1,274 @@
+/* ==========================================
+   Mobile Fixes for 412x915 Resolution
+   ========================================== */
+
+/* Specific fixes for 412px width devices (Samsung Galaxy S20 Ultra, etc.) */
+@media screen and (min-width: 412px) and (max-width: 414px) {
+    
+    /* Fix Scene Dot Consistency */
+    .scene-indicators .scene-dot,
+    .story-nav .scene-dot,
+    .scene-dot {
+        width: 8px !important;
+        height: 8px !important;
+        min-width: 8px !important;
+        min-height: 8px !important;
+        max-width: 8px !important;
+        max-height: 8px !important;
+        border-radius: 50% !important;
+        flex-shrink: 0 !important;
+        border: 2px solid rgba(255, 255, 255, 0.5) !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .scene-dot.active {
+        background: white !important;
+        transform: scale(1.2) !important;
+    }
+
+    /* Fix Image Overlapping Issues */
+    .scene {
+        position: relative;
+        isolation: isolate;
+    }
+
+    .scene-content {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0 !important;
+        padding: 0 !important;
+        overflow-x: hidden !important;
+    }
+
+    /* Prevent image overflow */
+    .scene-visual,
+    .minji-section {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+        position: relative !important;
+        z-index: 1;
+    }
+
+    /* Fix Minji images */
+    .minji-img {
+        width: auto !important;
+        max-width: 85% !important;
+        height: auto !important;
+        max-height: 180px !important;
+        object-fit: contain !important;
+        display: block !important;
+        margin: 10px auto !important;
+        position: relative !important;
+    }
+
+    /* Fix scene illustrations */
+    .scene-illustration {
+        width: auto !important;
+        max-width: 85% !important;
+        height: auto !important;
+        max-height: 220px !important;
+        object-fit: contain !important;
+        margin: 10px auto !important;
+    }
+
+    /* Fix specific scene elements */
+    .minji-subway,
+    .phone-large {
+        width: auto !important;
+        max-width: 85% !important;
+        height: auto !important;
+        max-height: 350px !important;
+        margin: 10px auto !important;
+        display: block !important;
+    }
+
+    /* Scene 4 mobile chat container */
+    .mobile-chat-container {
+        width: 85% !important;
+        max-width: 320px !important;
+        height: 340px !important;
+        margin: 10px auto !important;
+    }
+
+    /* Scene 7 hub elements */
+    .hub-preview {
+        width: 100% !important;
+        height: 240px !important;
+        padding: 10px !important;
+        overflow: hidden !important;
+    }
+
+    .portal {
+        width: 45px !important;
+        height: 45px !important;
+    }
+
+    /* Scene 8 UFO container */
+    .ufo-visual {
+        width: 85% !important;
+        max-width: 350px !important;
+        height: 170px !important;
+        margin: 10px auto !important;
+    }
+
+    /* Scene 10-11 special layouts */
+    #scene-10 .minji-section,
+    #scene-11 .minji-section {
+        padding: 10px !important;
+        height: auto !important;
+        min-height: auto !important;
+    }
+
+    #scene-10 .minji-img,
+    #scene-11 .minji-img {
+        max-height: 160px !important;
+    }
+
+    /* Overview sections */
+    .canvas-overview-section,
+    .nft-overview-section {
+        padding: 10px !important;
+        width: 100% !important;
+    }
+
+    .overview-items {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 6px !important;
+    }
+
+    .overview-item {
+        padding: 6px !important;
+        min-height: auto !important;
+    }
+
+    /* Scene info adjustments */
+    .scene-info {
+        padding: 15px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Tech items */
+    .tech-items {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
+
+    .tech-item {
+        padding: 8px !important;
+        min-height: auto !important;
+    }
+
+    /* Message and detail spacing */
+    .core-message {
+        margin: 10px 0 !important;
+        padding: 12px !important;
+    }
+
+    .scene-detail {
+        margin: 10px 0 !important;
+        padding: 10px !important;
+    }
+
+    .detail-item {
+        padding: 6px 0 !important;
+        font-size: 12px !important;
+    }
+
+    /* Navigation container */
+    .nav-container {
+        max-width: 85% !important;
+        padding: 5px 12px !important;
+    }
+
+    /* Header adjustments */
+    .header {
+        padding: 6px 0 !important;
+    }
+
+    .header-content {
+        padding: 0 10px !important;
+    }
+
+    /* Footer adjustments */
+    .team-credits {
+        padding: 8px !important;
+        margin: 5px auto !important;
+        width: 90% !important;
+    }
+}
+
+/* Additional fixes for all mobile devices */
+@media screen and (max-width: 480px) {
+    
+    /* Ensure no horizontal overflow */
+    body,
+    html {
+        overflow-x: hidden !important;
+        width: 100% !important;
+    }
+
+    .main-container {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .story-container {
+        overflow-x: hidden !important;
+        width: 100% !important;
+    }
+
+    /* Prevent any element from causing horizontal scroll */
+    * {
+        max-width: 100vw !important;
+    }
+
+    /* Fix floating indicator dots */
+    .floating-indicator {
+        bottom: 70px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: auto !important;
+        padding: 8px 12px !important;
+    }
+
+    /* Ensure images don't break layout */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* Scene transition fixes */
+    .scene {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+    }
+
+    .scene.hidden {
+        display: none !important;
+    }
+
+    /* Z-index management to prevent overlapping */
+    .header {
+        z-index: 1000 !important;
+    }
+
+    .story-nav {
+        z-index: 999 !important;
+    }
+
+    .scene-content {
+        z-index: 1 !important;
+    }
+
+    .team-credits {
+        z-index: 998 !important;
+    }
+
+    .floating-indicator {
+        z-index: 1001 !important;
+    }
+}

@@ -1,0 +1,29 @@
+/* Scene 7 Specific Elements Position */
+
+/* City skyline - buildings only */
+.scene-7 .city-skyline {
+    position: absolute !important;
+    bottom: -60px !important;
+}
+
+/* Fountain center - plaza icon */
+.scene-7 .fountain-center {
+    position: relative;
+    top: 40px;
+}
+
+/* Concert stage */
+.scene-7 .concert-stage {
+    position: absolute !important;
+    bottom: -80px !important;
+}
+
+/* Keep avatars and thought bubble in original position */
+.scene-7 .avatars-gathering {
+    top: 80px !important;
+}
+
+/* Keep portals in original position */
+.scene-7 .portals-display {
+    top: 80px !important;
+}

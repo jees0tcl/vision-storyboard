@@ -1,0 +1,612 @@
+/* ==========================================
+   SuperPlat Vision Storyboard - Mobile Responsive
+   ========================================== */
+
+/* Mobile First Approach - Base styles for mobile */
+
+/* ==========================================
+   Breakpoints
+   ========================================== */
+/* 
+   320px — 480px: Mobile devices
+   481px — 768px: iPads, Tablets  
+   769px — 1024px: Small screens, laptops
+   1025px — 1200px: Desktops, large screens
+   1201px and more: Extra large screens, TV
+*/
+
+/* ==========================================
+   Mobile Base (320px - 480px)
+   ========================================== */
+@media screen and (max-width: 480px) {
+    /* Main Layout */
+    .main-container {
+        height: 100vh;
+        height: 100dvh; /* Dynamic viewport height for mobile */
+    }
+
+    /* Header */
+    .header {
+        padding: 8px 0;
+        height: auto;
+        min-height: 50px;
+    }
+
+    .header-content {
+        flex-direction: column;
+        padding: 0 15px;
+        gap: 8px;
+    }
+
+    .header-title {
+        font-size: 18px;
+    }
+
+    .header-message {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    /* Navigation */
+    .story-nav {
+        height: 45px;
+        padding: 8px 0;
+    }
+
+    .nav-container {
+        padding: 6px 15px;
+        gap: 15px;
+        max-width: 90%;
+    }
+
+    .nav-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .scene-indicators {
+        gap: 6px;
+        display: flex;
+        align-items: center;
+    }
+
+    .scene-dot {
+        width: 8px !important;
+        height: 8px !important;
+        min-width: 8px !important;
+        min-height: 8px !important;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    /* Scene Content */
+    .scene-content {
+        display: flex !important;
+        flex-direction: column !important;
+        height: calc(100vh - 140px);
+        height: calc(100dvh - 140px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        grid-template-columns: 1fr !important; /* Override grid */
+    }
+
+    /* Scene Visual Section */
+    .scene-visual {
+        min-height: auto;
+        height: auto;
+        padding: 20px 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: visible;
+    }
+
+    .scene-illustration {
+        width: 90%;
+        height: auto;
+        max-height: 250px;
+        margin: 10px auto;
+        object-fit: contain;
+    }
+
+    /* Minji Section Images - Fix overlapping */
+    .minji-section {
+        width: 100%;
+        padding: 15px;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .minji-img {
+        width: auto;
+        max-width: 90%;
+        height: auto;
+        max-height: 200px;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* Scene Info Section */
+    .scene-info {
+        padding: 20px 15px;
+        min-height: auto;
+    }
+
+    .scene-title {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .scene-number {
+        font-size: 12px;
+    }
+
+    .scene-emotion {
+        margin: 10px 0;
+    }
+
+    .emotion-icon {
+        font-size: 20px;
+    }
+
+    .emotion-text {
+        font-size: 13px;
+    }
+
+    .scene-description {
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 15px 0;
+    }
+
+    /* Detail Items */
+    .scene-detail {
+        padding: 12px;
+        margin: 15px 0;
+    }
+
+    .detail-item {
+        padding: 8px 0;
+        font-size: 13px;
+    }
+
+    .detail-icon {
+        font-size: 18px;
+        margin-right: 8px;
+    }
+
+    /* Tech Contribution */
+    .tech-contribution {
+        margin-top: 20px;
+        padding: 15px;
+    }
+
+    .tech-contribution h3 {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .tech-items {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tech-item {
+        padding: 10px;
+    }
+
+    .tech-icon {
+        font-size: 20px;
+    }
+
+    .tech-name {
+        font-size: 12px;
+    }
+
+    .tech-detail {
+        font-size: 11px;
+    }
+
+    /* Core Message */
+    .core-message {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .message-icon {
+        font-size: 24px;
+    }
+
+    .message-text {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* Footer */
+    .team-credits {
+        padding: 10px;
+        height: 45px;
+        font-size: 12px;
+    }
+
+    .company-name {
+        font-size: 13px;
+    }
+
+    .lab-name {
+        font-size: 11px;
+    }
+
+    /* Special Scenes Layout Adjustments */
+    
+    /* Scene 0 - Character Introduction */
+    .character-intro {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .character-avatar {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 15px;
+    }
+
+    .character-info {
+        text-align: center;
+    }
+
+    /* Scene 1-3 Visual Elements */
+    .minji-subway {
+        width: 90% !important;
+        max-width: 280px !important;
+        height: auto !important;
+        margin: 10px auto;
+    }
+
+    .phone-large {
+        width: 90% !important;
+        max-width: 300px !important;
+        height: auto !important;
+        margin: 10px auto;
+    }
+
+    /* Scene 4 - Mobile Chat */
+    .mobile-chat-container {
+        width: 90%;
+        max-width: 320px;
+        height: 350px;
+        margin: 10px auto;
+    }
+
+    .chat-messages {
+        height: 280px;
+        padding: 10px;
+    }
+
+    .message-bubble {
+        max-width: 75%;
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+
+    /* Scene 6 - PC World Preview */
+    .pc-world-preview {
+        width: 95%;
+        height: 220px;
+        margin: 10px auto;
+    }
+
+    /* Scene 7 - Hub */
+    #scene-7 .scene-content {
+        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .hub-preview {
+        height: 250px;
+        padding: 15px;
+        width: 100%;
+    }
+
+    .thought-bubble {
+        width: 100px;
+        font-size: 10px;
+        padding: 6px;
+        top: 10px;
+        left: 10px;
+    }
+
+    .portal {
+        width: 50px;
+        height: 50px;
+    }
+
+    .portal-label {
+        font-size: 10px;
+    }
+
+    /* Scene 8 - UFO Event */
+    .ufo-event-container {
+        padding: 15px;
+        width: 100%;
+    }
+
+    .ufo-visual {
+        width: 90%;
+        height: 180px;
+        margin: 0 auto;
+    }
+
+    .player-avatars {
+        gap: 2px;
+        padding: 5px;
+    }
+
+    .player-avatar {
+        width: 18px;
+        height: 18px;
+        font-size: 9px;
+    }
+
+    /* Scene 9 - Ranking */
+    .ranking-display {
+        padding: 15px;
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .rank-item {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    /* Scene 10-11 Layout */
+    #scene-10 .scene-content,
+    #scene-11 .scene-content {
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: 1fr !important;
+    }
+
+    .canvas-overview-section,
+    .nft-overview-section {
+        width: 100%;
+        padding: 15px;
+        flex-shrink: 0;
+    }
+
+    .overview-items {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        font-size: 12px;
+    }
+
+    .overview-item {
+        padding: 8px;
+    }
+
+    .item-icon {
+        font-size: 18px;
+    }
+
+    .item-title {
+        font-size: 12px;
+    }
+
+    .item-desc {
+        font-size: 10px;
+    }
+
+    /* Scene 12 - Final */
+    .final-content {
+        padding: 20px 15px;
+    }
+
+    .final-message {
+        font-size: 14px;
+        margin: 20px 0;
+    }
+
+    .replay-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    /* Touch Interaction Improvements */
+    .nav-btn,
+    .scene-dot,
+    .start-journey-btn,
+    .replay-btn {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    /* Scrollbar Styling for Mobile */
+    .scene-content::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .scene-content::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .scene-content::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 2px;
+    }
+}
+
+/* ==========================================
+   Small Tablets (481px - 768px)
+   ========================================== */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    /* Adjusted layouts for small tablets */
+    .scene-content {
+        padding: 0 20px;
+    }
+
+    .scene-visual {
+        min-height: 45vh;
+        padding: 25px;
+    }
+
+    .scene-illustration {
+        max-height: 350px;
+    }
+
+    .minji-img {
+        max-height: 300px;
+    }
+
+    .scene-title {
+        font-size: 22px;
+    }
+
+    .scene-description {
+        font-size: 15px;
+    }
+
+    .tech-items {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .mobile-chat-container {
+        max-width: 350px;
+        height: 450px;
+    }
+
+    .hub-preview {
+        height: 350px;
+    }
+}
+
+/* ==========================================
+   Tablets & Small Laptops (769px - 1024px)
+   ========================================== */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .scene-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .scene-visual {
+        min-height: auto;
+    }
+
+    .tech-items {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    #scene-10 .scene-content,
+    #scene-11 .scene-content {
+        grid-template-columns: 30% 30% 40%;
+    }
+}
+
+/* ==========================================
+   Orientation Specific Styles
+   ========================================== */
+
+/* Landscape Mode for Mobile */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .header {
+        padding: 5px 0;
+        min-height: 40px;
+    }
+
+    .story-nav {
+        height: 40px;
+    }
+
+    .scene-content {
+        height: calc(100vh - 120px);
+        flex-direction: row;
+    }
+
+    .scene-visual,
+    .scene-info {
+        width: 50%;
+        min-height: auto;
+    }
+
+    .scene-illustration {
+        max-height: 200px;
+    }
+
+    .team-credits {
+        height: 40px;
+    }
+}
+
+/* ==========================================
+   High DPI Displays
+   ========================================== */
+@media screen and (-webkit-min-device-pixel-ratio: 2),
+       screen and (min-resolution: 192dpi) {
+    /* Sharper borders and shadows for retina displays */
+    .scene-content {
+        border: 0.5px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-container {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* ==========================================
+   Accessibility & Performance
+   ========================================== */
+
+/* Reduce Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #1a1a1a;
+        --bg-secondary: #2d2d2d;
+        --text-primary: #f0f0f0;
+    }
+}
+
+/* ==========================================
+   Touch & Gesture Support
+   ========================================== */
+
+/* Touch-friendly tap targets */
+@media (pointer: coarse) {
+    .nav-btn,
+    .scene-dot,
+    button {
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    .detail-item {
+        padding: 12px 0;
+    }
+}
+
+/* Hover effects only for devices with hover capability */
+@media (hover: hover) {
+    .nav-btn:hover,
+    .scene-dot:hover,
+    button:hover {
+        transform: scale(1.1);
+    }
+}

@@ -1,0 +1,44 @@
+/* Scene 11 Wallet Position Adjustment */
+
+.wallet-display {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    left: auto !important;
+}
+
+.wallet-3d {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    border-radius: 15px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.wallet-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.balance-display {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.superbeans,
+.superwings {
+    font-size: 14px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.superbeans {
+    color: #ffd700;
+}
+
+.superwings {
+    color: #00bfff;
+}

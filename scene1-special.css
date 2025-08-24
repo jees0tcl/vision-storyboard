@@ -1,0 +1,190 @@
+/* Scene 1 Special Layout */
+.scene-1-layout {
+    display: flex;
+    gap: 40px;
+    height: 100%;
+    padding: 20px;
+}
+
+/* Left side - Phone Image */
+.scene-1-left {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.phone-image-container {
+    width: 281px; /* 9:16 ratio - height 500px */
+    height: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.phone-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Right side - Story Content */
+.scene-1-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.scene-story-content {
+    max-width: 600px;
+}
+
+.scene-story-content .time-indicator {
+    display: inline-block;
+    padding: 6px 14px;
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    border-radius: 20px;
+    font-size: 13px;
+    color: #667eea;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.story-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.emotion-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #ffeaa720 0%, #fdcb6e20 100%);
+    border-radius: 25px;
+    margin-bottom: 25px;
+}
+
+.emotion-icon {
+    font-size: 20px;
+}
+
+.emotion-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: #f39c12;
+}
+
+.story-description {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #4a4a4a;
+    margin-bottom: 25px;
+}
+
+/* Ad Section */
+.ad-section {
+    background: #f8f9fa;
+    border-left: 4px solid #667eea;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.ad-quote {
+    font-size: 18px;
+    font-weight: 700;
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.ad-thought {
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Thoughts Section */
+.thoughts-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.thought-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.thought-icon {
+    font-size: 24px;
+}
+
+.thought-text {
+    font-size: 15px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* CTA Section */
+.ad-cta-section {
+    background: linear-gradient(135deg, #667eea08 0%, #764ba208 100%);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.1);
+}
+
+.ad-main-text {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.ad-start-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 16px 45px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+}
+
+.ad-start-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .scene-1-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .phone-image-container {
+        width: 250px;
+        height: 444px;
+    }
+    
+    .scene-1-right {
+        width: 100%;
+        max-width: 700px;
+    }
+}
