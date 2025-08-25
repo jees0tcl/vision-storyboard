@@ -100,10 +100,10 @@
             // 모바일 디바이스 판단
             if (isMobile && !isTablet) {
                 deviceType = '모바일';
-                targetPage = 'index-mobile.html';
+                targetPage = 'index-mobile-canvas-final.html'; // 동일 구성 + 캔버스 스냅
             } else if (isTablet || screenWidth <= 768) {
                 deviceType = '태블릿/모바일';
-                targetPage = 'index-mobile.html';
+                targetPage = 'index-mobile-canvas-final.html'; // 동일 구성 + 캔버스 스냅
             } else {
                 deviceType = 'PC/데스크톱';
                 targetPage = 'index-backup.html'; // PC는 백업 파일 사용
@@ -123,7 +123,7 @@
                 const forceDevice = urlParams.get('device');
                 
                 if (forceDevice === 'mobile') {
-                    window.location.href = 'index-mobile.html' + search + hash;
+                    window.location.href = 'index-mobile-canvas-final.html' + search + hash;
                 } else if (forceDevice === 'pc') {
                     window.location.href = 'index-backup.html' + search + hash;
                 } else {

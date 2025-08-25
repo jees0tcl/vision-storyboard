@@ -72,17 +72,33 @@
 }
 
 .intro-message {
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.5;
-    padding: 18px 30px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
+    padding: 25px 40px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    backdrop-filter: blur(15px);
     color: white;
+    max-width: 520px;
+    margin: 0 auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .intro-message p {
-    margin: 5px 0;
+    margin: 4px 0;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+.intro-message p:first-child {
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.intro-message p:last-child {
+    margin-top: 6px;
+    font-weight: 500;
 }
 
 .start-journey-btn {
@@ -134,7 +150,10 @@
     }
     
     .intro-message {
-        font-size: 18px;
+        font-size: 17px;
+        padding: 20px 30px;
+        max-width: 400px;
+        line-height: 1.45;
     }
     
     .start-journey-btn {

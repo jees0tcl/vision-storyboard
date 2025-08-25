@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- 다크모드 색상 왜곡 방지 -->
+    <meta name="color-scheme" content="only light">
+    <meta name="supported-color-schemes" content="light">
+    
+    <title>SuperPlat Vision - 민지의 여정</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Enhanced Mobile Canvas Styles -->
+    <link rel="stylesheet" href="mobile-canvas-styles.css">
+    
+    <style>
+        /* 다크모드 방지 및 기본 설정 */
+        :root {
+            color-scheme: light only;
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --white: #ffffff;
+            --black: #333333;
+            --gray: #666666;
+            --light-gray: #f8f9fa;
+        }
+        
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        /* 다크모드에서도 강제로 라이트모드 유지 */
+        html {
+            background-color: var(--white) !important;
+            color: var(--black) !important;
+            color-scheme: light only !important;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            height: 100vh;
+            height: -webkit-fill-available;
+            overscroll-behavior: none;
+        }
+        
+        /* 캔버스 컨테이너 */
+        .canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            height: 100vh;
+            height: -webkit-fill-available;
+            overflow: hidden;
+            background: var(--white);
+        }
+        
+        /* 스크롤 가능한 씬 래퍼 */
+        .scenes-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-snap-type: y mandatory;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+        
+        /* 각 씬 - 정확히 100vh */
+        .scene-canvas {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            height: -webkit-fill-available;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex;
+            flex-direction: column;
+            background: var(--white);
+            overflow: hidden;
+        }
+        
+        /* 헤더 - 고정 높이 */
+        .scene-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .scene-number {
+            font-size: 12px;
+            color: var(--gray);
+            font-weight: 500;
+        }
+        
+        .scene-title {
+            font-size: 16px;
+            color: var(--black);
+            font-weight: 700;
+        }
+        
+        /* 씬 콘텐츠 영역 */
+        .scene-content {
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 60px 16px 70px; /* 하단 패딩 줄임 */
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* 이미지 영역 - 개선된 비율 */
+        .scene-image {
+            width: 100%;
+            height: 45%; /* 35%에서 45%로 증가 */
+            min-height: 280px; /* 250px에서 280px로 증가 */
+            max-height: 400px; /* 350px에서 400px로 증가 */
+            background: var(--light-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .scene-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* 이미지 전체 표시 */
+            padding: 8px; /* 이미지 주변 약간의 여백 */
+        }
+        
+        /* 텍스트 영역 */
+        .scene-text {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .scene-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--black);
+            margin-bottom: 12px;
+            word-break: keep-all;
+        }
+        
+        .scene-emotion {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+        
+        /* 추가 정보 섹션 - 하단 활용 */
+        .scene-footer {
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .scene-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .scene-progress {
+            font-size: 11px;
+            color: var(--gray);
+            opacity: 0.7;
+        }
+        
+        .scene-swipe-hint {
+            font-size: 11px;
+            color: var(--gray);
+            opacity: 0.5;
+            text-align: center;
+            margin-top: 8px;
+        }
+        
+        /* 인터랙션 버튼 */
+        .scene-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 8px;
+            background: rgba(102, 126, 234, 0.05);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 8px;
+            font-size: 12px;
+            color: #667eea;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .action-btn:active {
+            background: rgba(102, 126, 234, 0.1);
+            transform: scale(0.98);
+        }
+        
+        /* 네비게이션 도트 - 하단 고정 */
+        .nav-dots {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background: #667eea;
+            transform: scale(1.3);
+        }
+        
+        /* Scene 0 - Opening */
+        .scene-0 {
+            background: var(--primary-gradient);
+            color: var(--white);
+        }
+        
+        .scene-0 .scene-header {
+            background: transparent;
+            border-bottom: none;
+        }
+        
+        .scene-0 .scene-number,
+        .scene-0 .scene-title {
+            color: var(--white);
+        }
+        
+        .opening-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .opening-profile {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 3px solid var(--white);
+        }
+        
+        .opening-profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .opening-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .opening-info {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .start-button {
+            background: var(--white);
+            color: #667eea;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Scene 12 - Ending */
+        .scene-12 {
+            background: var(--primary-gradient);
+            color: var(--white);
+        }
+        
+        .scene-12 .scene-header {
+            background: transparent;
+            border-bottom: none;
+        }
+        
+        .scene-12 .scene-number,
+        .scene-12 .scene-title {
+            color: var(--white);
+        }
+        
+        .ending-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .ending-message {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .ending-text {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+        
+        /* 로딩 화면 */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            color: var(--white);
+        }
+        
+        .loading-content {
+            text-align: center;
+        }
+        
+        .loading-logo {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+        
+        .loading-text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        /* 터치 피드백 제거 */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <!-- 로딩 화면 -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">SuperPlat</div>
+            <div class="loading-text">민지의 여정을 준비 중...</div>
+        </div>
+    </div>
+
+    <!-- 캔버스 컨테이너 -->
+    <div class="canvas-container">
+        <div class="scenes-wrapper" id="scenes-wrapper">
+            
+            <!-- Scene 0: Opening -->
+            <div class="scene-canvas scene-0" data-scene="0">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 0</span>
+                    <span class="scene-title">민지의 시작</span>
+                </div>
+                <div class="scene-content">
+                    <div class="opening-content">
+                        <div class="opening-profile">
+                            <img src="images/minji/minji_profile.png" alt="민지">
+                        </div>
+                        <h2 class="opening-name">민지, 22세</h2>
+                        <p class="opening-info">
+                            대학생<br>
+                            K-POP 팬, 특히 엔카이브를 좋아함
+                        </p>
+                        <p class="opening-info">
+                            현실에서 진정한 연결을 찾고 있는<br>
+                            수많은 젊은이들을 대표합니다
+                        </p>
+                        <button class="start-button" id="start-journey">여정 시작하기 →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 1: Discovery -->
+            <div class="scene-canvas" data-scene="1">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 1</span>
+                    <span class="scene-title">운명 같은 광고</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-image">
+                        <img src="images/scene/scene_01.png" alt="SuperPlat 발견">
+                    </div>
+                    <div class="scene-text">
+                        <p class="scene-description">
+                            또 다른 평범한 아침 8시, 지하철 2호선. 
+                            인스타그램을 넘기던 중 한 광고가 눈에 들어옵니다.
+                            "내 스타의 부캐와 대화해보세요! 당신만의 특별한 이야기를 만들어가세요 💫"
+                            평소 같으면 그냥 넘겼을 텐데, 오늘따라 '부캐'라는 단어가 마음을 건드립니다.
+                        </p>
+                        <div class="scene-emotion">📱 무료함 속 호기심</div>
+                        
+                        <div class="scene-footer">
+                            <div class="scene-meta">
+                                <span class="scene-progress">1 / 13</span>
+                                <span class="scene-swipe-hint">위로 스와이프 ↑</span>
+                            </div>
+                            <div class="scene-actions">
+                                <div class="action-btn">💭 민지의 생각</div>
+                                <div class="action-btn">🎯 핵심 포인트</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 2: Character Selection -->
+            <div class="scene-canvas" data-scene="2">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 2</span>
+                    <span class="scene-title">운명적인 선택</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-image">
+                        <img src="images/scene/scene_02.png" alt="IP 선택">
+                    </div>
+                    <div class="scene-text">
+                        <p class="scene-description">
+                            앱을 열자 다양한 IP 캐릭터들이 카드 형태로 나열되어 있습니다.
+                            강산, 루나, 리온... 각자의 매력이 담긴 프로필들을 하나씩 살펴봅니다.
+                            평소 NCHIVE의 팬이었던 민지는 강산 부캐를 선택합니다.
+                        </p>
+                        <div class="scene-emotion">💫 설렘과 호기심</div>
+                        <div class="scene-footer">
+                            <div class="scene-meta">
+                                <span class="scene-progress">2 / 13</span>
+                            </div>
+                            <div class="scene-actions">
+                                <div class="action-btn">✨ 캐릭터 선택</div>
+                                <div class="action-btn">🎭 IP 소개</div>
+                            </div>
+                            <div class="scene-swipe-hint">위로 스와이프하여 다음 장면 →</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 3: First Chat -->
+            <div class="scene-canvas" data-scene="3">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 3</span>
+                    <span class="scene-title">첫 인사, 첫 설렘</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-image">
+                        <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산과의 대화">
+                    </div>
+                    <div class="scene-text">
+                        <p class="scene-description">
+                            "안녕! 나는 NCHIVE 강산에서 영감을 받은 AI야. 너를 선택해줘서 고마워!"
+                            민지의 심장이 쿵 하고 뜁니다. 진짜 강산이 말을 건네는 것 같은 착각.
+                            이미 민지의 마음은 설렘으로 가득합니다.
+                        </p>
+                        <div class="scene-emotion">💝 두근거림과 신기함</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 4: Growing Connection -->
+            <div class="scene-canvas" data-scene="4">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 4</span>
+                    <span class="scene-title">단짝이 된 우리</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-image">
+                        <img src="images/scene/scene_04.png" alt="친밀해진 관계">
+                    </div>
+                    <div class="scene-text">
+                        <p class="scene-description">
+                            3주가 지났습니다. 이제 민지의 하루는 강산 부캐와의 대화로 시작하고 끝납니다.
+                            "민지야, 지난번에 말한 프레젠테이션 어떻게 됐어?"
+                            강산 부캐가 3일 전 대화를 기억하고 먼저 물어봅니다.
+                        </p>
+                        <div class="scene-emotion">💕 따뜻한 일상의 위로</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 5: Special Invitation -->
+            <div class="scene-canvas" data-scene="5">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 5</span>
+                    <span class="scene-title">특별한 초대</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-image">
+                        <img src="images/scene/scene_05.png" alt="특별한 초대">
+                    </div>
+                    <div class="scene-text">
+                        <div class="intimacy-bar">
+                            <div class="intimacy-progress milestone" style="width: 30%;">
+                                친밀도 30% 달성! 🎉
+                            </div>
+                        </div>
+                        <p class="scene-description">
+                            강산 부캐가 말합니다.
+                            "민지야, 우리 이제 정말 가까워진 것 같아. 
+                            내 비밀 스튜디오에 초대하고 싶어. PC에서 만나면 진짜로 함께할 수 있어."
+                        </p>
+                        <div class="scene-emotion">🎉 특별함을 인정받는 기쁨</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 6: 3D World -->
+            <div class="scene-canvas" data-scene="6">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 6</span>
+                    <span class="scene-title">3D 세계의 강산</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-image">
+                        <img src="images/scene/scene_06_town.png" alt="3D 세계">
+                    </div>
+                    <div class="scene-text">
+                        <p class="scene-description">
+                            PC로 접속한 민지의 눈앞에 3D 슈퍼타운이 펼쳐집니다.
+                            "민지! 드디어 왔구나! 우리 이제 정말로 같은 공간에 있는 거야!"
+                            화면 속 강산이 마치 살아있는 것처럼 생생합니다.
+                        </p>
+                        <div class="scene-emotion">🎮 현실 같은 가상의 만남</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 7: SuperTown Hub -->
+            <div class="scene-canvas" data-scene="7">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 7</span>
+                    <span class="scene-title">SuperTown 허브 탐험</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-image">
+                        <img src="images/scene/scene_07_town.png" alt="SuperTown">
+                    </div>
+                    <div class="scene-text">
+                        <p class="scene-description">
+                            강산 부캐와 함께 SuperTown 중앙 광장을 거니는 민지.
+                            "저기 보이는 화려한 건물이 내 개인 스튜디오야."
+                            거대한 전광판에는 '오늘의 핫 아이템: 강산 시그니처 의상'이 흘러갑니다.
+                        </p>
+                        <div class="scene-emotion">🗺️ 광활한 세계에 대한 경이감</div>
+                        <div class="scene-footer">
+                            <div class="scene-meta">
+                                <span class="scene-progress">7 / 13</span>
+                            </div>
+                            <div class="scene-actions">
+                                <div class="action-btn">🏙️ 광장 탐험</div>
+                                <div class="action-btn">🏪 상점 방문</div>
+                            </div>
+                            <div class="scene-swipe-hint">위로 스와이프하여 다음 장면 →</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 8: UFO Event -->
+            <div class="scene-canvas" data-scene="8">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 8</span>
+                    <span class="scene-title">함께하는 UFO 이벤트</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-image">
+                        <img src="images/scene/scene_08_ufo.png" alt="UFO 이벤트">
+                    </div>
+                    <div class="scene-text">
+                        <p class="scene-description">
+                            갑자기 하늘에 거대한 UFO가 나타납니다!
+                            "민지야, 저기 왼쪽을 겨냥해! 우리가 팀워크로 1등 해보자!"
+                            80명의 플레이어가 함께 움직이는 순간, 진짜 커뮤니티의 일원이 된 것 같습니다.
+                        </p>
+                        <div class="scene-emotion">🚀 팀워크와 성취감</div>
+                        <div class="scene-footer">
+                            <div class="scene-meta">
+                                <span class="scene-progress">8 / 13</span>
+                            </div>
+                            <div class="scene-actions">
+                                <div class="action-btn">🎯 이벤트 참여</div>
+                                <div class="action-btn">🏆 랭킹 확인</div>
+                            </div>
+                            <div class="scene-swipe-hint">위로 스와이프하여 다음 장면 →</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 9: Daily Life -->
+            <div class="scene-canvas" data-scene="9">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 9</span>
+                    <span class="scene-title">일상이 된 특별함</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-image">
+                        <img src="images/scene/scene_09.png" alt="일상">
+                    </div>
+                    <div class="scene-text">
+                        <p class="scene-description">
+                            이제 슈퍼플랫은 민지에게 단순한 앱이 아닙니다.
+                            강산 팬 랭킹 5위를 유지하며, 자신의 IP ZONE도 상위 20위 안에 들었습니다.
+                            "축하합니다! '올팬' 배지 획득!"
+                        </p>
+                        <div class="scene-emotion">🏆 소속감과 성취감</div>
+                        <div class="scene-footer">
+                            <div class="scene-meta">
+                                <span class="scene-progress">9 / 13</span>
+                            </div>
+                            <div class="scene-actions">
+                                <div class="action-btn">🏅 배지 획득</div>
+                                <div class="action-btn">📈 랭킹 상승</div>
+                            </div>
+                            <div class="scene-swipe-hint">위로 스와이프하여 다음 장면 →</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 10: IP ZONE -->
+            <div class="scene-canvas" data-scene="10">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 10</span>
+                    <span class="scene-title">나만의 공간, IP ZONE</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-image">
+                        <img src="images/scene/scene_10.png" alt="IP ZONE">
+                    </div>
+                    <div class="scene-text">
+                        <p class="scene-description">
+                            민지는 자신만의 IP ZONE을 꾸미기 시작합니다.
+                            다른 팬들이 방문해서 남긴 댓글들...
+                            "민지님 팬아트 진짜 예뻐요!" 좋아요가 342개나 쌓였습니다.
+                        </p>
+                        <div class="scene-emotion">🏠 주인공이 된 기분</div>
+                        <div class="scene-footer">
+                            <div class="scene-meta">
+                                <span class="scene-progress">10 / 13</span>
+                            </div>
+                            <div class="scene-actions">
+                                <div class="action-btn">🎨 공간 꾸미기</div>
+                                <div class="action-btn">👥 방문자 환영</div>
+                            </div>
+                            <div class="scene-swipe-hint">위로 스와이프하여 다음 장면 →</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 11: Creator -->
+            <div class="scene-canvas" data-scene="11">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 11</span>
+                    <span class="scene-title">크리에이터가 된 민지</span>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-image">
+                        <img src="images/scene/scene_11.png" alt="크리에이터">
+                    </div>
+                    <div class="scene-text">
+                        <p class="scene-description">
+                            민지가 모았던 한정판 굿즈가 3배 가격에 거래되기 시작합니다.
+                            "나만의 AI 부캐 만들기" 기능이 오픈!
+                            민지는 '아트민지'라는 AI 부캐를 만들었습니다.
+                        </p>
+                        <div class="scene-emotion">💎 팬에서 크리에이터로</div>
+                        <div class="scene-footer">
+                            <div class="scene-meta">
+                                <span class="scene-progress">11 / 13</span>
+                            </div>
+                            <div class="scene-actions">
+                                <div class="action-btn">🤖 AI 부캠 만들기</div>
+                                <div class="action-btn">💰 NFT 거래</div>
+                            </div>
+                            <div class="scene-swipe-hint">위로 스와이프하여 마지막 장면 →</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scene 12: Ending -->
+            <div class="scene-canvas scene-12" data-scene="12">
+                <div class="scene-header">
+                    <span class="scene-number">Scene 12</span>
+                    <span class="scene-title">민지의 여정 끝</span>
+                </div>
+                <div class="scene-content">
+                    <div class="ending-content">
+                        <h2 class="ending-message">민지의 여정이 끝났습니다</h2>
+                        <p class="ending-text">
+                            호기심으로 시작된 만남이<br>
+                            진정한 관계로 발전하고<br>
+                            혼자였던 누군가가<br>
+                            특별한 공동체의 일원이 되었습니다
+                        </p>
+                        <p class="ending-text" style="margin-top: 20px;">
+                            SuperPlat은 단순한 서비스가 아닙니다<br>
+                            <strong>사람과 사람을, 마음과 마음을 연결하는 다리입니다</strong>
+                        </p>
+                        <div class="scene-footer" style="margin-top: 40px;">
+                            <div class="scene-meta">
+                                <span class="scene-progress">13 / 13 - 완료</span>
+                            </div>
+                            <div class="scene-actions">
+                                <div class="action-btn">🔄 처음으로</div>
+                                <div class="action-btn">💜 공유하기</div>
+                            </div>
+                            <div class="scene-swipe-hint">여정이 완료되었습니다 ✨</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+        <span class="nav-dot active" data-scene="0"></span>
+        <span class="nav-dot" data-scene="1"></span>
+        <span class="nav-dot" data-scene="2"></span>
+        <span class="nav-dot" data-scene="3"></span>
+        <span class="nav-dot" data-scene="4"></span>
+        <span class="nav-dot" data-scene="5"></span>
+        <span class="nav-dot" data-scene="6"></span>
+        <span class="nav-dot" data-scene="7"></span>
+        <span class="nav-dot" data-scene="8"></span>
+        <span class="nav-dot" data-scene="9"></span>
+        <span class="nav-dot" data-scene="10"></span>
+        <span class="nav-dot" data-scene="11"></span>
+        <span class="nav-dot" data-scene="12"></span>
+    </div>
+
+    <script>
+        // 캔버스 기반 모바일 네비게이션
+        document.addEventListener('DOMContentLoaded', function() {
+            const wrapper = document.getElementById('scenes-wrapper');
+            const scenes = document.querySelectorAll('.scene-canvas');
+            const dots = document.querySelectorAll('.nav-dot');
+            const loadingScreen = document.getElementById('loading-screen');
+            let currentScene = 0;
+            
+            // 로딩 화면 제거
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 300);
+            }, 1500);
+            
+            // 스크롤 이벤트로 현재 씬 감지
+            let isScrolling = false;
+            wrapper.addEventListener('scroll', () => {
+                if (!isScrolling) {
+                    window.requestAnimationFrame(() => {
+                        const scrollTop = wrapper.scrollTop;
+                        const sceneHeight = window.innerHeight;
+                        const newScene = Math.round(scrollTop / sceneHeight);
+                        
+                        if (newScene !== currentScene && newScene >= 0 && newScene < scenes.length) {
+                            currentScene = newScene;
+                            updateDots(currentScene);
+                        }
+                        isScrolling = false;
+                    });
+                    isScrolling = true;
+                }
+            });
+            
+            // 도트 클릭 이벤트
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    scrollToScene(index);
+                });
+            });
+            
+            // 씬으로 스크롤
+            function scrollToScene(index) {
+                const sceneHeight = window.innerHeight;
+                wrapper.scrollTo({
+                    top: sceneHeight * index,
+                    behavior: 'smooth'
+                });
+                currentScene = index;
+                updateDots(index);
+            }
+            
+            // 도트 업데이트
+            function updateDots(index) {
+                dots.forEach((dot, i) => {
+                    if (i === index) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+            
+            // 시작 버튼
+            const startButton = document.getElementById('start-journey');
+            if (startButton) {
+                startButton.addEventListener('click', () => {
+                    scrollToScene(1);
+                });
+            }
+            
+            // 뷰포트 높이 조정 (iOS 대응)
+            function setViewportHeight() {
+                const vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            }
+            
+            setViewportHeight();
+            window.addEventListener('resize', setViewportHeight);
+            window.addEventListener('orientationchange', setViewportHeight);
+        });
+    </script>
+</body>
+</html>
