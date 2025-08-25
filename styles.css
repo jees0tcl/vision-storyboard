@@ -1678,6 +1678,13 @@ body {
     margin-bottom: 10px;
 }
 
+.card-subtitle {
+    font-size: 12px;
+    color: #A0522D;
+    margin-bottom: 12px;
+    opacity: 0.9;
+}
+
 .accept-btn {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -1724,6 +1731,72 @@ body {
     50% { 
         transform: rotate(180deg) scale(1.3);
         opacity: 1;
+    }
+}
+
+/* 슈퍼 스토리 알림 스타일 */
+.story-share-notification {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+    border-radius: 12px;
+    padding: 12px;
+    margin: 15px 0;
+    color: white;
+    animation: bounceIn 0.6s ease;
+    animation-delay: 1.5s;
+    animation-fill-mode: both;
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+}
+
+.story-share-notification .story-header {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.story-share-notification .story-stats {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    gap: 12px;
+}
+
+.story-share-notification .story-stats span:first-child,
+.story-share-notification .story-stats span:nth-child(2) {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.story-share-notification .story-stats span:last-child {
+    flex: 1;
+    font-style: italic;
+    opacity: 0.95;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
     }
 }
 
