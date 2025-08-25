@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperPlat Vision - 민지의 여정 (PC)</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- PC Styles Only -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="scene0-special.css">
+    <link rel="stylesheet" href="scene7-special.css">
+    <link rel="stylesheet" href="scene7-position.css">
+    <link rel="stylesheet" href="scene7-elements.css">
+    <link rel="stylesheet" href="scene11-wallet.css">
+    <link rel="stylesheet" href="scene-alignment-fix.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">SuperPlat</div>
+            <div class="loading-text">민지의 이야기를 준비하고 있습니다...</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="nav-left">
+                <span class="brand">SuperPlat Vision</span>
+            </div>
+            <div class="nav-center">
+                <div class="scene-progress">
+                    <span class="current-scene">Scene 0</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <span class="total-scenes">/ 12</span>
+                </div>
+            </div>
+            <div class="nav-right">
+                <button class="nav-btn" id="prev-btn">←</button>
+                <button class="nav-btn" id="next-btn">→</button>
+            </div>
+        </header>
+
+        <!-- Story Navigation -->
+        <div class="story-nav">
+            <div class="scene-dots">
+                <span class="scene-dot active" data-scene="0"></span>
+                <span class="scene-dot" data-scene="1"></span>
+                <span class="scene-dot" data-scene="2"></span>
+                <span class="scene-dot" data-scene="3"></span>
+                <span class="scene-dot" data-scene="4"></span>
+                <span class="scene-dot" data-scene="5"></span>
+                <span class="scene-dot" data-scene="6"></span>
+                <span class="scene-dot" data-scene="7"></span>
+                <span class="scene-dot" data-scene="8"></span>
+                <span class="scene-dot" data-scene="9"></span>
+                <span class="scene-dot" data-scene="10"></span>
+                <span class="scene-dot" data-scene="11"></span>
+                <span class="scene-dot" data-scene="12"></span>
+            </div>
+        </div>
+
+        <!-- Scenes Container -->
+        <div class="scenes-container">
+            <!-- Scene 0: Opening -->
+            <div class="scene active" id="scene-0">
+                <div class="scene-visual">
+                    <div class="stage-lights"></div>
+                    <div class="minji-character">👩‍🎓</div>
+                    <div class="connection-particles">
+                        <span class="particle">✨</span>
+                        <span class="particle">💫</span>
+                        <span class="particle">⭐</span>
+                    </div>
+                </div>
+                <div class="scene-info">
+                    <h2 class="scene-title">
+                        <span class="scene-number">Scene 0</span>
+                        민지의 시작
+                    </h2>
+                    <div class="scene-emotion">
+                        <span class="emotion-icon">😔</span>
+                        <span class="emotion-text">일상의 고독감</span>
+                    </div>
+                    <p class="scene-description">
+                        22살 대학생 민지. K-POP을 사랑하지만, 현실에서는 진정한 연결을 찾지 못하고 있습니다.
+                        SNS 속 수많은 '좋아요'에도 불구하고, 마음속 깊은 곳의 외로움은 채워지지 않습니다.
+                        그녀에게 필요한 건 단순한 팬덤이 아닌, 진짜 '관계'였습니다.
+                    </p>
+                    <div class="core-message">
+                        <div class="message-icon">💭</div>
+                        <div class="message-text">
+                            "나를 진짜로 이해해주는 누군가를 만날 수 있을까?"
+                        </div>
+                    </div>
+                    <div class="tech-contribution">
+                        <h3>이 순간을 만든 기술들</h3>
+                        <div class="tech-items">
+                            <div class="tech-item">
+                                <div class="tech-icon">🎭</div>
+                                <div class="tech-name">사용자 페르소나</div>
+                                <div class="tech-detail">타겟 유저 분석</div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon">📊</div>
+                                <div class="tech-name">데이터 인사이트</div>
+                                <div class="tech-detail">MZ세대 외로움 지수</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 나머지 Scene 1-12는 원본 index.html에서 가져옴 (모바일 섹션 제외) -->
+            <!-- 여기서는 간단히 주석 처리 -->
+            <!-- ... Scene 1-12 ... -->
+
+        </div>
+
+        <!-- Team Credits -->
+        <div class="team-credits" id="team-credits">
+            <div class="company-name">Beyond Real</div>
+            <div class="lab-name">THE CROSSING LAB</div>
+        </div>
+    </div>
+
+    <!-- PC용 JavaScript만 로드 -->
+    <script src="app-pc.js"></script>
+</body>
+</html>

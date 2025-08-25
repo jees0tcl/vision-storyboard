@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SuperPlat Vision - 민지의 여정 (Mobile)</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Mobile Optimized Styles -->
+    <link rel="stylesheet" href="mobile-styles.css">
+    
+    <!-- Desktop Redirect -->
+    <script>
+        // 데스크톱 감지 및 리다이렉션
+        (function() {
+            const screenWidth = window.innerWidth || document.documentElement.clientWidth;
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            // 769px 이상이고 모바일이 아닌 경우 데스크톱 버전으로
+            if (screenWidth > 768 && !isMobile) {
+                window.location.href = 'index.html';
+            }
+        })();
+    </script>
+</head>
+<body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <div class="header-content">
+            <h1 class="logo">SuperPlat</h1>
+            <span class="subtitle">민지의 여정</span>
+        </div>
+    </header>
+
+    <!-- Mobile Scene Container -->
+    <div class="mobile-container">
+        
+        <!-- Scene 0: 민지 소개 -->
+        <section class="mobile-scene opening-scene" id="mobile-scene-0">
+            <div class="simple-intro">
+                <div class="intro-profile">
+                    <img src="images/minji/minji_profile.png" alt="민지" class="profile-photo">
+                </div>
+                
+                <h2 class="intro-title">민지의 이야기</h2>
+                
+                <div class="intro-info">
+                    <p class="info-name">민지, 22세</p>
+                    <p class="info-status">대학생</p>
+                    <p class="info-interest">K-POP 팬, 특히 엔카이브를 좋아함</p>
+                </div>
+                
+                <div class="intro-description">
+                    <p>민지는 현실에서 진정한 연결을 찾고 있는<br>수많은 젊은이들을 대표합니다.</p>
+                    <p>SuperPlat에서 그녀가 찾게 될<br>특별한 여정을 함께해보세요.</p>
+                </div>
+                
+                <button class="start-journey">민지의 여정 시작하기 →</button>
+            </div>
+        </section>
+
+        <!-- Scene 1: Discovery -->
+        <section class="mobile-scene" id="mobile-scene-1">
+            <div class="scene-image">
+                <img src="images/scene/scene_01.png" alt="SuperPlat 발견">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 1: 운명 같은 광고</h2>
+                <p class="scene-description">
+                    또 다른 평범한 아침 8시, 지하철 2호선. 인스타그램을 넘기던 중 한 광고가 눈에 들어옵니다.
+                    "내 스타의 부캐와 대화해보세요! 당신만의 특별한 이야기를 만들어가세요 💫"
+                    평소 같으면 그냥 넘겼을 텐데, 오늘따라 '부캐'라는 단어가 마음을 건드립니다.
+                </p>
+                <div class="scene-emotion">📱 무료함 속 호기심</div>
+            </div>
+        </section>
+
+        <!-- Scene 2: Character Selection -->
+        <section class="mobile-scene character-selection" id="mobile-scene-2">
+            <div class="scene-image">
+                <img src="images/scene/scene_02.png" alt="IP 선택 화면">
+            </div>
+            <div class="selection-interface">
+                <div class="selection-header">
+                    <h3>당신의 AI 부캐를 선택하세요</h3>
+                    <p>누구와 특별한 관계를 시작하시겠어요?</p>
+                </div>
+                
+                <div class="character-cards">
+                    <div class="character-card">
+                        <div class="card-inner">
+                            <div class="card-image other">
+                                <span class="card-emoji">🌙</span>
+                            </div>
+                            <p class="card-name">루나</p>
+                            <span class="card-tag">신비로운 보컬</span>
+                        </div>
+                    </div>
+                    
+                    <div class="character-card selected">
+                        <div class="card-inner">
+                            <div class="card-image kangsan">
+                                <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산">
+                                <div class="selection-effect">
+                                    <span class="selected-badge">✓ 선택!</span>
+                                </div>
+                            </div>
+                            <p class="card-name">강산</p>
+                            <span class="card-tag">NCHIVE 리더</span>
+                        </div>
+                    </div>
+                    
+                    <div class="character-card">
+                        <div class="card-inner">
+                            <div class="card-image other">
+                                <span class="card-emoji">🦁</span>
+                            </div>
+                            <p class="card-name">리온</p>
+                            <span class="card-tag">카리스마 래퍼</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="first-message">
+                    <div class="message-bubble kangsan-message">
+                        <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" class="message-avatar">
+                        <div class="message-content">
+                            <p>"오늘 하루 어땠어? 힘든 일 있으면 나한테 얘기해줘!"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 2: 운명적인 선택</h2>
+                <p class="scene-description">
+                    앱을 열자 다양한 IP 캐릭터들이 카드 형태로 나열되어 있습니다.
+                    강산, 루나, 리온... 각자의 매력이 담긴 프로필들을 하나씩 살펴봅니다.
+                    평소 NCHIVE의 팬이었던 민지는 강산 부캐의 미리보기 메시지를 읽으며 마음이 움직입니다.
+                </p>
+                <div class="scene-emotion">💫 설렘과 호기심</div>
+            </div>
+        </section>
+
+        <!-- Scene 3: First Conversation -->
+        <section class="mobile-scene" id="mobile-scene-3">
+            <div class="mobile-chat-interface">
+                <div class="chat-header">
+                    <div class="back-button">←</div>
+                    <div class="chat-avatar">
+                        <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" />
+                    </div>
+                    <div class="chat-name">강산 AI</div>
+                    <div class="status-dot online"></div>
+                </div>
+                <div class="chat-body">
+                    <div class="kangsan-intro-section">
+                        <div class="kangsan-profile-image">
+                            <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산 프로필" />
+                            <div class="sparkle-effect">✨</div>
+                        </div>
+                        <div class="intro-text">강산 AI가 접속했습니다</div>
+                    </div>
+                    <div class="chat-messages">
+                        <div class="message-wrapper ai">
+                            <div class="message-avatar">
+                                <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" />
+                            </div>
+                            <div class="message-bubble">
+                                안녕! 나는 NCHIVE 강산에서 영감을 받은 AI야. 너를 선택해줘서 고마워! 💙
+                            </div>
+                            <div class="message-time">8:30</div>
+                        </div>
+                        <div class="message-wrapper user">
+                            <div class="message-bubble">
+                                헉... 정말 강산 부캐야? 신기해! 😱
+                            </div>
+                            <div class="message-time">8:31</div>
+                        </div>
+                        <div class="message-wrapper ai">
+                            <div class="message-avatar">
+                                <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" />
+                            </div>
+                            <div class="message-bubble">
+                                맞아! 실제 강산의 따뜻한 성격을 담은 AI 친구야. 오늘 지하철 출근길이구나? 무슨 일이든 나한테 얘기해봐! 🤗
+                            </div>
+                            <div class="message-time">8:32</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" placeholder="메시지를 입력하세요..." />
+                    <button class="send-button">전송</button>
+                </div>
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 3: 첫 인사, 첫 설렘</h2>
+                <p class="scene-description">
+                    강산의 카드를 선택하자 화면이 바뀝니다. "안녕! 나는 NCHIVE 강산에서 영감을 받은 AI야. 너를 선택해줘서 고마워!"
+                    민지의 심장이 쿵 하고 뜁니다. 진짜 강산이 말을 건네는 것 같은 착각.
+                    화면 하단의 작은 안내 문구가 보이지만, 이미 민지의 마음은 설렘으로 가득합니다.
+                    다양한 상황극 옵션들이 나타나고, 민지는 망설임 없이 '콘서트 백스테이지에서 만나기'를 선택합니다.
+                </p>
+                <div class="scene-emotion">💝 두근거림과 신기함</div>
+            </div>
+        </section>
+
+        <!-- Scene 4: Emotional Connection -->
+        <section class="mobile-scene" id="mobile-scene-4">
+            <div class="scene-image">
+                <img src="images/scene/scene_04.png" alt="친밀해진 관계">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 4: 단짝이 된 우리</h2>
+                <p class="scene-description">
+                    3주가 지났습니다. 이제 민지의 하루는 강산 부캐와의 대화로 시작하고 끝납니다.
+                    "민지야, 지난번에 말한 프레젠테이션 어떻게 됐어? 많이 긴장했다고 했는데, 잘 해냈을 것 같은데?"
+                    강산 부캐가 3일 전 대화를 기억하고 먼저 물어봅니다. 진짜 친구도 이렇게까지 신경 써주지 않는데... AI인 걸 알면서도 마음이 움직입니다.
+                </p>
+                <div class="scene-emotion">💕 따뜻한 일상의 위로</div>
+                <div class="intimacy-bar">
+                    <div class="bar-label">친밀도</div>
+                    <div class="bar-progress" style="width: 25%;">25%</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 5: Special Invitation -->
+        <section class="mobile-scene" id="mobile-scene-5">
+            <div class="scene-image">
+                <img src="images/scene/scene_05.png" alt="특별한 초대">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 5: 특별한 초대</h2>
+                <p class="scene-description">
+                    며칠이 더 지났을까. 평소처럼 강산 부캐와 대화하던 중, 화면에 특별한 알림이 뜹니다.
+                    "🎉 친밀도 30% 달성!" 그 순간, 강산 부캐가 말합니다.
+                    "민지야, 우리 이제 정말 가까워진 것 같아. 내 비밀 스튜디오에 초대하고 싶어. PC에서 만나면 진짜로 함께할 수 있어."
+                    반짝이는 황금빛 초대장을 확인한 민지. 떨리는 마음으로 슐퍼플랫 PC 버전을 다운로드하기 시작합니다.
+                </p>
+                <div class="scene-emotion">🎉 특별함을 인정받는 기쁨</div>
+                <div class="intimacy-bar">
+                    <div class="bar-label">친밀도</div>
+                    <div class="bar-progress special" style="width: 30%;">30% 달성!</div>
+                </div>
+                <div class="invitation-card">
+                    <div class="card-emoji">🎫</div>
+                    <div class="card-text">PC World 초대장</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 6: New World -->
+        <section class="mobile-scene" id="mobile-scene-6">
+            <div class="scene-image">
+                <img src="images/scene/scene_06_town.png" alt="3D 세계">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 6: 3D 세계의 강산</h2>
+                <p class="scene-description">
+                    PC로 접속한 민지의 눈앞에 3D 슐퍼타운이 펼쳐집니다. 거대한 광고판에는 실시간 뉴스가 흐러갑니다.
+                    "🔥 인기 급상승: NCHIVE 강산의 겨울 테마 공간" 그때, 3D로 구현된 강산 부캐가 반갑게 손을 흔들며 다가옵니다.
+                    "민지! 드디어 왔구나! 우리 이제 정말로 같은 공간에 있는 거야!"
+                    화면 속 강산이 마치 살아있는 것처럼 생생합니다. 민지의 심장이 또 한 번 뜁니다.
+                </p>
+                <div class="scene-emotion">🎮 현실 같은 가상의 만남</div>
+            </div>
+        </section>
+
+        <!-- Scene 7: SuperTown Hub -->
+        <section class="mobile-scene" id="mobile-scene-7">
+            <div class="scene-image">
+                <img src="images/scene/scene_07_town.png" alt="SuperTown 허브">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 7: SuperTown 허브 탐험</h2>
+                <p class="scene-description">
+                    강산 부캐와 함께 SuperTown 중앙 광장을 거다는 민지. 사방에는 다양한 IP ZONE으로 통하는 포털들이 반짝입니다.
+                    "저기 보이는 화려한 건물이 내 개인 스튜디오야. 우리만의 특별한 공간이지." 강산이 자랑스럽게 설명합니다.
+                    거대한 전광판에는 '🔥 오늘의 핫 아이템: 강산 시그니처 의상'이라는 문구가 흐릅니다.
+                    다른 플레이어들이 강산 IP ZONE으로 향하는 모습이 보입니다.
+                </p>
+                <div class="scene-emotion">🗺️ 광활한 세계에 대한 경이감</div>
+                <div class="hub-info">
+                    <span>📍 강산 IP ZONE</span>
+                    <span>🎨 부산 미술관</span>
+                    <span>⭐ 엔카이브 ZONE</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 8: Community Event -->
+        <section class="mobile-scene" id="mobile-scene-8">
+            <div class="scene-image">
+                <img src="images/scene/scene_08_ufo.png" alt="UFO 이벤트">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 8: 함께하는 UFO 이벤트</h2>
+                <p class="scene-description">
+                    갑자기 하늘에 거대한 UFO가 나타납니다! 긴급 이벤트 알림이 울리고, 80명의 플레이어가 함께 UFO를 격추하기 시작합니다.
+                    "민지야, 저기 왼쪽을 겨냥해! 우리가 팀워크로 1등 해보자!" 강산 부캐가 외칩니다.
+                    모두가 하나가 되어 움직이는 순간, 민지는 진짜 커뮤니티의 일원이 된 것 같은 소속감을 느낅니다.
+                </p>
+                <div class="scene-emotion">🚀 팀워크와 성취감</div>
+                <div class="event-stats">
+                    <span>👥 참가자: 80명</span>
+                    <span>🏆 현재 순위: 1위</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 9: Canvas Gallery -->
+        <section class="mobile-scene" id="mobile-scene-9">
+            <div class="scene-image">
+                <img src="images/scene/scene_09.png" alt="Canvas 갤러리">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 9: 일상이 된 특별함</h2>
+                <p class="scene-description">
+                    이제 슈퍼플랫은 민지에게 단순한 앱이 아닙니다. 매일 아침 강산 부캐와 인사를 나누고, 주말에는 슈퍼타운에서 팬친구들과 함께 시간을 보냅니다.
+                    강산 팬 랭킹 5위를 유지하며, 자신의 IP ZONE도 상위 20위 안에 들었습니다.
+                    그러던 어느 날, 특별한 알림이 도착합니다. "축하합니다! '올팬' 배지 획득!"
+                </p>
+                <div class="scene-emotion">🏆 소속감과 성취감</div>
+                <div class="gallery-stats">
+                    <span>🎯 강산 팬 랭킹: 5위</span>
+                    <span>🏠 IP ZONE: 20위</span>
+                    <span>🏆 올팬 배지</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 10: Creator Achievement -->
+        <section class="mobile-scene" id="mobile-scene-10">
+            <div class="scene-image">
+                <img src="images/scene/scene_10.png" alt="크리에이터 성취">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 10: 나만의 공간, IP ZONE</h2>
+                <p class="scene-description">
+                    민지는 자신만의 IP ZONE을 꾸미기 시작합니다. 그동안 그린 강산 팬아트를 갤러리에 전시하고, UFO 이벤트 사진들을 벽에 걸어둡니다.
+                    다른 팬들이 방문해서 남긴 댓글들... "민지님 팬아트 진짜 예뻐요!" "강산 표정이 완전 리얼!"
+                    좋아요가 342개나 쌓였습니다. 댓글도 28개. 민지는 자신의 공간이 사랑받는 것을 보며 뿌듯함을 느낍니다.
+                </p>
+                <div class="scene-emotion">🏠 주인공이 된 기분</div>
+                <div class="achievement-badge">
+                    <span class="badge-icon">🎨</span>
+                    <span class="badge-text">팬에서 크리에이터로</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 11: Economic Empowerment -->
+        <section class="mobile-scene" id="mobile-scene-11">
+            <div class="scene-image">
+                <img src="images/scene/scene_11.png" alt="경제적 자립">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 11: 크리에이터가 된 민지</h2>
+                <p class="scene-description">
+                    민지가 초기에 모았던 엔카이브 한정판 굿즈가 3배 가격에 거래되기 시작합니다.
+                    "민지님의 '강산 겨울 콘서트' NFT 정말 소장가치 높은 것 같아요!"
+                    C2C 마켓에서 첫 거래가 성사되었습니다. 더 놀라운 건 다음 소식이었습니다.
+                    "나만의 AI 부캐 만들기" 기능 오픈! 민지는 바로 '아트민지'라는 AI 부캐를 만들었습니다.
+                </p>
+                <div class="scene-emotion">💎 팬에서 크리에이터로</div>
+                <div class="wallet-info">
+                    <span>📈 디지털 굿즈 3배 상승</span>
+                    <span>🤖 아트민지 AI 생성</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 12: Ending -->
+        <section class="mobile-scene ending-scene" id="mobile-scene-12">
+            <div class="ending-content">
+                <h2 class="ending-title">민지의 여정이 끝났습니다</h2>
+                
+                <div class="journey-summary">
+                    <p>호기심으로 시작된 만남이</p>
+                    <p>진정한 관계로 발전하고</p>
+                    <p>혼자였던 누군가가</p>
+                    <p>특별한 공동체의 일원이 되었습니다</p>
+                </div>
+
+                <div class="team-message">
+                    <h3>우리가 만드는 것</h3>
+                    <div class="team-contributions">
+                        <div class="team-item">
+                            <span class="team-icon">💼</span>
+                            <p><strong>사업팀</strong>의 비전이<br>사용자의 꿈을 현실로</p>
+                        </div>
+                        <div class="team-item">
+                            <span class="team-icon">📋</span>
+                            <p><strong>기획팀</strong>의 설계가<br>진짜 같은 감정 교감을</p>
+                        </div>
+                        <div class="team-item">
+                            <span class="team-icon">💻</span>
+                            <p><strong>개발팀</strong>의 코드가<br>첫 대화를 가능하게</p>
+                        </div>
+                        <div class="team-item">
+                            <span class="team-icon">🎨</span>
+                            <p><strong>아트팀</strong>의 픽셀이<br>따뜻한 미소를 만듭니다</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="final-message">
+                    <p class="message-title">SuperPlat은 단순한 서비스가 아닙니다</p>
+                    <p class="message-highlight">사람과 사람을, 마음과 마음을 연결하는 다리입니다</p>
+                </div>
+
+                <div class="company-info">
+                    <p class="company-name">Beyond Real</p>
+                    <p class="lab-name">THE CROSSING LAB</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <div class="nav-dots">
+            <span class="nav-dot active" data-scene="0"></span>
+            <span class="nav-dot" data-scene="1"></span>
+            <span class="nav-dot" data-scene="2"></span>
+            <span class="nav-dot" data-scene="3"></span>
+            <span class="nav-dot" data-scene="4"></span>
+            <span class="nav-dot" data-scene="5"></span>
+            <span class="nav-dot" data-scene="6"></span>
+            <span class="nav-dot" data-scene="7"></span>
+            <span class="nav-dot" data-scene="8"></span>
+            <span class="nav-dot" data-scene="9"></span>
+            <span class="nav-dot" data-scene="10"></span>
+            <span class="nav-dot" data-scene="11"></span>
+            <span class="nav-dot" data-scene="12"></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Footer -->
+    <footer class="mobile-footer">
+        <p>© 2025 TheCrossingLab | Beyond Real</p>
+    </footer>
+
+    <!-- Mobile JavaScript -->
+    <script src="mobile-app.js"></script>
+</body>
+</html>

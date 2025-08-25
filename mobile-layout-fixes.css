@@ -1,0 +1,406 @@
+/* Mobile Layout Fixes for SuperPlat Vision */
+
+/* =================================
+   SCENE 2 & 3 LAYOUT FIXES
+   ================================= */
+
+/* Scene 2: Character Selection - Proper Layout */
+#mobile-scene-2 {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    margin: 15px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+#mobile-scene-2 .scene-image {
+    order: 1;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#mobile-scene-2 .scene-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#mobile-scene-2 .selection-interface {
+    order: 2;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px;
+    min-height: 200px;
+}
+
+#mobile-scene-2 .scene-content {
+    order: 3;
+    padding: 20px;
+    background: white;
+    min-height: 150px;
+}
+
+/* Scene 3: Chat Interface - Proper Layout */
+#mobile-scene-3 {
+    margin: 15px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+#mobile-scene-3 .mobile-chat-interface {
+    order: 1;
+    background: white;
+    border-radius: 20px;
+    margin: 0;
+    box-shadow: none;
+    min-height: 400px;
+}
+
+#mobile-scene-3 .scene-content {
+    order: 2;
+    padding: 20px;
+    background: #f8f9fa;
+    min-height: 150px;
+}
+
+/* =================================
+   SCENE CONTENT FRAME SIZING
+   ================================= */
+
+/* 모든 모바일 씬의 기본 구조 통일 */
+.mobile-scene {
+    background: white;
+    margin: 15px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.6s ease;
+    min-height: 500px; /* 최소 높이 보장 */
+}
+
+/* Scene 내용 영역 크기 통일 */
+.mobile-scene .scene-content {
+    padding: 20px;
+    background: white;
+    min-height: 200px; /* 최소 높이 보장 */
+}
+
+/* Scene 타이틀 크기 통일 */
+.mobile-scene .scene-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+/* Scene 설명 텍스트 크기 통일 */
+.mobile-scene .scene-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 15px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+/* Scene 감정 표시 통일 */
+.mobile-scene .scene-emotion {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea20, #764ba220);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #667eea;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+/* =================================
+   SCENE IMAGE SIZING FIX
+   ================================= */
+
+/* 씬 이미지 컨테이너 통일 */
+.mobile-scene .scene-image {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    max-height: 350px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-scene .scene-image img {
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    object-fit: contain;
+}
+
+/* 특별한 비율이 필요한 Scene 4, 5 (모바일 화면 표시) */
+#mobile-scene-4 .scene-image,
+#mobile-scene-5 .scene-image {
+    aspect-ratio: 9/16;
+    max-height: 400px;
+}
+
+#mobile-scene-4 .scene-image img,
+#mobile-scene-5 .scene-image img {
+    object-fit: contain;
+    padding: 10px;
+}
+
+/* =================================
+   MOBILE NAVIGATION IMPROVEMENTS
+   ================================= */
+
+/* 도트 네비게이션 스타일 개선 */
+.mobile-nav {
+    position: fixed;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 8px 15px;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    z-index: 10000;
+}
+
+.nav-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+}
+
+.nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    touch-action: manipulation; /* 터치 최적화 */
+}
+
+.nav-dot.active {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    transform: scale(1.5);
+    width: 8px;
+    height: 8px;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+}
+
+.nav-dot:hover {
+    transform: scale(1.3);
+}
+
+/* 터치 디바이스에서 더 큰 터치 영역 */
+@media (pointer: coarse) {
+    .nav-dot {
+        width: 12px;
+        height: 12px;
+        position: relative;
+    }
+    
+    .nav-dot::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+        background: transparent;
+        border-radius: 50%;
+    }
+}
+
+/* =================================
+   RESPONSIVE IMPROVEMENTS
+   ================================= */
+
+/* 작은 화면 (320px - 375px) */
+@media (max-width: 375px) {
+    .mobile-scene {
+        margin: 10px;
+    }
+    
+    .mobile-scene .scene-content {
+        padding: 15px;
+        min-height: 180px;
+    }
+    
+    .mobile-scene .scene-title {
+        font-size: 18px;
+    }
+    
+    .mobile-scene .scene-description {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+    
+    .mobile-scene .scene-image {
+        min-height: 180px;
+        max-height: 300px;
+    }
+}
+
+/* 큰 모바일 화면 (375px - 480px) */
+@media (min-width: 376px) and (max-width: 480px) {
+    .mobile-scene {
+        margin: 20px;
+    }
+    
+    .mobile-scene .scene-content {
+        padding: 25px;
+    }
+}
+
+/* 가로 모드 최적화 */
+@media (orientation: landscape) and (max-height: 500px) {
+    .mobile-scene .scene-image {
+        height: 150px;
+        max-height: 150px;
+    }
+    
+    .mobile-scene .scene-content {
+        padding: 15px;
+        min-height: 120px;
+    }
+    
+    .mobile-nav {
+        bottom: 25px;
+        padding: 6px 12px;
+    }
+    
+    .nav-dot {
+        width: 5px;
+        height: 5px;
+    }
+    
+    .nav-dot.active {
+        width: 7px;
+        height: 7px;
+    }
+}
+
+/* =================================
+   OPENING SCENE SPECIAL STYLING
+   ================================= */
+
+#mobile-scene-0.opening-scene {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+#mobile-scene-0 .simple-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: 500px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+/* =================================
+   ENDING SCENE SPECIAL STYLING
+   ================================= */
+
+#mobile-scene-12.ending-scene {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 15px;
+    border-radius: 20px;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#mobile-scene-12 .ending-content {
+    text-align: center;
+    color: white;
+    padding: 30px 20px;
+}
+
+/* =================================
+   LOADING IMPROVEMENTS
+   ================================= */
+
+.mobile-scene img {
+    transition: opacity 0.3s ease;
+}
+
+.mobile-scene img:not(.loaded) {
+    opacity: 0.7;
+}
+
+.mobile-scene img.loaded {
+    opacity: 1;
+}
+
+/* 이미지 로딩 중 스켈레톤 */
+.scene-image:empty::before,
+.scene-image:not(:has(img))::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 2s infinite;
+    border-radius: 10px;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* =================================
+   TOUCH FEEDBACK IMPROVEMENTS
+   ================================= */
+
+.mobile-scene {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mobile-scene:active {
+    transform: scale(0.98);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.start-journey {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.start-journey:active {
+    transform: scale(0.96);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+/* 스크롤 성능 최적화 */
+.mobile-container {
+    will-change: scroll-position;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mobile-scene {
+    will-change: transform;
+    transform: translateZ(0); /* 하드웨어 가속 활성화 */
+}

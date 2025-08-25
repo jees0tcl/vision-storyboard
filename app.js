@@ -9,16 +9,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     
-    // 로딩 화면 제거
+    // 로딩 화면 제거 (ID 셀렉터로 수정)
     setTimeout(() => {
-        const loadingScreen = document.querySelector('.loading-screen');
+        const loadingScreen = document.getElementById('loading-screen');
         if (loadingScreen) {
             loadingScreen.style.opacity = '0';
             setTimeout(() => {
                 loadingScreen.style.display = 'none';
             }, 500);
         }
-    }, 2000);
+    }, 2500); // 애니메이션 완료 후 제거
     
     // 감정 여정 그래프 그리기 (제거됨 - 공간 절약을 위해)
     function drawEmotionJourney() {
@@ -136,30 +136,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // 터치/스와이프 지원
-    let touchStartX = 0;
-    let touchEndX = 0;
-    
-    document.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
-    
-    document.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    });
-    
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
+    // PC 버전 터치/스와이프 지원 (모바일이 아닐 때만)
+    if (!document.body.classList.contains('mobile-device')) {
+        let touchStartX = 0;
+        let touchEndX = 0;
         
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0 && currentScene < totalScenes - 1) {
-                // 왼쪽 스와이프 - 다음 씬
-                showScene(currentScene + 1);
-            } else if (diff < 0 && currentScene > 0) {
-                // 오른쪽 스와이프 - 이전 씬
-                showScene(currentScene - 1);
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0 && currentScene < totalScenes - 1) {
+                    // 왼쪽 스와이프 - 다음 씬
+                    showScene(currentScene + 1);
+                } else if (diff < 0 && currentScene > 0) {
+                    // 오른쪽 스와이프 - 이전 씬
+                    showScene(currentScene - 1);
+                }
             }
         }
     }
@@ -288,4 +290,194 @@ document.addEventListener('DOMContentLoaded', function() {
     minjiElements.forEach(minji => {
         minji.style.animation = 'float 3s ease-in-out infinite';
     });
+    
+    // Initialize mobile navigation if on mobile device
+    if (document.body.classList.contains('mobile-device')) {
+        initMobileNavigation();
+    }
 });
+
+// Mobile Navigation Functions
+function initMobileNavigation() {
+    console.log('Initializing mobile navigation...');
+    
+    // Scene Management
+    const mobileScenes = document.querySelectorAll('.mobile-scene');
+    const navDots = document.querySelectorAll('.nav-dot');
+    let currentMobileScene = 0;
+
+    console.log('Found mobile scenes:', mobileScenes.length);
+    console.log('Found nav dots:', navDots.length);
+
+    // Navigation dot click handler
+    navDots.forEach((dot, index) => {
+        dot.addEventListener('click', (e) => {
+            e.preventDefault();
+            const sceneNumber = dot.dataset.scene;
+            const targetScene = document.getElementById(`mobile-scene-${sceneNumber}`);
+            
+            console.log('Dot clicked:', sceneNumber, 'Target scene:', targetScene);
+            
+            if (targetScene) {
+                // Smooth scroll to scene
+                targetScene.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Update active dot
+                updateActiveDot(index);
+                currentMobileScene = index;
+            }
+        });
+    });
+
+    // Update active navigation dot
+    function updateActiveDot(index) {
+        navDots.forEach(dot => dot.classList.remove('active'));
+        if (navDots[index]) {
+            navDots[index].classList.add('active');
+        }
+    }
+
+    // Intersection Observer for auto-updating nav dots
+    const observerOptions = {
+        root: null,
+        rootMargin: '-40% 0px -40% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const sceneId = entry.target.id;
+                const sceneNumber = sceneId.split('-').pop();
+                
+                // Find corresponding nav dot
+                navDots.forEach((dot, index) => {
+                    if (dot.dataset.scene === sceneNumber) {
+                        updateActiveDot(index);
+                        currentMobileScene = index;
+                    }
+                });
+            }
+        });
+    }, observerOptions);
+
+    // Observe all mobile scenes
+    mobileScenes.forEach(scene => {
+        observer.observe(scene);
+    });
+
+    // Touch Swipe Support
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    document.addEventListener('touchstart', (e) => {
+        touchStartY = e.changedTouches[0].screenY;
+    }, false);
+
+    document.addEventListener('touchend', (e) => {
+        touchEndY = e.changedTouches[0].screenY;
+        handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartY - touchEndY;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swipe up - next scene
+                navigateToNextScene();
+            } else {
+                // Swipe down - previous scene
+                navigateToPrevScene();
+            }
+        }
+    }
+
+    function navigateToNextScene() {
+        if (currentMobileScene < navDots.length - 1) {
+            currentMobileScene++;
+            navDots[currentMobileScene].click();
+        }
+    }
+
+    function navigateToPrevScene() {
+        if (currentMobileScene > 0) {
+            currentMobileScene--;
+            navDots[currentMobileScene].click();
+        }
+    }
+
+    // Scene 0 Start Journey Button
+    const startJourneyBtn = document.querySelector('.start-journey');
+    if (startJourneyBtn) {
+        startJourneyBtn.addEventListener('click', () => {
+            // Scroll to Scene 1
+            const scene1 = document.getElementById('mobile-scene-1');
+            if (scene1) {
+                scene1.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Update nav dot to Scene 1
+                updateActiveDot(1);
+                currentMobileScene = 1;
+            }
+        });
+    }
+
+    // Lazy Loading for Images
+    const images = document.querySelectorAll('.scene-image img');
+    
+    const imageOptions = {
+        threshold: 0,
+        rootMargin: '0px 0px 50px 0px'
+    };
+
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            }
+        });
+    }, imageOptions);
+
+    images.forEach(img => {
+        // Only use lazy loading if data-src is present
+        if (img.dataset.src) {
+            imageObserver.observe(img);
+        }
+    });
+
+    // Add touch feedback
+    mobileScenes.forEach(scene => {
+        scene.addEventListener('touchstart', () => {
+            scene.style.transform = 'scale(0.98)';
+        });
+
+        scene.addEventListener('touchend', () => {
+            scene.style.transform = 'scale(1)';
+        });
+    });
+
+    // Handle orientation change
+    window.addEventListener('orientationchange', () => {
+        // Wait for orientation change to complete
+        setTimeout(() => {
+            const activeIndex = Array.from(navDots).findIndex(dot => 
+                dot.classList.contains('active')
+            );
+            
+            if (activeIndex >= 0) {
+                navDots[activeIndex].click();
+            }
+        }, 300);
+    });
+
+    console.log('Mobile navigation initialized successfully');
+}

@@ -1,0 +1,1310 @@
+/* Mobile Optimized Styles for SuperPlat Vision */
+
+/* Reset and Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Mobile Header */
+.mobile-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #666;
+    font-weight: 400;
+}
+
+/* Mobile Container */
+.mobile-container {
+    padding-top: 70px;
+    padding-bottom: 100px; /* 도트 네비와 푸터 공간 확보 */
+}
+
+/* Mobile Scene */
+.mobile-scene {
+    background: white;
+    margin: 15px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scene Image */
+.scene-image {
+    width: 100%;
+    height: auto;
+    min-height: 250px;
+    max-height: 400px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scene-image img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain; /* cover에서 contain으로 변경하여 전체 이미지 표시 */
+}
+
+/* 모바일 뷰가 있는 특정 씬들의 세로비 조정 */
+#mobile-scene-4 .scene-image,
+#mobile-scene-5 .scene-image {
+    aspect-ratio: 9/16; /* 모바일 화면 비율 */
+    max-height: 450px;
+}
+
+#mobile-scene-4 .scene-image img,
+#mobile-scene-5 .scene-image img {
+    object-fit: contain;
+    padding: 10px;
+}
+
+/* Scene Content - 디테일 영역 */
+.scene-content {
+    padding: 20px;
+    min-height: 200px; /* 최소 높이 보장 */
+}
+
+.scene-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.scene-description {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 15px;
+    word-break: keep-all; /* 한글 줄바꿈 최적화 */
+    overflow-wrap: break-word;
+}
+
+.scene-emotion {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea20, #764ba220);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #667eea;
+    font-weight: 500;
+}
+
+/* Intimacy Bar */
+.intimacy-bar {
+    margin-top: 15px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    padding: 3px;
+    position: relative;
+}
+
+.bar-label {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    color: #999;
+    font-weight: 500;
+}
+
+.bar-progress {
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: right;
+    transition: width 1s ease;
+}
+
+.bar-progress.special {
+    background: linear-gradient(90deg, #FFD700, #FFA500);
+    animation: pulse 1.5s ease infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+/* Invitation Card */
+.invitation-card {
+    margin-top: 15px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.card-emoji {
+    font-size: 32px;
+}
+
+.card-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+/* Event Stats */
+.event-stats {
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.event-stats span {
+    font-size: 13px;
+    color: #666;
+    font-weight: 500;
+}
+
+/* Final Message */
+.final-message {
+    margin-top: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea10, #764ba210);
+    border-radius: 15px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #667eea;
+    font-weight: 500;
+    border: 2px solid #667eea30;
+}
+
+/* Hub Info */
+.hub-info {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.hub-info span {
+    background: #f8f9fa;
+    padding: 8px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Gallery Stats */
+.gallery-stats {
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+    padding: 10px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 10px;
+}
+
+.gallery-stats span {
+    font-size: 13px;
+    color: #495057;
+    font-weight: 500;
+}
+
+/* Achievement Badge */
+.achievement-badge {
+    margin-top: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.badge-icon {
+    font-size: 20px;
+}
+
+.badge-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+}
+
+/* Wallet Info */
+.wallet-info {
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+    padding: 12px;
+    background: linear-gradient(135deg, #667eea15, #764ba215);
+    border-radius: 12px;
+    border: 1px solid #667eea30;
+}
+
+.wallet-info span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #667eea;
+}
+
+/* Scene 0 - Opening Scene */
+.opening-scene {
+    background: white;
+}
+
+.minji-intro {
+    position: relative;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.intro-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+.gradient-overlay {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, 
+        rgba(102, 126, 234, 0.05) 0%, 
+        rgba(118, 75, 162, 0.05) 100%);
+}
+
+/* 민지 프로필 */
+.minji-profile {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.minji-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.profile-details {
+    background: white;
+    border-radius: 15px;
+    padding: 15px 25px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.profile-details p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+.profile-details p strong {
+    color: #333;
+    font-weight: 600;
+}
+
+/* 소개 메시지 */
+.intro-message {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+.message-main {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.message-sub {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.6;
+}
+
+/* 시작 버튼 */
+.start-button {
+    position: relative;
+    z-index: 1;
+}
+
+.journey-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+    transition: all 0.3s ease;
+}
+
+.journey-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* Scene 2 - Character Selection */
+.character-selection {
+    background: white;
+}
+
+.selection-interface {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+    padding: 20px;
+    min-height: 400px;
+}
+
+.selection-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.selection-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.selection-header p {
+    font-size: 13px;
+    color: #666;
+}
+
+.character-cards {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.character-card {
+    flex: 0 0 100px;
+    transition: all 0.3s ease;
+}
+
+.character-card.selected {
+    transform: scale(1.1);
+}
+
+.card-inner {
+    background: white;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.character-card.selected .card-inner {
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+    border: 2px solid #667eea;
+}
+
+.card-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    position: relative;
+    overflow: visible; /* 배지가 보이도록 변경 */
+    background: linear-gradient(135deg, #667eea20, #764ba220);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-image.kangsan img {
+    border-radius: 50%;
+    border: 2px solid #667eea;
+}
+
+.card-image.other {
+    background: linear-gradient(135deg, #e0e0e0, #bdbdbd);
+}
+
+.card-image.kangsan {
+    background: white;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-emoji {
+    font-size: 36px;
+    opacity: 0.5;
+}
+
+.selection-effect {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    padding: 4px 8px;
+    border-radius: 10px;
+    animation: fadeIn 0.3s ease;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.5);
+}
+
+.selected-badge {
+    color: white;
+    font-weight: 700;
+    font-size: 11px;
+}
+
+.card-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin: 5px 0;
+}
+
+.card-tag {
+    font-size: 11px;
+    color: #999;
+    display: block;
+}
+
+.first-message {
+    padding: 0 10px;
+}
+
+.message-bubble {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    animation: slideInUp 0.5s ease;
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.message-content p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    margin: 3px 0;
+}
+
+.message-content p:first-child {
+    font-weight: 600;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scene 12 - Ending Scene */
+.ending-scene {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+}
+
+.ending-content {
+    text-align: center;
+    color: white;
+}
+
+.ending-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.journey-summary {
+    margin-bottom: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+}
+
+.journey-summary p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 5px 0;
+}
+
+.team-message {
+    margin-bottom: 40px;
+}
+
+.team-message h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.team-contributions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.team-item {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.team-icon {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.team-item p {
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.team-item strong {
+    color: white;
+    font-weight: 600;
+}
+
+.message-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.message-highlight {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.company-info {
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.company-name {
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.lab-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Mobile Navigation - Fixed and Smaller */
+.mobile-nav {
+    position: fixed;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 8px 15px;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    z-index: 10000;
+}
+
+.nav-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-dot.active {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    transform: scale(1.5);
+    width: 8px;
+    height: 8px;
+}
+
+.nav-dot:hover {
+    transform: scale(1.3);
+}
+
+/* Mobile Footer */
+.mobile-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 12px;
+}
+
+/* Responsive Images */
+@media (max-width: 375px) {
+    .scene-image {
+        min-height: 200px;
+        max-height: 350px;
+    }
+    
+    #mobile-scene-4 .scene-image,
+    #mobile-scene-5 .scene-image {
+        max-height: 400px; /* 작은 화면에서도 모바일 뷰 유지 */
+    }
+    
+    .scene-title {
+        font-size: 18px;
+    }
+    
+    .scene-description {
+        font-size: 13px;
+    }
+}
+
+/* Landscape Mode */
+@media (orientation: landscape) and (max-height: 500px) {
+    .mobile-header {
+        padding: 10px 20px;
+    }
+    
+    .scene-image {
+        height: 180px;
+    }
+    
+    .mobile-container {
+        padding-top: 60px;
+    }
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Touch Feedback */
+.mobile-scene:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+}
+
+/* Loading State */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+/* Scene 0 - Simplified Intro Styles */
+.simple-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: 500px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.intro-profile {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.intro-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.intro-info {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.info-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.info-status,
+.info-interest {
+    font-size: 14px;
+    color: #666;
+    margin: 3px 0;
+}
+
+.intro-description {
+    text-align: center;
+    margin-bottom: 30px;
+    max-width: 300px;
+}
+
+.intro-description p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+    margin: 8px 0;
+}
+
+.start-journey {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+}
+
+.start-journey:active {
+    transform: scale(0.98);
+}
+
+/* Scene 3 - Mobile Chat Interface */
+.mobile-chat-interface {
+    background: #f8f9fa;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.back-button {
+    font-size: 18px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.chat-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 12px;
+}
+
+.chat-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.chat-name {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4CAF50;
+    margin-left: 8px;
+}
+
+.chat-body {
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: white;
+}
+
+.kangsan-intro-section {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px 0;
+}
+
+.kangsan-profile-image {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #667eea;
+}
+
+.kangsan-profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sparkle-effect {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 20px;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    50% { transform: scale(1.2) rotate(180deg); opacity: 0.8; }
+}
+
+.intro-text {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+}
+
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message-wrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.message-wrapper.user {
+    flex-direction: row-reverse;
+    align-self: flex-end;
+}
+
+.message-wrapper.user .message-bubble {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border-radius: 18px 18px 5px 18px;
+}
+
+.message-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.message-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.message-bubble {
+    background: #f1f3f4;
+    padding: 12px 16px;
+    border-radius: 18px 18px 18px 5px;
+    max-width: 280px;
+    font-size: 14px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    color: #333;
+}
+
+.message-time {
+    font-size: 11px;
+    color: #999;
+    margin-top: 4px;
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-input-area input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+}
+
+.chat-input-area input:focus {
+    border-color: #667eea;
+}
+
+.send-button {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.send-button:active {
+    transform: scale(0.95);
+}
+
+/* =================================
+   DEVICE-SPECIFIC LAYOUT CONTROL
+   ================================= */
+
+/* PC 버전 기본 표시 */
+.pc-version {
+    display: block;
+}
+
+.mobile-version {
+    display: none;
+}
+
+/* 모바일 디바이스에서는 모바일 버전만 표시 */
+.mobile-device .pc-version {
+    display: none !important;
+}
+
+.mobile-device .mobile-version {
+    display: block !important;
+}
+
+/* 화면 크기 기반 미디어 쿼리 (백업) */
+@media screen and (max-width: 768px) {
+    .pc-version {
+        display: none !important;
+    }
+    
+    .mobile-version {
+        display: block !important;
+    }
+}
+
+/* 데스크톱에서는 PC 버전만 표시 */
+@media screen and (min-width: 769px) {
+    .desktop-device .pc-version {
+        display: block !important;
+    }
+    
+    .desktop-device .mobile-version {
+        display: none !important;
+    }
+}
+
+/* 태블릿 처리 (데스크톱으로 취급) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .pc-version {
+        display: block !important;
+    }
+    
+    .mobile-version {
+        display: none !important;
+    }
+}
+
+
+/* =================================
+   MOBILE SCROLL FIX
+   ================================= */
+
+/* 모바일 디바이스에서 스크롤 활성화 */
+.mobile-device {
+    overflow: auto !important;
+    height: auto !important;
+    position: relative !important;
+}
+
+.mobile-device body {
+    overflow: auto !important;
+    height: auto !important;
+    position: relative !important;
+    -webkit-overflow-scrolling: touch; /* iOS 부드러운 스크롤 */
+}
+
+.mobile-device html {
+    overflow: auto !important;
+    height: auto !important;
+}
+
+/* 모바일 버전 컨테이너 스크롤 설정 */
+.mobile-device .mobile-version {
+    overflow: visible !important;
+    height: auto !important;
+    position: relative !important;
+    display: block !important;
+}
+
+.mobile-device .mobile-container {
+    overflow: visible !important;
+    height: auto !important;
+    position: relative !important;
+    padding-top: 70px;
+    padding-bottom: 100px;
+}
+
+/* PC 버전 스타일이 모바일에 영향주는 것 방지 */
+.mobile-device .main-container,
+.mobile-device .scenes-container,
+.mobile-device .scene {
+    position: relative !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* 모바일 씬 스크롤 허용 */
+.mobile-device .mobile-scene {
+    position: relative !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    margin-bottom: 20px;
+}
+
+/* 로딩 스크린 높이 제한 (무한 스크롤 방지) */
+.mobile-device #loading-screen {
+    position: fixed !important;
+    height: 100vh !important;
+    z-index: 9999 !important;
+}
+
+/* 네비게이션 고정 위치 유지 */
+.mobile-device .mobile-nav {
+    position: fixed !important;
+    bottom: 35px !important;
+    z-index: 10000 !important;
+}
+
+.mobile-device .mobile-footer {
+    position: fixed !important;
+    bottom: 0 !important;
+    z-index: 9999 !important;
+}
+
+.mobile-device .mobile-header {
+    position: fixed !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+}
+
+
+/* =================================
+   PC STYLES ISOLATION
+   ================================= */
+
+/* PC 버전 스타일이 모바일에 적용되지 않도록 제한 */
+.desktop-device .pc-version {
+    display: block !important;
+}
+
+.desktop-device .mobile-version {
+    display: none !important;
+}
+
+/* PC 버전에서만 적용되어야 하는 스타일들 */
+.desktop-device .main-container {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.desktop-device .scenes-container {
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* 모바일에서 PC 스타일 완전 차단 */
+@media screen and (max-width: 768px) {
+    .main-container {
+        height: auto !important;
+        overflow: visible !important;
+    }
+    
+    .scenes-container {
+        height: auto !important;
+        overflow: visible !important;
+    }
+    
+    .scene {
+        height: auto !important;
+        min-height: auto !important;
+    }
+}
+

@@ -95,7 +95,7 @@
             // 디바이스 정보 표시
             const deviceInfo = document.getElementById('device-info');
             let deviceType = 'PC';
-            let targetPage = 'index-backup.html'; // 현재는 백업 파일을 PC 버전으로 사용
+            let targetPage = 'index-pc.html';
             
             // 모바일 디바이스 판단
             if (isMobile && !isTablet) {
@@ -106,7 +106,7 @@
                 targetPage = 'index-mobile.html';
             } else {
                 deviceType = 'PC/데스크톱';
-                targetPage = 'index-backup.html'; // PC는 백업 파일 사용
+                targetPage = 'index-pc.html';
             }
             
             // 디바이스 정보 표시
@@ -125,7 +125,7 @@
                 if (forceDevice === 'mobile') {
                     window.location.href = 'index-mobile.html' + search + hash;
                 } else if (forceDevice === 'pc') {
-                    window.location.href = 'index-backup.html' + search + hash;
+                    window.location.href = 'index-pc.html' + search + hash;
                 } else {
                     // 자동 감지된 페이지로 이동
                     window.location.href = targetPage + search + hash;

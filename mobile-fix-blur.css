@@ -1,0 +1,324 @@
+/* Mobile Blur and Layout Fix CSS */
+
+/* =================================
+   뿌연 필터 제거
+   ================================= */
+
+/* 모바일 헤더의 blur 효과 제거 */
+.mobile-device .mobile-header {
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* 모바일 네비게이션의 blur 효과 제거 */
+.mobile-device .mobile-nav {
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* team-item의 blur 효과 제거 */
+.mobile-device .team-item {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* 모든 blur 효과 완전 제거 */
+.mobile-device * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* =================================
+   Scene Content 레이아웃 수정
+   ================================= */
+
+/* Scene content 영역 패딩 최적화 */
+.mobile-device .mobile-scene .scene-content {
+    padding: 15px !important;
+    min-height: auto !important;
+    background: white !important;
+}
+
+/* Scene 타이틀 간격 조정 */
+.mobile-device .mobile-scene .scene-title {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #333 !important;
+    margin-bottom: 10px !important;
+    line-height: 1.3 !important;
+}
+
+/* Scene 설명 텍스트 간격 조정 */
+.mobile-device .mobile-scene .scene-description {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+    color: #666 !important;
+    margin-bottom: 12px !important;
+    word-break: keep-all !important;
+    overflow-wrap: break-word !important;
+}
+
+/* =================================
+   Scene Emotion (무료함 속 호기심 등) 스타일 수정
+   ================================= */
+
+/* 감정 표시 박스 스타일 완전 재정의 */
+.mobile-device .mobile-scene .scene-emotion {
+    display: inline-block !important;
+    background: linear-gradient(135deg, #667eea15, #764ba215) !important;
+    padding: 6px 14px !important;
+    border-radius: 18px !important;
+    font-size: 12px !important;
+    color: #667eea !important;
+    font-weight: 500 !important;
+    margin-top: 8px !important;
+    border: 1px solid #667eea20 !important;
+    white-space: nowrap !important;
+}
+
+/* =================================
+   Scene 1 특별 수정
+   ================================= */
+
+#mobile-scene-1 .scene-content {
+    padding: 15px !important;
+    background: white !important;
+}
+
+#mobile-scene-1 .scene-title {
+    font-size: 17px !important;
+    margin-bottom: 8px !important;
+}
+
+#mobile-scene-1 .scene-description {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 10px !important;
+}
+
+#mobile-scene-1 .scene-emotion {
+    background: #f0f4ff !important;
+    color: #5a67d8 !important;
+    padding: 5px 12px !important;
+    font-size: 12px !important;
+    border: 1px solid #e0e7ff !important;
+}
+
+/* =================================
+   모바일 씬 전체 간격 조정
+   ================================= */
+
+.mobile-device .mobile-scene {
+    margin: 12px !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* 이미지 영역 높이 조정 */
+.mobile-device .mobile-scene .scene-image {
+    min-height: 180px !important;
+    max-height: 320px !important;
+    background: #f8f9fa !important;
+}
+
+.mobile-device .mobile-scene .scene-image img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 320px !important;
+    object-fit: contain !important;
+}
+
+/* =================================
+   기타 요소 스타일 정리
+   ================================= */
+
+/* Intimacy Bar */
+.mobile-device .intimacy-bar {
+    margin-top: 10px !important;
+    background: #f0f0f0 !important;
+    border-radius: 8px !important;
+    padding: 2px !important;
+    position: relative !important;
+}
+
+.mobile-device .bar-label {
+    position: absolute !important;
+    left: 8px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    font-size: 10px !important;
+    color: #999 !important;
+    font-weight: 500 !important;
+}
+
+.mobile-device .bar-progress {
+    background: linear-gradient(90deg, #667eea, #764ba2) !important;
+    color: white !important;
+    padding: 4px 8px !important;
+    border-radius: 6px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    text-align: right !important;
+    transition: width 1s ease !important;
+}
+
+/* Hub Info */
+.mobile-device .hub-info {
+    margin-top: 10px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+}
+
+.mobile-device .hub-info span {
+    background: #f8f9fa !important;
+    padding: 5px 10px !important;
+    border-radius: 12px !important;
+    font-size: 11px !important;
+    color: #666 !important;
+}
+
+/* Event Stats */
+.mobile-device .event-stats {
+    margin-top: 10px !important;
+    display: flex !important;
+    gap: 15px !important;
+    padding: 8px !important;
+    background: #f8f9fa !important;
+    border-radius: 8px !important;
+}
+
+.mobile-device .event-stats span {
+    font-size: 12px !important;
+    color: #666 !important;
+    font-weight: 500 !important;
+}
+
+/* Gallery Stats */
+.mobile-device .gallery-stats {
+    margin-top: 10px !important;
+    display: flex !important;
+    gap: 12px !important;
+    padding: 8px !important;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+    border-radius: 8px !important;
+}
+
+.mobile-device .gallery-stats span {
+    font-size: 11px !important;
+    color: #495057 !important;
+    font-weight: 500 !important;
+}
+
+/* =================================
+   작은 화면 최적화 (320px - 375px)
+   ================================= */
+
+@media (max-width: 375px) {
+    .mobile-device .mobile-scene {
+        margin: 8px !important;
+    }
+    
+    .mobile-device .mobile-scene .scene-content {
+        padding: 12px !important;
+    }
+    
+    .mobile-device .mobile-scene .scene-title {
+        font-size: 16px !important;
+    }
+    
+    .mobile-device .mobile-scene .scene-description {
+        font-size: 12px !important;
+    }
+    
+    .mobile-device .mobile-scene .scene-emotion {
+        font-size: 11px !important;
+        padding: 4px 10px !important;
+    }
+}
+
+/* =================================
+   모바일 컨테이너 패딩 조정
+   ================================= */
+
+.mobile-device .mobile-container {
+    padding-top: 60px !important;
+    padding-bottom: 90px !important;
+}
+
+/* =================================
+   모바일 헤더 높이 조정
+   ================================= */
+
+.mobile-device .mobile-header {
+    padding: 12px 16px !important;
+}
+
+.mobile-device .mobile-header .logo {
+    font-size: 22px !important;
+}
+
+.mobile-device .mobile-header .subtitle {
+    font-size: 13px !important;
+}
+
+/* =================================
+   Scene 2 Selection Interface 수정
+   ================================= */
+
+#mobile-scene-2 .selection-interface {
+    padding: 15px !important;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+}
+
+#mobile-scene-2 .selection-header {
+    margin-bottom: 15px !important;
+}
+
+#mobile-scene-2 .selection-header h3 {
+    font-size: 16px !important;
+    margin-bottom: 5px !important;
+}
+
+#mobile-scene-2 .selection-header p {
+    font-size: 12px !important;
+}
+
+#mobile-scene-2 .character-cards {
+    gap: 10px !important;
+    padding: 8px 0 !important;
+}
+
+#mobile-scene-2 .first-message {
+    padding: 10px !important;
+}
+
+#mobile-scene-2 .kangsan-message {
+    background: white !important;
+    border-radius: 12px !important;
+    padding: 10px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* =================================
+   Scene 3 Chat Interface 수정
+   ================================= */
+
+#mobile-scene-3 .mobile-chat-interface {
+    border-radius: 16px !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+}
+
+#mobile-scene-3 .chat-body {
+    padding: 15px !important;
+    max-height: 380px !important;
+}
+
+#mobile-scene-3 .chat-input-area {
+    padding: 12px 15px !important;
+}
