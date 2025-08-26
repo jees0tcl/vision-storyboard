@@ -3046,7 +3046,7 @@ body {
     gap: 15px;
     padding: 15px;
     background: var(--gradient);
-    color: white;
+    color: white !important;
     border-radius: 12px;
     margin-bottom: 20px;
     animation: heartbeat 2s ease-in-out infinite;
@@ -3060,12 +3060,14 @@ body {
 
 .message-icon {
     font-size: 32px;
+    color: white !important;
 }
 
 .message-text {
     font-size: 18px;
     font-weight: 700;
     line-height: 1.4;
+    color: white !important;
 }
 
 /* IP Character Cards for Scene 2 */

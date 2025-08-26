@@ -252,6 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // URL 해시 기반 씬 로드
     function loadSceneFromHash() {
         const hash = window.location.hash;
+        
         if (hash) {
             const match = hash.match(/scene-(\d+)/);
             if (match) {
@@ -264,6 +265,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         // 기본값: 첫 번째 씬
+        currentScene = 0;
         showScene(0);
     }
     
@@ -272,7 +274,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 초기화
     createSceneIndicators();
-    loadSceneFromHash();
+    
+    setTimeout(() => {
+        loadSceneFromHash();
+    }, 100);
     
     // 윈도우 리사이즈 이벤트 (감정 그래프 제거로 불필요)
     // window.addEventListener('resize', () => {

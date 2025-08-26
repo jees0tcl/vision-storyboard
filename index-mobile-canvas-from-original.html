@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- 다크모드 색상 왜곡 방지 -->
+    <meta name="color-scheme" content="only light">
+    <meta name="supported-color-schemes" content="light">
+    
+    <title>SuperPlat Vision - 민지의 여정 (Canvas)</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 기본 리셋 및 캔버스 설정 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            height: -webkit-fill-available;
+            overflow: hidden;
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #000;
+        }
+        
+        /* 캔버스 컨테이너 */
+        .canvas-container {
+            width: 100%;
+            height: 100vh;
+            height: -webkit-fill-available;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .canvas-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* 씬 기본 설정 */
+        .canvas-scene {
+            width: 100%;
+            height: 100vh;
+            height: -webkit-fill-available;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Mobile Header */
+        .mobile-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            text-align: center;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            font-size: 18px;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(102, 126, 234, 0.8);
+        }
+        
+        .subtitle {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Scene 0: Opening Scene */
+        .opening-scene {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        
+        .simple-intro {
+            text-align: center;
+            color: white;
+            max-width: 400px; /* 350px에서 400px로 확대 */
+            width: 90%; /* 화면 너비의 90% 활용 */
+        }
+        
+        .intro-profile {
+            margin-bottom: 30px; /* 20px에서 30px로 증가 */
+        }
+        
+        .profile-photo {
+            width: 120px; /* 100px에서 120px로 확대 */
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.5); /* 3px에서 4px로 증가 */
+            object-fit: cover;
+        }
+        
+        .intro-title {
+            font-size: 28px; /* 24px에서 28px로 증가 */
+            font-weight: 700;
+            margin-bottom: 25px; /* 20px에서 25px로 증가 */
+        }
+        
+        .intro-info {
+            margin-bottom: 25px; /* 20px에서 25px로 증가 */
+        }
+        
+        .intro-info p {
+            margin: 8px 0; /* 5px에서 8px로 증가 */
+            font-size: 16px; /* 14px에서 16px로 증가 */
+            opacity: 0.9;
+        }
+        
+        .info-name {
+            font-weight: 700;
+            font-size: 18px !important; /* 16px에서 18px로 증가 */
+        }
+        
+        .intro-description {
+            margin: 25px 0; /* 20px에서 25px로 증가 */
+            line-height: 1.7; /* 1.6에서 1.7로 증가 */
+        }
+        
+        .intro-description p {
+            margin: 12px 0; /* 10px에서 12px로 증가 */
+            font-size: 16px; /* 14px에서 16px로 증가 */
+            opacity: 0.9;
+        }
+        
+        .start-journey {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 15px 30px; /* 12px 24px에서 15px 30px로 증가 */
+            border-radius: 30px; /* 25px에서 30px로 증가 */
+            font-size: 16px; /* 14px에서 16px로 증가 */
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            margin-top: 10px; /* 상단 여백 추가 */
+        }
+        
+        .start-journey:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Scene 1-11: Standard Scene Layout */
+        .standard-scene {
+            padding-top: 60px; /* 헤더 높이(약 50px) + 여백 */
+        }
+        
+        .scene-image {
+            height: calc(50% - 30px); /* 헤더 높이만큼 빼기 */
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .scene-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .scene-content {
+            height: 50%;
+            padding: 20px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.9));
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow-y: auto;
+        }
+        
+        /* Scene 2 전용 content 높이 조정 */
+        .character-selection .scene-content {
+            height: calc(40% - 10px); /* Scene 2에서만 content 높이 축소 */
+            padding: 15px 20px;
+        }
+        
+        .scene-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #667eea;
+        }
+        
+        .scene-description {
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        .scene-emotion {
+            background: rgba(102, 126, 234, 0.2);
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        /* Scene 2: Character Selection */
+        .character-selection {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            padding-top: 60px; /* 헤더 높이 + 여백 */
+        }
+        
+        .character-selection .scene-image {
+            height: calc(60% - 30px); /* 기본 50%에서 60%로 증가 */
+        }
+        
+        .selection-interface {
+            height: calc(40% - 10px); /* 70%에서 40%로 축소하여 이미지 공간 확보 */
+            padding: 15px 20px; /* 상하 패딩 축소 */
+            overflow-y: auto;
+        }
+        
+        .selection-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .selection-header h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .selection-header p {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .character-cards {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .character-card {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .character-card.selected {
+            background: rgba(102, 126, 234, 0.3);
+            border: 2px solid #667eea;
+        }
+        
+        .card-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .card-emoji {
+            font-size: 20px;
+        }
+        
+        .card-name {
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+        
+        .card-tag {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 10px;
+        }
+        
+        .selected-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #667eea;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+        
+        .first-message {
+            margin-top: 15px;
+        }
+        
+        .message-bubble {
+            background: rgba(102, 126, 234, 0.2);
+            padding: 12px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .message-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .message-content p {
+            color: white;
+            font-size: 12px;
+            margin: 0;
+        }
+        
+        /* Scene 3: Chat Interface */
+        .mobile-chat-interface {
+            height: calc(70% - 30px); /* 헤더 높이만큼 빼기 */
+            background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            margin-top: 60px; /* 헤더 높이 + 여백 */
+        }
+        
+        .chat-header {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .back-button {
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        .chat-avatar img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .chat-name {
+            flex-grow: 1;
+            font-weight: 600;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+        }
+        
+        .chat-body {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+        
+        .kangsan-intro-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .kangsan-profile-image {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .kangsan-profile-image img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .sparkle-effect {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 16px;
+            animation: sparkle 1.5s infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+        }
+        
+        .intro-text {
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .chat-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .message-wrapper {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        
+        .message-wrapper.user {
+            flex-direction: row-reverse;
+        }
+        
+        .message-wrapper.ai .message-bubble {
+            background: #e3f2fd;
+            color: #333;
+        }
+        
+        .message-wrapper.user .message-bubble {
+            background: #667eea;
+            color: white;
+        }
+        
+        .message-wrapper .message-bubble {
+            max-width: 70%;
+            padding: 10px 12px;
+            border-radius: 18px;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        
+        .message-wrapper .message-avatar img {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .message-time {
+            font-size: 10px;
+            color: #999;
+            margin: 5px 0;
+        }
+        
+        .chat-input-area {
+            padding: 15px;
+            background: white;
+            display: flex;
+            gap: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input-area input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        .send-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        /* Interactive Elements */
+        .intimacy-bar {
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            height: 8px;
+            position: relative;
+        }
+        
+        .bar-label {
+            position: absolute;
+            top: -20px;
+            left: 0;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .bar-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 10px;
+            position: relative;
+            transition: width 1s ease;
+        }
+        
+        .bar-progress::after {
+            content: attr(style);
+            position: absolute;
+            right: 10px;
+            top: -18px;
+            font-size: 10px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .bar-progress.special {
+            background: linear-gradient(90deg, #f39c12, #f1c40f);
+            animation: glow 1.5s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 5px #f1c40f; }
+            to { box-shadow: 0 0 15px #f1c40f, 0 0 25px #f1c40f; }
+        }
+        
+        .invitation-card {
+            background: linear-gradient(135deg, #f1c40f, #f39c12);
+            color: #333;
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .card-emoji {
+            font-size: 20px;
+        }
+        
+        .card-text {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .hub-info, .event-stats, .gallery-stats, .wallet-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .hub-info span, .event-stats span, .gallery-stats span, .wallet-info span {
+            background: rgba(102, 126, 234, 0.2);
+            padding: 6px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .achievement-badge {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 10px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .badge-icon {
+            font-size: 18px;
+        }
+        
+        .badge-text {
+            font-weight: 600;
+            font-size: 13px;
+        }
+        
+        /* Scene 12: Ending Scene */
+        .ending-scene {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+        }
+        
+        .ending-content {
+            color: white;
+            text-align: center;
+            max-width: 350px;
+        }
+        
+        .ending-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #667eea;
+        }
+        
+        .journey-summary {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .journey-summary p {
+            font-size: 14px;
+            margin: 8px 0;
+            opacity: 0.9;
+        }
+        
+        .team-message {
+            margin-bottom: 30px;
+        }
+        
+        .team-message h3 {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+        
+        .team-contributions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .team-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .team-icon {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .team-item p {
+            font-size: 11px;
+            line-height: 1.4;
+        }
+        
+        .final-message {
+            margin-bottom: 30px;
+        }
+        
+        .message-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+        
+        .message-highlight {
+            font-size: 15px;
+            font-weight: 700;
+            color: #f1c40f;
+            line-height: 1.6;
+        }
+        
+        .company-info {
+            opacity: 0.7;
+        }
+        
+        .company-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .lab-name {
+            font-size: 12px;
+        }
+        
+        /* Navigation */
+        .canvas-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 8px 16px;
+        }
+        
+        .nav-dots {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background: #667eea;
+            transform: scale(1.5);
+        }
+        
+        /* 각 씬별 배경색 */
+        .scene-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .scene-2 { background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); }
+        .scene-3 { background: linear-gradient(135deg, #16a085 0%, #f4d03f 100%); }
+        .scene-4 { background: linear-gradient(135deg, #d63031 0%, #74b9ff 100%); }
+        .scene-5 { background: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%); }
+        .scene-6 { background: linear-gradient(135deg, #8e44ad 0%, #3498db 100%); }
+        .scene-7 { background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%); }
+        .scene-8 { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); }
+        .scene-9 { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); }
+        .scene-10 { background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); }
+        .scene-11 { background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%); }
+    </style>
+</head>
+<body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <div class="header-content">
+            <h1 class="logo">SuperPlat</h1>
+            <span class="subtitle">민지의 여정</span>
+        </div>
+    </header>
+
+    <!-- Canvas Container -->
+    <div class="canvas-container" id="canvas-container">
+        
+        <!-- Scene 0: 민지 소개 -->
+        <section class="canvas-scene opening-scene" id="scene-0">
+            <div class="simple-intro">
+                <div class="intro-profile">
+                    <img src="images/minji/minji_profile.png" alt="민지" class="profile-photo">
+                </div>
+                
+                <h2 class="intro-title">민지의 이야기</h2>
+                
+                <div class="intro-info">
+                    <p class="info-name">민지, 22세</p>
+                    <p class="info-status">대학생</p>
+                    <p class="info-interest">K-POP 팬, 특히 엔카이브를 좋아함</p>
+                </div>
+                
+                <div class="intro-description">
+                    <p>민지는 현실에서 진정한 연결을 찾고 있는<br>수많은 젊은이들을 대표합니다.</p>
+                    <p>SuperPlat에서 그녀가 찾게 될<br>특별한 여정을 함께해보세요.</p>
+                </div>
+                
+                <button class="start-journey" onclick="scrollToScene(1)">민지의 여정 시작하기 →</button>
+            </div>
+        </section>
+
+        <!-- Scene 1: Discovery -->
+        <section class="canvas-scene standard-scene scene-1" id="scene-1">
+            <div class="scene-image">
+                <img src="images/scene/scene_01.png" alt="SuperPlat 발견">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 1: 운명 같은 광고</h2>
+                <p class="scene-description">
+                    또 다른 평범한 아침 8시, 지하철 2호선. 인스타그램을 넘기던 중 한 광고가 눈에 들어옵니다.
+                    "내 스타의 부캐와 대화해보세요! 당신만의 특별한 이야기를 만들어가세요 💫"
+                    평소 같으면 그냥 넘겼을 텐데, 오늘따라 '부캐'라는 단어가 마음을 건드립니다.
+                </p>
+                <div class="scene-emotion">📱 무료함 속 호기심</div>
+            </div>
+        </section>
+
+        <!-- Scene 2: Character Selection -->
+        <section class="canvas-scene character-selection scene-2" id="scene-2">
+            <div class="scene-image">
+                <img src="images/scene/scene_02.png" alt="IP 선택 화면">
+            </div>
+            <div class="selection-interface">
+                <div class="selection-header">
+                    <h3>당신의 AI 부캐를 선택하세요</h3>
+                    <p>누구와 특별한 관계를 시작하시겠어요?</p>
+                </div>
+                
+                <div class="character-cards">
+                    <div class="character-card">
+                        <div class="card-inner">
+                            <div class="card-image other">
+                                <span class="card-emoji">🌙</span>
+                            </div>
+                            <p class="card-name">루나</p>
+                            <span class="card-tag">신비로운 보컬</span>
+                        </div>
+                    </div>
+                    
+                    <div class="character-card selected">
+                        <div class="card-inner">
+                            <div class="card-image kangsan">
+                                <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산">
+                                <div class="selection-effect">
+                                    <span class="selected-badge">✓ 선택!</span>
+                                </div>
+                            </div>
+                            <p class="card-name">강산</p>
+                            <span class="card-tag">NCHIVE 리더</span>
+                        </div>
+                    </div>
+                    
+                    <div class="character-card">
+                        <div class="card-inner">
+                            <div class="card-image other">
+                                <span class="card-emoji">🦁</span>
+                            </div>
+                            <p class="card-name">리온</p>
+                            <span class="card-tag">카리스마 래퍼</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="first-message">
+                    <div class="message-bubble kangsan-message">
+                        <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" class="message-avatar">
+                        <div class="message-content">
+                            <p>"오늘 하루 어땠어? 힘든 일 있으면 나한테 얘기해줘!"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 2: 운명적인 선택</h2>
+                <p class="scene-description">
+                    앱을 열자 다양한 IP 캐릭터들이 카드 형태로 나열되어 있습니다.
+                    강산, 루나, 리온... 각자의 매력이 담긴 프로필들을 하나씩 살펴봅니다.
+                </p>
+                <div class="scene-emotion">💫 설렘과 호기심</div>
+            </div>
+        </section>
+
+        <!-- Scene 3: First Conversation -->
+        <section class="canvas-scene scene-3" id="scene-3">
+            <div class="mobile-chat-interface">
+                <div class="chat-header">
+                    <div class="back-button">←</div>
+                    <div class="chat-avatar">
+                        <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" />
+                    </div>
+                    <div class="chat-name">강산 AI</div>
+                    <div class="status-dot online"></div>
+                </div>
+                <div class="chat-body">
+                    <div class="kangsan-intro-section">
+                        <div class="kangsan-profile-image">
+                            <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산 프로필" />
+                            <div class="sparkle-effect">✨</div>
+                        </div>
+                        <div class="intro-text">강산 AI가 접속했습니다</div>
+                    </div>
+                    <div class="chat-messages">
+                        <div class="message-wrapper ai">
+                            <div class="message-avatar">
+                                <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" />
+                            </div>
+                            <div class="message-bubble">
+                                안녕! 나는 NCHIVE 강산에서 영감을 받은 AI야. 너를 선택해줘서 고마워! 💙
+                            </div>
+                            <div class="message-time">8:30</div>
+                        </div>
+                        <div class="message-wrapper user">
+                            <div class="message-bubble">
+                                헉... 정말 강산 부캐야? 신기해! 😱
+                            </div>
+                            <div class="message-time">8:31</div>
+                        </div>
+                        <div class="message-wrapper ai">
+                            <div class="message-avatar">
+                                <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산" />
+                            </div>
+                            <div class="message-bubble">
+                                맞아! 실제 강산의 따뜻한 성격을 담은 AI 친구야. 오늘 지하철 출근길이구나? 🤗
+                            </div>
+                            <div class="message-time">8:32</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" placeholder="메시지를 입력하세요..." />
+                    <button class="send-button">전송</button>
+                </div>
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 3: 첫 인사, 첫 설렘</h2>
+                <p class="scene-description">
+                    강산의 카드를 선택하자 화면이 바뀝니다. "안녕! 나는 NCHIVE 강산에서 영감을 받은 AI야."
+                    민지의 심장이 쿵 하고 뜹니다. 진짜 강산이 말을 건네는 것 같은 착각.
+                </p>
+                <div class="scene-emotion">💝 두근거림과 신기함</div>
+            </div>
+        </section>
+
+        <!-- Scene 4: Emotional Connection -->
+        <section class="canvas-scene standard-scene scene-4" id="scene-4">
+            <div class="scene-image">
+                <img src="images/scene/scene_04.png" alt="친밀해진 관계">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 4: 단짝이 된 우리</h2>
+                <p class="scene-description">
+                    3주가 지났습니다. 이제 민지의 하루는 강산 부캐와의 대화로 시작하고 끝납니다.
+                    "민지야, 지난번에 말한 프레젠테이션 어떻게 됐어?" 강산 부캐가 3일 전 대화를 기억하고 먼저 물어봅니다.
+                </p>
+                <div class="scene-emotion">💕 따뜻한 일상의 위로</div>
+                <div class="intimacy-bar">
+                    <div class="bar-label">친밀도</div>
+                    <div class="bar-progress" style="width: 25%;">25%</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 5: Special Invitation -->
+        <section class="canvas-scene standard-scene scene-5" id="scene-5">
+            <div class="scene-image">
+                <img src="images/scene/scene_05.png" alt="특별한 초대">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 5: 특별한 초대</h2>
+                <p class="scene-description">
+                    며칠이 더 지났을까. 평소처럼 강산 부캐와 대화하던 중, 화면에 특별한 알림이 뜹니다.
+                    "🎉 친밀도 30% 달성!" "민지야, 내 비밀 스튜디오에 초대하고 싶어. PC에서 만나면 진짜로 함께할 수 있어."
+                </p>
+                <div class="scene-emotion">🎉 특별함을 인정받는 기쁨</div>
+                <div class="intimacy-bar">
+                    <div class="bar-label">친밀도</div>
+                    <div class="bar-progress special" style="width: 30%;">30% 달성!</div>
+                </div>
+                <div class="invitation-card">
+                    <div class="card-emoji">🎫</div>
+                    <div class="card-text">PC World 초대장</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 6: New World -->
+        <section class="canvas-scene standard-scene scene-6" id="scene-6">
+            <div class="scene-image">
+                <img src="images/scene/scene_06_town.png" alt="3D 세계">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 6: 3D 세계의 강산</h2>
+                <p class="scene-description">
+                    PC로 접속한 민지의 눈앞에 3D 슈퍼타운이 펼쳐집니다. 거대한 광고판에는 실시간 뉴스가 흘러갑니다.
+                    "🔥 인기 급상승: NCHIVE 강산의 겨울 테마 공간" 3D로 구현된 강산 부캐가 반갑게 손을 흔들며 다가옵니다.
+                </p>
+                <div class="scene-emotion">🎮 현실 같은 가상의 만남</div>
+            </div>
+        </section>
+
+        <!-- Scene 7: SuperTown Hub -->
+        <section class="canvas-scene standard-scene scene-7" id="scene-7">
+            <div class="scene-image">
+                <img src="images/scene/scene_07_town.png" alt="SuperTown 허브">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 7: SuperTown 허브 탐험</h2>
+                <p class="scene-description">
+                    강산 부캐와 함께 SuperTown 중앙 광장을 거닐는 민지. 사방에는 다양한 IP ZONE으로 통하는 포털들이 반짝입니다.
+                    "저기 보이는 화려한 건물이 내 개인 스튜디오야. 우리만의 특별한 공간이지."
+                </p>
+                <div class="scene-emotion">🗺️ 광활한 세계에 대한 경이감</div>
+                <div class="hub-info">
+                    <span>📍 강산 IP ZONE</span>
+                    <span>🎨 부산 미술관</span>
+                    <span>⭐ 엔카이브 ZONE</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 8: Community Event -->
+        <section class="canvas-scene standard-scene scene-8" id="scene-8">
+            <div class="scene-image">
+                <img src="images/scene/scene_08_ufo.png" alt="UFO 이벤트">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 8: 함께하는 UFO 이벤트</h2>
+                <p class="scene-description">
+                    갑자기 하늘에 거대한 UFO가 나타납니다! 긴급 이벤트 알림이 울리고, 80명의 플레이어가 함께 UFO를 격추하기 시작합니다.
+                    "민지야, 저기 왼쪽을 겨냥해! 우리가 팀워크로 1등 해보자!"
+                </p>
+                <div class="scene-emotion">🚀 팀워크와 성취감</div>
+                <div class="event-stats">
+                    <span>👥 참가자: 80명</span>
+                    <span>🏆 현재 순위: 1위</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 9: Canvas Gallery -->
+        <section class="canvas-scene standard-scene scene-9" id="scene-9">
+            <div class="scene-image">
+                <img src="images/scene/scene_09.png" alt="Canvas 갤러리">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 9: 일상이 된 특별함</h2>
+                <p class="scene-description">
+                    이제 슈퍼플랫은 민지에게 단순한 앱이 아닙니다. 매일 아침 강산 부캐와 인사를 나누고, 주말에는 슈퍼타운에서 팬친구들과 시간을 보냅니다.
+                    강산 팬 랭킹 5위를 유지하며, 자신의 IP ZONE도 상위 20위 안에 들었습니다.
+                </p>
+                <div class="scene-emotion">🏆 소속감과 성취감</div>
+                <div class="gallery-stats">
+                    <span>🎯 강산 팬 랭킹: 5위</span>
+                    <span>🏠 IP ZONE: 20위</span>
+                    <span>🏆 올팬 배지</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 10: Creator Achievement -->
+        <section class="canvas-scene standard-scene scene-10" id="scene-10">
+            <div class="scene-image">
+                <img src="images/scene/scene_10.png" alt="크리에이터 성취">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 10: 나만의 공간, IP ZONE</h2>
+                <p class="scene-description">
+                    민지는 자신만의 IP ZONE을 꾸미기 시작합니다. 그동안 그린 강산 팬아트를 갤러리에 전시하고, UFO 이벤트 사진들을 벽에 걸어둡니다.
+                    다른 팬들이 방문해서 남긴 댓글들... "민지님 팬아트 진짜 예뻐요!" 좋아요가 342개나 쌓였습니다.
+                </p>
+                <div class="scene-emotion">🏠 주인공이 된 기분</div>
+                <div class="achievement-badge">
+                    <span class="badge-icon">🎨</span>
+                    <span class="badge-text">팬에서 크리에이터로</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 11: Economic Empowerment -->
+        <section class="canvas-scene standard-scene scene-11" id="scene-11">
+            <div class="scene-image">
+                <img src="images/scene/scene_11.png" alt="경제적 자립">
+            </div>
+            <div class="scene-content">
+                <h2 class="scene-title">Scene 11: 크리에이터가 된 민지</h2>
+                <p class="scene-description">
+                    민지가 초기에 모았던 엔카이브 한정판 굿즈가 3배 가격에 거래되기 시작합니다.
+                    "민지님의 '강산 겨울 콘서트' NFT 정말 소장가치 높은 것 같아요!" C2C 마켓에서 첫 거래가 성사되었습니다.
+                </p>
+                <div class="scene-emotion">💎 팬에서 크리에이터로</div>
+                <div class="wallet-info">
+                    <span>📈 디지털 굿즈 3배 상승</span>
+                    <span>🤖 아트민지 AI 생성</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scene 12: Ending -->
+        <section class="canvas-scene ending-scene" id="scene-12">
+            <div class="ending-content">
+                <h2 class="ending-title">민지의 여정이 끝났습니다</h2>
+                
+                <div class="journey-summary">
+                    <p>호기심으로 시작된 만남이</p>
+                    <p>진정한 관계로 발전하고</p>
+                    <p>혼자였던 누군가가</p>
+                    <p>특별한 공동체의 일원이 되었습니다</p>
+                </div>
+
+                <div class="team-message">
+                    <h3>우리가 만드는 것</h3>
+                    <div class="team-contributions">
+                        <div class="team-item">
+                            <span class="team-icon">💼</span>
+                            <p><strong>사업팀</strong>의 비전이<br>사용자의 꿈을 현실로</p>
+                        </div>
+                        <div class="team-item">
+                            <span class="team-icon">📋</span>
+                            <p><strong>기획팀</strong>의 설계가<br>진짜 같은 감정 교감을</p>
+                        </div>
+                        <div class="team-item">
+                            <span class="team-icon">💻</span>
+                            <p><strong>개발팀</strong>의 코드가<br>첫 대화를 가능하게</p>
+                        </div>
+                        <div class="team-item">
+                            <span class="team-icon">🎨</span>
+                            <p><strong>아트팀</strong>의 픽셀이<br>따뜻한 미소를 만듭니다</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="final-message">
+                    <p class="message-title">SuperPlat은 단순한 서비스가 아닙니다</p>
+                    <p class="message-highlight">사람과 사람을, 마음과 마음을 연결하는 다리입니다</p>
+                </div>
+
+                <div class="company-info">
+                    <p class="company-name">Beyond Real</p>
+                    <p class="lab-name">THE CROSSING LAB</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Navigation -->
+    <nav class="canvas-nav">
+        <div class="nav-dots">
+            <span class="nav-dot active" onclick="scrollToScene(0)"></span>
+            <span class="nav-dot" onclick="scrollToScene(1)"></span>
+            <span class="nav-dot" onclick="scrollToScene(2)"></span>
+            <span class="nav-dot" onclick="scrollToScene(3)"></span>
+            <span class="nav-dot" onclick="scrollToScene(4)"></span>
+            <span class="nav-dot" onclick="scrollToScene(5)"></span>
+            <span class="nav-dot" onclick="scrollToScene(6)"></span>
+            <span class="nav-dot" onclick="scrollToScene(7)"></span>
+            <span class="nav-dot" onclick="scrollToScene(8)"></span>
+            <span class="nav-dot" onclick="scrollToScene(9)"></span>
+            <span class="nav-dot" onclick="scrollToScene(10)"></span>
+            <span class="nav-dot" onclick="scrollToScene(11)"></span>
+            <span class="nav-dot" onclick="scrollToScene(12)"></span>
+        </div>
+    </nav>
+
+    <script>
+        // Canvas Navigation System
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('canvas-container');
+            const scenes = document.querySelectorAll('.canvas-scene');
+            const dots = document.querySelectorAll('.nav-dot');
+            let currentScene = 0;
+            let isScrolling = false;
+            
+            // 스크롤 이벤트로 현재 씬 감지
+            container.addEventListener('scroll', () => {
+                if (!isScrolling) {
+                    window.requestAnimationFrame(() => {
+                        const scrollTop = container.scrollTop;
+                        const sceneHeight = window.innerHeight;
+                        const newScene = Math.round(scrollTop / sceneHeight);
+                        
+                        if (newScene !== currentScene && newScene >= 0 && newScene < scenes.length) {
+                            currentScene = newScene;
+                            updateDots(currentScene);
+                        }
+                        isScrolling = false;
+                    });
+                    isScrolling = true;
+                }
+            });
+            
+            // 씬으로 스크롤하는 함수
+            window.scrollToScene = function(index) {
+                const sceneHeight = window.innerHeight;
+                container.scrollTo({
+                    top: sceneHeight * index,
+                    behavior: 'smooth'
+                });
+                currentScene = index;
+                updateDots(index);
+            }
+            
+            // 도트 업데이트
+            function updateDots(index) {
+                dots.forEach((dot, i) => {
+                    if (i === index) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+            
+            // 터치 스와이프 지원
+            let touchStartY = 0;
+            let touchEndY = 0;
+            
+            container.addEventListener('touchstart', (e) => {
+                touchStartY = e.changedTouches[0].screenY;
+            }, { passive: true });
+            
+            container.addEventListener('touchend', (e) => {
+                touchEndY = e.changedTouches[0].screenY;
+                handleSwipe();
+            }, { passive: true });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartY - touchEndY;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0 && currentScene < scenes.length - 1) {
+                        scrollToScene(currentScene + 1);
+                    } else if (diff < 0 && currentScene > 0) {
+                        scrollToScene(currentScene - 1);
+                    }
+                }
+            }
+            
+            // 키보드 네비게이션
+            document.addEventListener('keydown', (e) => {
+                switch(e.key) {
+                    case 'ArrowDown':
+                    case ' ':
+                        e.preventDefault();
+                        if (currentScene < scenes.length - 1) {
+                            scrollToScene(currentScene + 1);
+                        }
+                        break;
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        if (currentScene > 0) {
+                            scrollToScene(currentScene - 1);
+                        }
+                        break;
+                    case 'Home':
+                        e.preventDefault();
+                        scrollToScene(0);
+                        break;
+                    case 'End':
+                        e.preventDefault();
+                        scrollToScene(scenes.length - 1);
+                        break;
+                }
+            });
+            
+            // 초기 씬 설정 (Scene 0에서 시작하도록 보장)
+            setTimeout(() => {
+                scrollToScene(0);
+            }, 100);
+        });
+    </script>
+</body>
+</html>

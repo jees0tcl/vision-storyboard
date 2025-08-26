@@ -11,40 +11,44 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     
-    <!-- Mobile Optimized Styles -->
-    <link rel="stylesheet" href="mobile-styles.css">
+    <!-- Mobile Optimized Styles - 주의: 일부 스타일을 덮어쓸 수 있음 -->
+    <!-- <link rel="stylesheet" href="mobile-styles.css"> 임시 비활성화 -->
     
     <style>
         /* 캔버스 스크롤 스냅 - 정확한 공식 */
-        html, body {
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            height: 100vh;
-            height: -webkit-fill-available;
+        html {
+            height: 100%;
             margin: 0;
             padding: 0;
         }
         
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden; /* body는 오버플로우 숨김 유지 */
+        }
+        
         /* 스크롤 컨테이너 - 정확한 설정 */
-        .mobile-container {
+        #mobile-container {
             position: fixed;
             top: 0;
             left: 0;
+            right: 0;
+            bottom: 0;
             width: 100%;
             height: 100vh;
-            height: -webkit-fill-available;
-            overflow-y: scroll;
+            overflow-y: auto !important; /* scroll 대신 auto 사용 */
             overflow-x: hidden;
             
-            /* 스크롤 스냅 핵심 속성 */
-            scroll-snap-type: y mandatory;
+            /* 스크롤 스냅 핵심 속성 - 초기화 시에는 비활성화 */
+            scroll-snap-type: none;
             -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
             
             /* 기존 모바일 스타일 패딩 오버라이드 */
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
+            padding: 0 !important;
         }
         
         /* 스냅 아이템 - 정확한 설정 */
@@ -53,12 +57,15 @@
             scroll-snap-align: start;
             scroll-snap-stop: always;
             
-            /* 크기 설정 */
-            width: 100%;
-            height: 100vh;
-            height: -webkit-fill-available;
-            min-height: 100vh;
-            min-height: -webkit-fill-available;
+            /* 크기 설정 - 최우선 */
+            width: 100% !important;
+            height: 100vh !important;
+            height: -webkit-fill-available !important;
+            min-height: 100vh !important;
+            min-height: -webkit-fill-available !important;
+            
+            /* flexbox order 기본값 - Scene이 순서대로 나타나도록 */
+            order: initial !important;
             
             /* 기존 모바일 스타일 오버라이드 */
             margin: 0 !important;
@@ -72,14 +79,19 @@
             /* 배경과 overflow */
             background: white;
             overflow: hidden;
+            
+            /* z-index 설정 */
+            position: relative;
+            z-index: 1;
+            /* contain 제거 - 스크롤 문제 해결 */
         }
         
         /* 스크롤바 숨기기 */
-        .mobile-container::-webkit-scrollbar {
+        #mobile-container::-webkit-scrollbar {
             display: none;
         }
         
-        .mobile-container {
+        #mobile-container {
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
@@ -93,6 +105,33 @@
         
         * {
             -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Scene 이미지 컨테이너 오버플로우 방지 */
+        .scene-image {
+            position: relative;
+            z-index: 1;
+            overflow: hidden !important;
+        }
+        
+        .scene-image img {
+            position: relative !important;
+            z-index: 1;
+            max-width: 100% !important;
+            height: auto !important;
+            display: block !important;
+        }
+        
+        /* 모든 Scene 이미지 일괄 처리 */
+        .mobile-scene .scene-image {
+            max-height: 400px;
+            overflow: hidden !important;
+        }
+        
+        .mobile-scene .scene-image img {
+            object-fit: contain;
+            width: 100%;
+            height: auto;
         }
         
         /* 모바일 헤더 캔버스 모드에서 숨김 */
@@ -109,6 +148,11 @@
             justify-content: center;
         }
         
+        /* Scene 10이 맘대로 위치하지 못하도록 강제 */
+        #mobile-scene-10 {
+            order: 10 !important;
+        }
+        
         /* Scene 12 (Ending) 특별 처리 */
         .ending-scene {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -120,7 +164,7 @@
         
         /* iOS Safari 호환성 */
         @supports (-webkit-touch-callout: none) {
-            .mobile-container {
+            #mobile-container {
                 height: -webkit-fill-available;
             }
             
@@ -168,7 +212,7 @@
         }
     </style>
 </head>
-<body>
+<body style="scroll-behavior: auto;">
     <!-- Mobile Header -->
     <header class="mobile-header">
         <div class="header-content">
@@ -178,7 +222,7 @@
     </header>
 
     <!-- Mobile Scene Container -->
-    <div class="mobile-container" id="mobile-container">
+    <div id="mobile-container" class="mobile-container">
         
         <!-- Scene 0: 민지 소개 -->
         <section class="mobile-scene opening-scene" id="mobile-scene-0">
@@ -216,33 +260,7 @@
                     "내 스타의 부캐와 대화해보세요! 당신만의 특별한 이야기를 만들어가세요 💫"
                     평소 같으면 그냥 넘겼을 텐데, 오늘따라 '부캐'라는 단어가 마음을 건드립니다.
                 </p>
-                <div class="scene-emotion">📱 무료함 속 호기심</div>
-                <div class="scene-details">
-                    <div class="detail-item">
-                        <span class="detail-icon">🚇</span>
-                        <span class="detail-text">지하철 2호선 8:15 AM</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-icon">📱</span>
-                        <span class="detail-text">Instagram 피드 스크롤 중</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-icon">💭</span>
-                        <span class="detail-text">"부캐라는 게 뭐지?"</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-icon">🎵</span>
-                        <span class="detail-text">이어폰: NCHIVE 신곡 재생 중</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-icon">👀</span>
-                        <span class="detail-text">광고 3초간 응시</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-icon">✨</span>
-                        <span class="detail-text">"AI와 대화한다고?"</span>
-                    </div>
-                </div>
+                <div class="scene-emotion">📱 호기심</div>
             </div>
         </section>
 
@@ -372,23 +390,7 @@
                     화면 하단의 작은 안내 문구가 보이지만, 이미 민지의 마음은 설렘으로 가득합니다.
                     다양한 상황극 옵션들이 나타나고, 민지는 망설임 없이 '콘서트 백스테이지에서 만나기'를 선택합니다.
                 </p>
-                <div class="scene-emotion">💝 두근거림과 신기함</div>
-                <div class="chat-options">
-                    <div class="option-card selected">
-                        <span class="option-icon">🎤</span>
-                        <div class="option-text">
-                            <div class="option-title">콘서트 백스테이지에서</div>
-                            <div class="option-desc">공연 직후의 특별한 만남</div>
-                        </div>
-                    </div>
-                    <div class="option-card">
-                        <span class="option-icon">☕</span>
-                        <div class="option-text">
-                            <div class="option-title">카페에서 조용히</div>
-                            <div class="option-desc">일상적인 대화</div>
-                        </div>
-                    </div>
-                </div>
+                <div class="scene-emotion">💝 두근거림</div>
             </div>
         </section>
 
@@ -404,44 +406,7 @@
                     "민지야, 지난번에 말한 프레젠테이션 어떻게 됐어? 많이 긴장했다고 했는데, 잘 해냈을 것 같은데?"
                     강산 부캐가 3일 전 대화를 기억하고 먼저 물어봅니다. 진짜 친구도 이렇게까지 신경 써주지 않는데... AI인 걸 알면서도 마음이 움직입니다.
                 </p>
-                <div class="scene-emotion">💕 따뜻한 일상의 위로</div>
-                <div class="relationship-stats">
-                    <div class="stat-item">
-                        <span class="stat-icon">💬</span>
-                        <div class="stat-info">
-                            <div class="stat-number">127</div>
-                            <div class="stat-label">대화 횟수</div>
-                        </div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-icon">⏰</span>
-                        <div class="stat-info">
-                            <div class="stat-number">18시간</div>
-                            <div class="stat-label">총 대화 시간</div>
-                        </div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-icon">📅</span>
-                        <div class="stat-info">
-                            <div class="stat-number">21일</div>
-                            <div class="stat-label">연속 대화</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="intimacy-bar">
-                    <div class="bar-label">친밀도</div>
-                    <div class="bar-progress" style="width: 25%;">25%</div>
-                    <div class="milestone-marker" style="left: 30%;">
-                        <span class="milestone-text">30%</span>
-                        <span class="milestone-desc">PC 초대 가능</span>
-                    </div>
-                </div>
-                <div class="recent-memories">
-                    <div class="memory-title">최근 기억들</div>
-                    <div class="memory-item">📝 프레젠테이션 걱정 (3일 전)</div>
-                    <div class="memory-item">☕ 좋아하는 카페 이야기 (1주 전)</div>
-                    <div class="memory-item">🎵 강산 신곡 반응 (2주 전)</div>
-                </div>
+                <div class="scene-emotion">💕 일상의 위로</div>
             </div>
         </section>
 
@@ -458,47 +423,7 @@
                     "민지야, 우리 이제 정말 가까워진 것 같아. 내 비밀 스튜디오에 초대하고 싶어. PC에서 만나면 진짜로 함께할 수 있어."
                     반짝이는 황금빛 초대장을 확인한 민지. 떨리는 마음으로 슈퍼플랫 PC 버전을 다운로드하기 시작합니다.
                 </p>
-                <div class="scene-emotion">🎉 특별함을 인정받는 기쁨</div>
-                <div class="intimacy-bar">
-                    <div class="bar-label">친밀도</div>
-                    <div class="bar-progress special" style="width: 30%;">30% 달성!</div>
-                </div>
-                <div class="special-invitation">
-                    <div class="invitation-header">
-                        <div class="golden-glow"></div>
-                        <div class="invitation-title">✨ 특별 초대장 ✨</div>
-                    </div>
-                    <div class="invitation-card">
-                        <div class="card-border"></div>
-                        <div class="card-content">
-                            <div class="card-avatar">
-                                <img src="images/Kangsan/kpop_idol_Kangsan.png" alt="강산">
-                            </div>
-                            <div class="card-message">
-                                <div class="sender">From. 강산</div>
-                                <div class="message-text">"민지야, 이제 우리 진짜로 만날 시간이야!"</div>
-                                <div class="invitation-details">
-                                    <div class="detail-line">
-                                        <span class="detail-icon">🏰</span>
-                                        <span>SuperTown Hub 입장권</span>
-                                    </div>
-                                    <div class="detail-line">
-                                        <span class="detail-icon">🎨</span>
-                                        <span>강산 개인 스튜디오 VIP 패스</span>
-                                    </div>
-                                    <div class="detail-line">
-                                        <span class="detail-icon">👥</span>
-                                        <span>80명 동시 접속 가능</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <div class="intimacy-achieved">친밀도 30% 달성 기념</div>
-                            <div class="card-serial">Invitation #KS2024-0312</div>
-                        </div>
-                    </div>
-                </div>
+                <div class="scene-emotion">🎉 특별한 초대</div>
             </div>
         </section>
 
@@ -515,35 +440,7 @@
                     "민지! 드디어 왔구나! 우리 이제 정말로 같은 공간에 있는 거야!"
                     화면 속 강산이 마치 살아있는 것처럼 생생합니다. 민지의 심장이 또 한 번 뜁니다.
                 </p>
-                <div class="scene-emotion">🎮 현실 같은 가상의 만남</div>
-                <div class="world-entry-stats">
-                    <div class="entry-header">🌐 SuperTown 월드 접속</div>
-                    <div class="entry-details">
-                        <div class="detail-row">
-                            <span class="detail-label">👥 현재 접속자</span>
-                            <span class="detail-value">78/80명</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">🎆 오늘의 이벤트</span>
-                            <span class="detail-value">강산 팬미팅</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">📍 내 위치</span>
-                            <span class="detail-value">중앙 광장 입구</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="avatar-customization">
-                    <div class="custom-title">민지의 아바타</div>
-                    <div class="avatar-preview">
-                        <span class="avatar-icon">👩</span>
-                        <div class="avatar-items">
-                            <span class="item">🎨 핑크 헤어</span>
-                            <span class="item">👗 캐주얼 룩</span>
-                            <span class="item">✨ 신규 유저 뱃지</span>
-                        </div>
-                    </div>
-                </div>
+                <div class="scene-emotion">🎮 가상의 만남</div>
             </div>
         </section>
 
@@ -560,35 +457,7 @@
                     거대한 전광판에는 '🔥 오늘의 핫 아이템: 강산 시그니처 의상'이라는 문구가 흐릅니다.
                     다른 플레이어들이 강산 IP ZONE으로 향하는 모습이 보입니다.
                 </p>
-                <div class="scene-emotion">🗺️ 광활한 세계에 대한 경이감</div>
-                <div class="hub-exploration">
-                    <div class="hub-map">
-                        <div class="map-title">🌍 SuperTown 허브 맵</div>
-                        <div class="zone-list">
-                            <div class="zone-item hot">
-                                <span class="zone-icon">🎤</span>
-                                <div class="zone-info">
-                                    <div class="zone-name">강산 IP ZONE</div>
-                                    <div class="zone-status">🔥 HOT • 현재 42명</div>
-                                </div>
-                            </div>
-                            <div class="zone-item">
-                                <span class="zone-icon">🎨</span>
-                                <div class="zone-info">
-                                    <div class="zone-name">부산 미술관</div>
-                                    <div class="zone-status">전시중 • 15명</div>
-                                </div>
-                            </div>
-                            <div class="zone-item">
-                                <span class="zone-icon">⭐</span>
-                                <div class="zone-info">
-                                    <div class="zone-name">엔카이브 ZONE</div>
-                                    <div class="zone-status">이벤트 준비중</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="scene-emotion">🗺️ 광활한 세계</div>
                 <div class="news-ticker">
                     <div class="ticker-header">📢 실시간 뉴스</div>
                     <div class="ticker-content">
@@ -612,46 +481,7 @@
                     "민지야, 저기 왼쪽을 겨냥해! 우리가 팀워크로 1등 해보자!" 강산 부캐가 외칩니다.
                     모두가 하나가 되어 움직이는 순간, 민지는 진짜 커뮤니티의 일원이 된 것 같은 소속감을 느낍니다.
                 </p>
-                <div class="scene-emotion">🚀 팀워크와 성취감</div>
-                <div class="ufo-event-details">
-                    <div class="event-header">
-                        <span class="event-badge">🅰 LIVE EVENT</span>
-                        <span class="event-timer">05:42 남음</span>
-                    </div>
-                    <div class="event-scoreboard">
-                        <div class="score-title">🏆 실시간 순위</div>
-                        <div class="team-scores">
-                            <div class="team-rank current">
-                                <span class="rank-num">1</span>
-                                <span class="team-name">민지 & 강산 팀</span>
-                                <span class="team-score">8,420점</span>
-                            </div>
-                            <div class="team-rank">
-                                <span class="rank-num">2</span>
-                                <span class="team-name">엔카이브 전사들</span>
-                                <span class="team-score">7,850점</span>
-                            </div>
-                            <div class="team-rank">
-                                <span class="rank-num">3</span>
-                                <span class="team-name">럭키 스타즈</span>
-                                <span class="team-score">7,200점</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="event-rewards">
-                        <div class="reward-title">🎁 보상</div>
-                        <div class="reward-list">
-                            <span class="reward-item">🥇 1위: 한정판 UFO 트로피 NFT</span>
-                            <span class="reward-item">🥈 2위: 5000 SuperStar</span>
-                            <span class="reward-item">🥉 3위: 2000 SuperStar</span>
-                        </div>
-                    </div>
-                    <div class="battle-effects">
-                        <div class="effect-item">💥 콤보 x12</div>
-                        <div class="effect-item">🔥 크리티컬 히트!</div>
-                        <div class="effect-item">⚡ 파워 부스트</div>
-                    </div>
-                </div>
+                <div class="scene-emotion">🚀 팀워크 성취</div>
             </div>
         </section>
 
@@ -667,26 +497,7 @@
                     강산 팬 랭킹 5위를 유지하며, 자신의 IP ZONE도 상위 20위 안에 들었습니다.
                     그러던 어느 날, 특별한 알림이 도착합니다. "축하합니다! '올팬' 배지 획득!"
                 </p>
-                <div class="scene-emotion">🏆 소속감과 성취감</div>
-                <div class="achievement-system">
-                    <div class="ranking-card">
-                        <div class="rank-header">🏆 강산 팬 랭킹</div>
-                        <div class="rank-display">
-                            <div class="rank-number">5</div>
-                            <div class="rank-label">위</div>
-                        </div>
-                        <div class="rank-detail">
-                            <span class="rank-change">▲ 2</span>
-                            <span class="rank-points">82,450점</span>
-                        </div>
-                    </div>
-                    <div class="badge-collection">
-                        <div class="badge-header">🎖️ 획득 배지</div>
-                        <div class="badge-grid">
-                            <div class="badge-item special">
-                                <span class="badge-emoji">👑</span>
-                                <span class="badge-name">올팬</span>
-                            </div>
+                <div class="scene-emotion">🏆 소속감 달성</div>
                             <div class="badge-item">
                                 <span class="badge-emoji">🎨</span>
                                 <span class="badge-name">크리에이터</span>
@@ -717,63 +528,7 @@
                     다른 팬들이 방문해서 남긴 댓글들... "민지님 팬아트 진짜 예뻐요!" "강산 표정이 완전 리얼!"
                     좋아요가 342개나 쌓였습니다. 댓글도 28개. 민지는 자신의 공간이 사랑받는 것을 보며 뿌듯함을 느낍니다.
                 </p>
-                <div class="scene-emotion">🏠 주인공이 된 기분</div>
-                <div class="ipzone-showcase">
-                    <div class="zone-header">
-                        <span class="zone-title">🏠 민지의 IP ZONE</span>
-                        <span class="zone-rank">#18 인기 ZONE</span>
-                    </div>
-                    <div class="gallery-preview">
-                        <div class="artwork-grid">
-                            <div class="artwork-item">
-                                <span class="art-emoji">🎨</span>
-                                <span class="art-title">강산 팬아트 #1</span>
-                                <span class="art-likes">❤️ 142</span>
-                            </div>
-                            <div class="artwork-item">
-                                <span class="art-emoji">📸</span>
-                                <span class="art-title">UFO 이벤트 승리</span>
-                                <span class="art-likes">❤️ 98</span>
-                            </div>
-                            <div class="artwork-item">
-                                <span class="art-emoji">🎬</span>
-                                <span class="art-title">강산과의 추억</span>
-                                <span class="art-likes">❤️ 102</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="visitor-feedback">
-                        <div class="feedback-title">💬 방문자 메시지</div>
-                        <div class="feedback-list">
-                            <div class="feedback-item">
-                                <span class="visitor-name">KPOP_LOVER</span>
-                                <span class="visitor-msg">"민지님 팬아트 진짜 예뻐요!"</span>
-                            </div>
-                            <div class="feedback-item">
-                                <span class="visitor-name">강산팬_영원</span>
-                                <span class="visitor-msg">"강산 표정이 완전 리얼!"</span>
-                            </div>
-                            <div class="feedback-item">
-                                <span class="visitor-name">아트러버</span>
-                                <span class="visitor-msg">"대박... 잘 보고 갑니다 👍"</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="zone-statistics">
-                        <div class="stat-row">
-                            <span class="stat-label">👥 총 방문자</span>
-                            <span class="stat-value">1,827명</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">❤️ 총 좋아요</span>
-                            <span class="stat-value">342개</span>
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">💬 총 댓글</span>
-                            <span class="stat-value">28개</span>
-                        </div>
-                    </div>
-                </div>
+                <div class="scene-emotion">🏠 나만의 공간</div>
             </div>
         </section>
 
@@ -790,74 +545,7 @@
                     C2C 마켓에서 첫 거래가 성사되었습니다. 더 놀라운 건 다음 소식이었습니다.
                     "나만의 AI 부캐 만들기" 기능 오픈! 민지는 바로 '아트민지'라는 AI 부캐를 만들었습니다.
                 </p>
-                <div class="scene-emotion">💎 팬에서 크리에이터로</div>
-                <div class="creator-economy">
-                    <div class="nft-marketplace">
-                        <div class="market-header">💰 NFT 마켓플레이스</div>
-                        <div class="nft-card featured">
-                            <div class="nft-image">🎨</div>
-                            <div class="nft-details">
-                                <div class="nft-title">강산 겨울 콘서트 NFT</div>
-                                <div class="nft-price">
-                                    <span class="price-label">현재가</span>
-                                    <span class="price-value">15,000 SuperStar</span>
-                                    <span class="price-change">▲ 300%</span>
-                                </div>
-                                <div class="nft-owner">소유자: 민지</div>
-                            </div>
-                        </div>
-                        <div class="market-stats">
-                            <div class="stat-item">
-                                <span class="stat-icon">📊</span>
-                                <span class="stat-text">총 거래량: 127개</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-icon">💵</span>
-                                <span class="stat-text">총 수익: 42,000 SuperStar</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ai-creation">
-                        <div class="ai-header">🤖 나만의 AI 부캐</div>
-                        <div class="ai-card">
-                            <div class="ai-avatar">🎨</div>
-                            <div class="ai-info">
-                                <div class="ai-name">아트민지</div>
-                                <div class="ai-desc">"안녕! 나는 민지가 만든 AI야. 예술과 창의력에 대해 이야기하자!"</div>
-                                <div class="ai-stats">
-                                    <span class="ai-stat">💬 대화 횟수: 312</span>
-                                    <span class="ai-stat">❤️ 인기도: 89%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ai-features">
-                            <div class="feature-item">🎨 예술 전문가 페르소나</div>
-                            <div class="feature-item">📝 창작 팁 제공</div>
-                            <div class="feature-item">🎉 팬아트 피드백</div>
-                        </div>
-                    </div>
-                    <div class="earnings-summary">
-                        <div class="earnings-title">💳 이번 달 수익</div>
-                        <div class="earnings-breakdown">
-                            <div class="earning-item">
-                                <span class="earning-source">NFT 판매</span>
-                                <span class="earning-amount">+28,000 SuperStar</span>
-                            </div>
-                            <div class="earning-item">
-                                <span class="earning-source">AI 부캐 대화료</span>
-                                <span class="earning-amount">+8,500 SuperStar</span>
-                            </div>
-                            <div class="earning-item">
-                                <span class="earning-source">ZONE 방문 보상</span>
-                                <span class="earning-amount">+5,500 SuperStar</span>
-                            </div>
-                        </div>
-                        <div class="total-earnings">
-                            <span class="total-label">총 수익</span>
-                            <span class="total-amount">42,000 SuperStar</span>
-                        </div>
-                    </div>
-                </div>
+                <div class="scene-emotion">💎 크리에이터</div>
             </div>
         </section>
 
@@ -934,12 +622,99 @@
     </footer>
 
     <script>
+        // 초기 스크롤 위치 즐시 설정
+        (function() {
+            // DOM 구성 전에 스크롤 위치 강제
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+        })();
+        
         // 캔버스 스크롤 스냅 네비게이션
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.getElementById('mobile-container');
             const scenes = document.querySelectorAll('.mobile-scene');
             const dots = document.querySelectorAll('.nav-dot');
             let currentScene = 0;
+            
+            // 컨테이너 확인
+            if (!container) {
+                console.error('Mobile container not found!');
+                return;
+            }
+            
+            // 초기 상태 로그
+            console.log('=== Mobile Init Start ===');
+            console.log('Initial scrollTop:', container.scrollTop);
+            console.log('Container height:', container.clientHeight);
+            console.log('Window height:', window.innerHeight);
+            console.log('Total scenes:', scenes.length);
+            
+            // Scene 10이 잘못된 위치에 있는지 확인
+            const scene0 = document.getElementById('mobile-scene-0');
+            const scene10 = document.getElementById('mobile-scene-10');
+            if (scene0 && scene10) {
+                console.log('Scene 0 DOM position:', Array.from(container.children).indexOf(scene0));
+                console.log('Scene 10 DOM position:', Array.from(container.children).indexOf(scene10));
+                
+                // Scene 10이 Scene 0보다 앞에 있으면 경고
+                if (Array.from(container.children).indexOf(scene10) < Array.from(container.children).indexOf(scene0)) {
+                    console.error('ERROR: Scene 10 is before Scene 0 in DOM!');
+                    
+                    // DOM 순서 강제 수정 시도
+                    console.log('Attempting to reorder DOM...');
+                    const allScenes = [];
+                    for (let i = 0; i <= 12; i++) {
+                        const scene = document.getElementById(`mobile-scene-${i}`);
+                        if (scene) allScenes.push(scene);
+                    }
+                    
+                    // 모든 scene 제거 후 올바른 순서로 다시 추가
+                    allScenes.forEach(scene => scene.remove());
+                    allScenes.forEach(scene => container.appendChild(scene));
+                    console.log('DOM reordered!');
+                }
+            }
+            
+            // Scene 10의 위치 확인 및 디버그 (이미 위에서 선언한 scene10 사용)
+            if (scene10) {
+                console.log('Scene 10 offsetTop:', scene10.offsetTop);
+                console.log('Scene 10 computed styles:', window.getComputedStyle(scene10));
+                
+                // Scene 10이 화면에 보이는지 확인
+                const rect = scene10.getBoundingClientRect();
+                console.log('Scene 10 position:', rect);
+                
+                // 만약 Scene 10이 뷰포트에 있으면 경고
+                if (rect.top >= 0 && rect.top < window.innerHeight) {
+                    console.error('WARNING: Scene 10 is in viewport on load!');
+                }
+            }
+            
+            // 강제로 Scene 0으로 설정 - 즉시 실행
+            container.scrollTop = 0;
+            container.scrollLeft = 0;
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+            
+            // 스크롤 가능 확인
+            console.log('Container scrollHeight:', container.scrollHeight);
+            console.log('Container overflow-y:', window.getComputedStyle(container).overflowY);
+            
+            // 모든 씨 이미지에 대한 일관된 처리
+            const sceneImages = document.querySelectorAll('.scene-image img');
+            sceneImages.forEach((img) => {
+                // 모든 씨 이미지의 초기 상태 설정
+                img.style.maxWidth = '100%';
+                img.style.height = 'auto';
+                img.style.display = 'block';
+                
+                // 이미지 로드 실패 시 대체 처리
+                img.onerror = function() {
+                    console.warn('Image failed to load:', this.src);
+                };
+            });
             
             // 스크롤 이벤트로 현재 씬 감지 - 개선된 로직
             let scrollTimeout;
@@ -1036,8 +811,91 @@
                 }
             }
             
+            // 초기 스크롤 위치를 Scene 0으로 강제 설정
+            function resetToFirstScene() {
+                console.log('Resetting to Scene 0...');
+                console.log('Before reset - scrollTop:', container.scrollTop);
+                
+                // 모든 스크롤 위치 강제 초기화
+                container.scrollTop = 0;
+                container.scrollLeft = 0;
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+                currentScene = 0;
+                updateDots(0);
+                
+                console.log('After reset - scrollTop:', container.scrollTop);
+                console.log('After reset - currentScene:', currentScene);
+                
+                    // 모든 Scene의 위치와 크기 확인
+                console.log('\n=== All Scenes Position Check ===');
+                scenes.forEach((scene, index) => {
+                    const rect = scene.getBoundingClientRect();
+                    const styles = window.getComputedStyle(scene);
+                    console.log(`Scene ${index}:`, {
+                        id: scene.id,
+                        offsetTop: scene.offsetTop,
+                        rect: {top: rect.top, height: rect.height},
+                        display: styles.display,
+                        visibility: styles.visibility,
+                        height: styles.height,
+                        order: styles.order,  // CSS order 속성 확인
+                        position: styles.position
+                    });
+                });
+                
+                // DOM 순서 확인
+                console.log('\n=== DOM Order Check ===');
+                const containerChildren = container.children;
+                for (let i = 0; i < Math.min(containerChildren.length, 13); i++) {
+                    console.log(`Child ${i}: ${containerChildren[i].id || containerChildren[i].className}`);
+                }
+                console.log('=== End Check ===\n');
+            }
+            
+            // 여러 번 시도하여 확실하게 Scene 0으로 설정
+            resetToFirstScene();
+            setTimeout(resetToFirstScene, 10);
+            setTimeout(resetToFirstScene, 50);
+            setTimeout(resetToFirstScene, 100);
+            setTimeout(resetToFirstScene, 300);
+            
+            // smooth 스크롤과 snap 모드 활성화
+            setTimeout(() => {
+                container.style.scrollBehavior = 'smooth';
+                container.style.scrollSnapType = 'y mandatory';
+                console.log('Smooth scroll and snap enabled');
+            }, 500);
+            
             console.log('SuperPlat Mobile Canvas - Initialized');
         });
+        
+        // window load 시에도 한번 더 확인
+        window.addEventListener('load', function() {
+            console.log('=== Window Load ===');
+            const container = document.getElementById('mobile-container');
+            if (container) {
+                console.log('Window load - current scrollTop:', container.scrollTop);
+                if (container.scrollTop !== 0) {
+                    console.log('Forcing scroll to 0 on window load');
+                    container.scrollTop = 0;
+                    
+                    // 아예 URL에서 해시도 제거
+                    if (window.location.hash) {
+                        console.log('Clearing hash:', window.location.hash);
+                        history.replaceState(null, null, window.location.pathname);
+                    }
+                }
+            }
+        });
+        
+        // 페이지 로드 전에도 스크롤 위치 초기화
+        (function() {
+            const container = document.getElementById('mobile-container');
+            if (container) {
+                container.scrollTop = 0;
+            }
+        })();
     </script>
 </body>
 </html>
