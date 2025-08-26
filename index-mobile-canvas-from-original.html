@@ -212,14 +212,21 @@
             font-size: 18px;
             font-weight: 700;
             margin-bottom: 12px;
-            color: #667eea;
+            color: #ffffff; /* #667eea에서 흰색으로 변경 */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* 가독성을 위한 그림자 추가 */
+            background: rgba(102, 126, 234, 0.8); /* 배경색 추가 */
+            padding: 8px 12px; /* 패딩 추가 */
+            border-radius: 8px; /* 둥근 모서리 */
+            display: inline-block; /* 인라인 블록으로 배경 크기 조정 */
         }
         
         .scene-description {
-            font-size: 13px;
-            line-height: 1.5;
+            font-size: 14px; /* 13px에서 14px로 증가 */
+            line-height: 1.6; /* 1.5에서 1.6으로 증가 */
             margin-bottom: 15px;
             flex-grow: 1;
+            color: #ffffff; /* 명시적으로 흰색 지정 */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* 가독성을 위한 그림자 */
         }
         
         .scene-emotion {
@@ -254,13 +261,15 @@
         }
         
         .selection-header h3 {
-            font-size: 16px;
+            font-size: 17px; /* 16px에서 17px로 증가 */
             margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* 가독성 향상 */
         }
         
         .selection-header p {
-            font-size: 12px;
-            opacity: 0.8;
+            font-size: 13px; /* 12px에서 13px로 증가 */
+            opacity: 0.9; /* 0.8에서 0.9로 증가 */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* 가독성 향상 */
         }
         
         .character-cards {
@@ -309,13 +318,15 @@
         .card-name {
             color: white;
             font-weight: 600;
-            font-size: 12px;
+            font-size: 13px; /* 12px에서 13px로 증가 */
             margin-bottom: 4px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* 가독성 향상 */
         }
         
         .card-tag {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 10px;
+            color: rgba(255, 255, 255, 0.9); /* 0.7에서 0.9로 증가 */
+            font-size: 11px; /* 10px에서 11px로 증가 */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* 가독성 향상 */
         }
         
         .selected-badge {
@@ -469,8 +480,8 @@
             max-width: 70%;
             padding: 10px 12px;
             border-radius: 18px;
-            font-size: 13px;
-            line-height: 1.4;
+            font-size: 14px; /* 13px에서 14px로 증가 */
+            line-height: 1.5; /* 1.4에서 1.5로 증가 */
         }
         
         .message-wrapper .message-avatar img {
